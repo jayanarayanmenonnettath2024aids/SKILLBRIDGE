@@ -27,8 +27,10 @@
 }
 
 .logo-image {
-    height: 40px;
+    height: 50px;
     width: auto;
+    max-width: 250px;
+    object-fit: contain;
 }
 
 
@@ -80,6 +82,20 @@
     padding: var(--spacing-sm);
     width: 100%;
     text-align: left;
+}
+
+.mobile-link-accent {
+    background-color: var(--color-accent);
+    color: white;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md);
+}
+
+.mobile-link-accent:hover {
+    background-color: var(--color-accent-light);
 }
 
 .btn-sm {

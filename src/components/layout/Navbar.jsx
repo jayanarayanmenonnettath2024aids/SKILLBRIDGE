@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Globe, User, Briefcase } from 'lucide-react';
+import { Menu, X, Globe, User, Briefcase, BookOpen } from 'lucide-react';
 import '../../styles/Navbar.css';
-import logo from '../../assets/images/logo.svg';
+import logo from '../../assets/images/logo.png';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -22,6 +22,11 @@ const Navbar = () => {
                     <Link to="/jobs" className="nav-link">Find Jobs</Link>
                     <Link to="/employer" className="nav-link">For Employers</Link>
                     <Link to="/kiosk" className="nav-link">Kiosk Mode</Link>
+
+                    <Link to="/learning" className="btn btn-accent btn-sm">
+                        <BookOpen size={18} />
+                        <span>Start Learning</span>
+                    </Link>
 
                     <button className="btn btn-secondary btn-sm">
                         <Globe size={18} />
@@ -45,6 +50,9 @@ const Navbar = () => {
                     <Link to="/employer" className="mobile-link" onClick={() => setIsOpen(false)}>For Employers</Link>
                     <Link to="/kiosk" className="mobile-link" onClick={() => setIsOpen(false)}>Kiosk Mode</Link>
                     <hr />
+                    <Link to="/learning" className="mobile-link mobile-link-accent" onClick={() => setIsOpen(false)}>
+                        <BookOpen size={18} style={{ marginRight: '8px' }} /> Start Learning
+                    </Link>
                     <button className="mobile-link" onClick={() => setIsOpen(false)}>
                         <Globe size={18} style={{ marginRight: '8px' }} /> Language
                     </button>

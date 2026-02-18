@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { ShieldCheck, TrendingUp, Users, CheckCircle, MapPin, Search, Grid, HelpCircle } from 'lucide-react';
+import { ShieldCheck, TrendingUp, Users, CheckCircle, MapPin, Search, Grid, HelpCircle, BookOpen, Clock, Award } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';
 import '../../styles/LandingPage.css';
 import { Link, useNavigate } from 'react-router-dom';
 import studentImage from '../../assets/images/studnt.png';
-import opportunityImage from '../../assets/images/oppurtunity.png';
+import opportunityImage from '../../assets/images/os.png';
+import heroImage from '../../assets/images/image.png';
 
 const LandingPage = () => {
     const navigate = useNavigate();
@@ -43,8 +44,11 @@ const LandingPage = () => {
                             <Link to="/onboarding">
                                 <Button size="lg" variant="primary">I'm a Job Seeker</Button>
                             </Link>
-                            <Link to="/employer">
-                                <Button size="lg" variant="outline">I'm an Employer</Button>
+                            <Link to="/learning">
+                                <Button size="lg" variant="secondary">
+                                    <BookOpen size={20} style={{ marginRight: '8px' }} />
+                                    Start Learning
+                                </Button>
                             </Link>
                         </div>
                         <div className="trust-badges">
@@ -61,7 +65,7 @@ const LandingPage = () => {
                     <div className="hero-image">
                         {/* Placeholder for Hero Image - would use an actual image here */}
                         <div className="hero-image-placeholder">
-                            <img src="https://placehold.co/600x400/e2e8f0/1e3a8a?text=Rural+Youth+Empowerment" alt="Empowered Youth" />
+                            <img src={heroImage} alt="Rural Youth Empowerment" />
                         </div>
                     </div>
                 </div>
@@ -117,6 +121,55 @@ const LandingPage = () => {
                             <h3>Instant Matching</h3>
                             <p>Our AI matches you with jobs that fit your profile perfectly. Apply with one click.</p>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Micro Learning Section */}
+            <section className="section microlearning-section">
+                <div className="container">
+                    <div className="section-header text-center">
+                        <h2 className="section-title">
+                            <BookOpen size={32} style={{ display: 'inline-block', marginRight: '12px', verticalAlign: 'middle', color: 'var(--color-primary)' }} />
+                            Master Skills with Micro Learning
+                        </h2>
+                        <p className="section-subtitle">Learn new skills in bite-sized lessons. Master the basics in minutes, not hours.</p>
+                    </div>
+
+                    <div className="microlearning-grid">
+                        <Card className="microlearning-card">
+                            <div className="microlearning-icon">
+                                <Clock size={40} />
+                            </div>
+                            <h3>5-15 Minute Lessons</h3>
+                            <p>Short, focused lessons that fit into your busy schedule</p>
+                        </Card>
+
+                        <Card className="microlearning-card">
+                            <div className="microlearning-icon">
+                                <BookOpen size={40} />
+                            </div>
+                            <h3>22+ Tech Modules</h3>
+                            <p>AI, Machine Learning, Web Dev, Cybersecurity & More</p>
+                        </Card>
+
+                        <Card className="microlearning-card">
+                            <div className="microlearning-icon">
+                                <Award size={40} />
+                            </div>
+                            <h3>Earn Points & Badges</h3>
+                            <p>Track your progress and showcase your achievements</p>
+                        </Card>
+                    </div>
+
+                    <div className="microlearning-cta">
+                        <Link to="/learning">
+                            <Button size="lg" variant="primary">
+                                <BookOpen size={20} style={{ marginRight: '8px' }} />
+                                Start Learning Now
+                            </Button>
+                        </Link>
+                        <p className="microlearning-cta-text">Free • Self-paced • Certificate Ready</p>
                     </div>
                 </div>
             </section>
@@ -205,8 +258,8 @@ const LandingPage = () => {
                         <Card className="action-card guidance-card">
                             <div className="guidance-header">
                                 <div>
-                                    <h2 className="action-card-title white">Not Sure</h2>
-                                    <h2 className="action-card-title white">Where To Begin?</h2>
+                                    <h2 className="action-card-title">Not Sure</h2>
+                                    <h2 className="action-card-title">Where To Begin?</h2>
                                 </div>
                                 <div className="help-icon">
                                     <HelpCircle size={32} />
@@ -220,7 +273,7 @@ const LandingPage = () => {
                                 <select 
                                     value={educationLevel}
                                     onChange={(e) => setEducationLevel(e.target.value)}
-                                    className="select-input white-select"
+                                    className="select-input"
                                 >
                                     <option value="">Select Education</option>
                                     <option value="10th">10th Pass</option>

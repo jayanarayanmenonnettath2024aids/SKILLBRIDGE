@@ -82,7 +82,7 @@ const CandidateDashboard = () => {
             <div className="dashboard-section">
                 <div className="section-head">
                     <h3>Recommended Skilling</h3>
-                    <span className="view-all">Browse Courses</span>
+                    <Link to="/learning" className="view-all">Browse Courses</Link>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {recommendedLearning.map((course, index) => (

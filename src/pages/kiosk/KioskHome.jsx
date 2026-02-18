@@ -15,7 +15,7 @@ const KioskHome = () => {
         <div className="kiosk-container">
             <header className="kiosk-header">
                 <div className="flex items-center gap-4">
-                    <img src="/vite.svg" alt="Logo" className="h-12 w-12" />
+                    <img src="/logo.png" alt="SkillBridge Logo" style={{ height: '48px', width: 'auto', maxWidth: '200px', objectFit: 'contain' }} />
                     <div>
                         <h1>SkillBridge Kiosk</h1>
                         <p>Select an option to begin</p>

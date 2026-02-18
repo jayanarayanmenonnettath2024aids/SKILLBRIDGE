@@ -64,6 +64,13 @@
     box-shadow: var(--shadow-lg);
 }
 
+.hero-image-placeholder img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
 .stats-section {
     padding: 2rem 0;
     margin-top: -2rem;
@@ -472,8 +479,12 @@
 
 /* Guidance Card Specific */
 .guidance-card {
-    background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
-    color: white;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 100%), 
+                url('../assets/images/begin.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #1F2937;
 }
 
 .guidance-header {
@@ -484,8 +495,8 @@
 }
 
 .help-icon {
-    background: white;
-    color: #D97706;
+    background: #D97706;
+    color: white;
     border-radius: 50%;
     width: 56px;
     height: 56px;
@@ -496,7 +507,7 @@
 }
 
 .guidance-subtitle {
-    color: white;
+    color: #1F2937;
     font-size: 1rem;
     margin-bottom: 2rem;
     line-height: 1.5;
@@ -508,7 +519,7 @@
 
 .guidance-label {
     display: block;
-    color: white;
+    color: #1F2937;
     font-weight: 600;
     margin-bottom: 0.75rem;
     font-size: 1rem;
@@ -522,4 +533,72 @@
 .guidance-button:hover {
     background: #1D4ED8;
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Micro Learning Section */
+.microlearning-section {
+    background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+    padding: 4rem 0;
+}
+
+.microlearning-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.microlearning-card {
+    text-align: center;
+    padding: 2rem;
+    transition: all var(--transition-normal);
+    border: 2px solid transparent;
+}
+
+.microlearning-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-lg);
+}
+
+.microlearning-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-normal);
+}
+
+.microlearning-card:hover .microlearning-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.microlearning-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.microlearning-card p {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.microlearning-cta {
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.microlearning-cta-text {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
 }

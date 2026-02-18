@@ -8,6 +8,8 @@ import JobListings from './pages/jobs/JobListings';
 import EmployerDashboard from './pages/employer/EmployerDashboard';
 import KioskHome from './pages/kiosk/KioskHome';
 import Wallet from './pages/wallet/Wallet';
+import MicroLearning from './pages/learning/MicroLearning';
+import LessonView from './pages/learning/LessonView';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="/onboarding/*" element={<Onboarding />} />
           <Route path="/dashboard" element={<CandidateDashboard />} />
           <Route path="/jobs" element={<JobListings />} />
+          <Route path="/learning" element={<MicroLearning />} />
+          <Route path="/learning/:moduleId" element={<LessonView />} />
           <Route path="/employer" element={<EmployerDashboard />} />
           <Route path="/kiosk" element={<KioskHome />} />
           <Route path="/wallet" element={<Wallet />} />

@@ -29,6 +29,17 @@
     background-color: var(--color-accent-light);
 }
 
+.btn-accent {
+    background-color: var(--color-accent);
+    color: white;
+}
+
+.btn-accent:hover {
+    background-color: var(--color-accent-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
 .btn-md {
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
