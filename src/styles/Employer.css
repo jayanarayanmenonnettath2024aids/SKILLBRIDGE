@@ -1,0 +1,40 @@
+.employer-page {
+    padding: 2rem 0;
+}
+
+.candidate-card {
+    transition: transform var(--transition-fast);
+}
+
+.candidate-card:hover {
+    transform: translateX(4px);
+    border-left: 4px solid var(--color-primary);
+}
+
+.w-16 {
+    width: 4rem;
+}
+
+.h-16 {
+    height: 4rem;
+}
+
+.rounded-full {
+    border-radius: 50%;
+}
+
+.border-l-4 {
+    border-left-width: 4px;
+}
+
+.border-primary {
+    border-color: var(--color-primary);
+}
+
+.border-accent {
+    border-color: var(--color-accent);
+}
+
+.border-success {
+    border-color: var(--color-success);
+}
