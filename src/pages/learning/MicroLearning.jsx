@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Clock, Award, TrendingUp, CheckCircle, PlayCircle, Star, Brain, Database, Shield, Code, Smartphone, Cloud, Wifi, Network, Settings } from 'lucide-react';
+import { 
+    BookOpen, Clock, Award, TrendingUp, CheckCircle, PlayCircle, Star, Brain, Database, Shield, Code, Smartphone, Cloud, Wifi, Network, Settings,
+    Bot, BrainCircuit, BarChart3, Lock, Globe, MonitorSmartphone, CloudCog, Cable, NetworkIcon, Laptop
+} from 'lucide-react';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import '../../styles/MicroLearning.css';
@@ -20,70 +23,70 @@ const MicroLearning = () => {
         { 
             id: 'ai', 
             name: 'Artificial Intelligence (AI)', 
-            icon: '🤖',
+            icon: Bot,
             color: '#3B82F6',
             description: 'Building smart systems that can learn and make decisions'
         },
         { 
             id: 'ml', 
             name: 'Machine Learning (ML)', 
-            icon: '🧠',
+            icon: BrainCircuit,
             color: '#8B5CF6',
             description: 'Algorithms that learn from data'
         },
         { 
             id: 'data-science', 
             name: 'Data Science', 
-            icon: '📊',
+            icon: BarChart3,
             color: '#10B981',
             description: 'Extracting insights from large datasets'
         },
         { 
             id: 'cybersecurity', 
             name: 'Cybersecurity', 
-            icon: '🔒',
+            icon: Lock,
             color: '#EF4444',
             description: 'Protecting systems and data from attacks'
         },
         { 
             id: 'web-dev', 
             name: 'Web Development', 
-            icon: '🌐',
+            icon: Globe,
             color: '#F59E0B',
             description: 'Creating websites and web applications'
         },
         { 
             id: 'mobile-dev', 
             name: 'Mobile App Development', 
-            icon: '📱',
+            icon: MonitorSmartphone,
             color: '#EC4899',
             description: 'Building Android and iOS applications'
         },
         { 
             id: 'cloud', 
             name: 'Cloud Computing', 
-            icon: '☁️',
+            icon: CloudCog,
             color: '#06B6D4',
             description: 'Using remote servers and cloud services'
         },
         { 
             id: 'iot', 
             name: 'Internet of Things (IoT)', 
-            icon: '🔌',
+            icon: Cable,
             color: '#F97316',
             description: 'Connecting physical devices to the internet'
         },
         { 
             id: 'networks', 
             name: 'Computer Networks', 
-            icon: '🌐',
+            icon: NetworkIcon,
             color: '#6366F1',
             description: 'Communication between computers and systems'
         },
         { 
             id: 'software-eng', 
             name: 'Software Engineering', 
-            icon: '💻',
+            icon: Laptop,
             color: '#14B8A6',
             description: 'Designing and developing software systems'
         }
@@ -131,7 +134,7 @@ const MicroLearning = () => {
             completed: 3,
             difficulty: 'Beginner',
             points: 60,
-            image: 'https://placehold.co/400x250/3b82f6/1e3a8a?text=Intro+to+AI',
+            image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop',
             description: 'Learn the fundamentals of artificial intelligence'
         },
         {
@@ -143,7 +146,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Intermediate',
             points: 70,
-            image: 'https://placehold.co/400x250/3b82f6/1e3a8a?text=Neural+Networks',
+            image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=250&fit=crop',
             description: 'Understanding how neural networks work'
         },
         {
@@ -155,7 +158,7 @@ const MicroLearning = () => {
             completed: 5,
             difficulty: 'Intermediate',
             points: 80,
-            image: 'https://placehold.co/400x250/8b5cf6/5b21b6?text=Python+ML',
+            image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400&h=250&fit=crop',
             description: 'Master Python libraries for machine learning'
         },
         {
@@ -167,7 +170,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Intermediate',
             points: 60,
-            image: 'https://placehold.co/400x250/8b5cf6/5b21b6?text=Supervised+Learning',
+            image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=250&fit=crop',
             description: 'Learn about classification and regression'
         },
         {
@@ -179,7 +182,7 @@ const MicroLearning = () => {
             completed: 2,
             difficulty: 'Beginner',
             points: 70,
-            image: 'https://placehold.co/400x250/10b981/065f46?text=Pandas',
+            image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop',
             description: 'Master data manipulation with Pandas'
         },
         {
@@ -191,7 +194,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Beginner',
             points: 60,
-            image: 'https://placehold.co/400x250/10b981/065f46?text=Data+Viz',
+            image: 'https://images.unsplash.com/photo-1543286386-713bdd548da4?w=400&h=250&fit=crop',
             description: 'Create stunning visualizations with Python'
         },
         {
@@ -203,7 +206,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Beginner',
             points: 60,
-            image: 'https://placehold.co/400x250/ef4444/991b1b?text=Network+Security',
+            image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=250&fit=crop',
             description: 'Learn how to protect networks from attacks'
         },
         {
@@ -215,7 +218,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Advanced',
             points: 80,
-            image: 'https://placehold.co/400x250/ef4444/991b1b?text=Ethical+Hacking',
+            image: 'https://images.unsplash.com/photo-1520869562399-e772f042f422?w=400&h=250&fit=crop',
             description: 'Introduction to penetration testing'
         },
         {
@@ -227,7 +230,7 @@ const MicroLearning = () => {
             completed: 4,
             difficulty: 'Beginner',
             points: 60,
-            image: 'https://placehold.co/400x250/f59e0b/92400e?text=HTML+CSS',
+            image: 'https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=400&h=250&fit=crop',
             description: 'Build your first web page from scratch'
         },
         {
@@ -239,7 +242,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Beginner',
             points: 70,
-            image: 'https://placehold.co/400x250/f59e0b/92400e?text=JavaScript',
+            image: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=250&fit=crop',
             description: 'Learn JavaScript programming basics'
         },
         {
@@ -251,7 +254,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Intermediate',
             points: 80,
-            image: 'https://placehold.co/400x250/f59e0b/92400e?text=React',
+            image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=250&fit=crop',
             description: 'Build modern web apps with React'
         },
         {
@@ -263,7 +266,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Intermediate',
             points: 70,
-            image: 'https://placehold.co/400x250/ec4899/9f1239?text=Android+Dev',
+            image: 'https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=400&h=250&fit=crop',
             description: 'Create your first Android application'
         },
         {
@@ -275,7 +278,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Intermediate',
             points: 80,
-            image: 'https://placehold.co/400x250/ec4899/9f1239?text=iOS+Dev',
+            image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop',
             description: 'Build apps for iPhone and iPad'
         },
         {
@@ -287,7 +290,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Beginner',
             points: 60,
-            image: 'https://placehold.co/400x250/06b6d4/075985?text=AWS+Cloud',
+            image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=250&fit=crop',
             description: 'Introduction to Amazon Web Services'
         },
         {
@@ -299,7 +302,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Intermediate',
             points: 70,
-            image: 'https://placehold.co/400x250/06b6d4/075985?text=Docker',
+            image: 'https://images.unsplash.com/photo-1605745341112-85968b19335b?w=400&h=250&fit=crop',
             description: 'Learn containerization with Docker'
         },
         {
@@ -311,7 +314,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Beginner',
             points: 70,
-            image: 'https://placehold.co/400x250/f97316/9a3412?text=Arduino+IoT',
+            image: 'https://images.unsplash.com/photo-1553406830-ef2513450d76?w=400&h=250&fit=crop',
             description: 'Build IoT projects with Arduino boards'
         },
         {
@@ -323,7 +326,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Intermediate',
             points: 80,
-            image: 'https://placehold.co/400x250/f97316/9a3412?text=Raspberry+Pi',
+            image: 'https://images.unsplash.com/photo-1553406830-b8e3c6b9b04b?w=400&h=250&fit=crop',
             description: 'Create smart home devices with Raspberry Pi'
         },
         {
@@ -335,7 +338,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Beginner',
             points: 60,
-            image: 'https://placehold.co/400x250/6366f1/4338ca?text=TCP+IP',
+            image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=250&fit=crop',
             description: 'Understanding internet protocols'
         },
         {
@@ -347,7 +350,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Intermediate',
             points: 70,
-            image: 'https://placehold.co/400x250/6366f1/4338ca?text=Network+Config',
+            image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=250&fit=crop',
             description: 'Setup and configure computer networks'
         },
         {
@@ -359,7 +362,7 @@ const MicroLearning = () => {
             completed: 1,
             difficulty: 'Intermediate',
             points: 70,
-            image: 'https://placehold.co/400x250/14b8a6/0f766e?text=Design+Patterns',
+            image: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=400&h=250&fit=crop',
             description: 'Learn common software design patterns'
         },
         {
@@ -371,7 +374,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Beginner',
             points: 60,
-            image: 'https://placehold.co/400x250/14b8a6/0f766e?text=Agile',
+            image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=400&h=250&fit=crop',
             description: 'Master Agile software development methods'
         },
         {
@@ -383,7 +386,7 @@ const MicroLearning = () => {
             completed: 0,
             difficulty: 'Beginner',
             points: 60,
-            image: 'https://placehold.co/400x250/14b8a6/0f766e?text=Git',
+            image: 'https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=250&fit=crop',
             description: 'Learn version control with Git and GitHub'
         }
     ];
@@ -418,6 +421,7 @@ const MicroLearning = () => {
                         <div className="domains-selection-grid">
                             {allDomains.map(domain => {
                                 const isSelected = selectedDomains.includes(domain.id);
+                                const IconComponent = domain.icon;
                                 return (
                                     <div
                                         key={domain.id}
@@ -430,7 +434,9 @@ const MicroLearning = () => {
                                                 <CheckCircle size={20} />
                                             </div>
                                         )}
-                                        <div className="domain-icon-large">{domain.icon}</div>
+                                        <div className="domain-icon-large">
+                                            <IconComponent size={48} />
+                                        </div>
                                         <h3>{domain.name}</h3>
                                         <p>{domain.description}</p>
                                     </div>

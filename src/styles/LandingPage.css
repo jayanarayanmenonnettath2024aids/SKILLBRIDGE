@@ -117,6 +117,138 @@
     margin-bottom: 0.5rem;
 }
 
+/* Process Flow - Arrow Design */
+.process-flow {
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    max-width: 1100px;
+    margin: 3rem auto;
+    min-height: 320px;
+    gap: 1.5rem;
+}
+
+.process-step {
+    flex: 1;
+    padding: 3.5rem 2rem 2.5rem 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    clip-path: polygon(15% 0, 100% 0, 85% 50%, 100% 100%, 15% 100%, 0% 50%);
+    z-index: 1;
+    transition: all 0.3s ease;
+    border: 4px solid white;
+}
+
+.process-step:first-child {
+    clip-path: polygon(0 0, 100% 0, 85% 50%, 100% 100%, 0 100%);
+}
+
+.process-step:last-of-type {
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 15% 100%, 0% 50%);
+}
+
+.step-orange {
+    background: linear-gradient(135deg, #0320fc 0%, #0558fc 100%);
+    z-index: 3;
+    box-shadow: 0 8px 24px rgba(3, 32, 252, 0.3);
+}
+
+.step-green {
+    background: linear-gradient(135deg, #fcfc03f1 0%, #ffd700 100%);
+    z-index: 2;
+    box-shadow: 0 8px 24px rgba(252, 252, 3, 0.3);
+}
+
+.step-red {
+    background: linear-gradient(135deg, #0558fc 0%, #3b82f6 100%);
+    z-index: 1;
+    box-shadow: 0 8px 24px rgba(5, 88, 252, 0.3);
+}
+
+.step-pin {
+    width: 90px;
+    height: 110px;
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.step-pin::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 90px;
+    background: white;
+    border-radius: 50% 50% 50% 0;
+    transform: translateX(-50%) rotate(-45deg);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.pin-icon {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #fcfc03 0%, #ffd700 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 3px solid white;
+}
+
+.pin-icon svg {
+    color: #0320fc;
+}
+
+.step-title {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.step-description {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.arrow-point {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .process-flow {
+        flex-direction: column;
+        max-width: 400px;
+        gap: 1rem;
+    }
+    
+    .process-step,
+    .process-step:first-child,
+    .process-step:last-of-type {
+        clip-path: polygon(10% 0, 100% 0, 90% 50%, 100% 100%, 10% 100%, 0% 50%);
+        margin-bottom: 0;
+    }
+}
+
 .features-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -188,7 +320,7 @@
 }
 
 .opportunities-link svg {
-    background: #D97706;
+    background: #fd8802;
     color: white;
     border-radius: 50%;
     padding: 8px;
@@ -222,7 +354,7 @@
 
 /* Action Card Base */
 .action-card {
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     display: flex;
@@ -250,19 +382,19 @@
 .action-card-subtitle {
     font-size: 1.125rem;
     color: #4B5563;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 /* Card Illustrations */
 .card-illustration {
-    margin: 1.5rem 0;
+    margin: 1rem 0;
     display: flex;
     justify-content: center;
 }
 
 .illustration-image {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
     object-fit: contain;
 }
 
@@ -406,7 +538,7 @@
 /* Card Input */
 .card-input {
     position: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .input-icon {
@@ -429,7 +561,7 @@
 .select-input,
 .text-input {
     width: 100%;
-    padding: 0.875rem 1rem 0.875rem 3rem;
+    padding: 0.75rem 1rem 0.75rem 3rem;
     border: 1px solid #D1D5DB;
     border-radius: 8px;
     font-size: 0.95rem;
@@ -453,12 +585,12 @@
 .card-hint {
     font-size: 0.875rem;
     color: #6B7280;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     line-height: 1.5;
 }
 
 .action-button {
-    padding: 0.875rem 2rem;
+    padding: 0.75rem 2rem;
     background: #D4A574;
     color: white;
     border: none;
@@ -491,15 +623,15 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .help-icon {
     background: #D97706;
     color: white;
     border-radius: 50%;
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -509,12 +641,12 @@
 .guidance-subtitle {
     color: #1F2937;
     font-size: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     line-height: 1.5;
 }
 
 .guidance-form {
-    margin: 2rem 0;
+    margin: 1.25rem 0;
 }
 
 .guidance-label {
@@ -527,7 +659,7 @@
 
 .guidance-button {
     background: #2563EB;
-    margin-top: 2rem;
+    margin-top: 1.25rem;
 }
 
 .guidance-button:hover {

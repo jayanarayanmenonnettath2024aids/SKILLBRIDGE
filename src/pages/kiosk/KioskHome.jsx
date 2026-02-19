@@ -39,7 +39,7 @@ const KioskHome = () => {
                     icon={Search}
                     title="Find Jobs"
                     color="bg-green"
-                    to="/jobs"
+                    to="/certificate-upload"
                 />
                 <KioskTile
                     icon={Shield}

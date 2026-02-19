@@ -30,10 +30,6 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className="footer-bottom">
-                    <p>&copy; {new Date().getFullYear()} SkillBridgeAI. All rights reserved.</p>
-                    <p>Made with ❤️ for India</p>
-                </div>
             </div>
         </footer>
     );

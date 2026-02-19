@@ -4,7 +4,7 @@ import Button from '../../components/ui/Button';
 import { ShieldCheck, Phone } from 'lucide-react';
 import '../../styles/Onboarding.css';
 
-const IdentityVerification = ({ onNext }) => {
+const IdentityVerification = ({ onNext, onBack }) => {
     const [aadhaar, setAadhaar] = useState('');
     const [otp, setOtp] = useState('');
     const [step, setStep] = useState('aadhaar'); // 'aadhaar' | 'otp'
@@ -51,13 +51,23 @@ const IdentityVerification = ({ onNext }) => {
                                 required
                             />
                         </div>
-                        <Button
-                            type="submit"
-                            className="w-full"
-                            disabled={aadhaar.length !== 12}
-                        >
-                            Send OTP
-                        </Button>
+                        <div className="form-button-group">
+                            <Button
+                                type="submit"
+                                disabled={aadhaar.length !== 12}
+                            >
+                                Send OTP
+                            </Button>
+                            {onBack && (
+                                <Button
+                                    type="button"
+                                    variant="outline"
+                                    onClick={onBack}
+                                >
+                                    Back
+                                </Button>
+                            )}
+                        </div>
                     </form>
                 ) : (
                     <form onSubmit={handleVerify}>
@@ -74,20 +84,31 @@ const IdentityVerification = ({ onNext }) => {
                             />
                             <p className="text-sm text-secondary mt-1">OTP sent to linked mobile number</p>
                         </div>
-                        <Button
-                            type="submit"
-                            className="w-full"
-                            disabled={otp.length !== 6}
-                        >
-                            Verify & Continue
-                        </Button>
-                        <button
-                            type="button"
-                            className="text-sm mt-4 text-primary w-full text-center"
-                            onClick={() => setStep('aadhaar')}
-                        >
-                            Change Aadhaar Number
-                        </button>
+                        <div className="form-button-group">
+                            <Button
+                                type="submit"
+                                disabled={otp.length !== 6}
+                            >
+                                Verify & Continue
+                            </Button>
+                            <button
+                                type="button"
+                                className="link-button"
+                                onClick={() => setStep('aadhaar')}
+                            >
+                                Change Aadhaar Number
+                            </button>
+                        </div>
+                        {onBack && (
+                            <Button
+                                type="button"
+                                variant="outline"
+                                className="w-full mt-3"
+                                onClick={onBack}
+                            >
+                                Back
+                            </Button>
+                        )}
                     </form>
                 )}
             </Card>

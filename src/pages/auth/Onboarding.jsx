@@ -1,16 +1,30 @@
 import React, { useState } from 'react';
+import BasicInfo from './BasicInfo';
+import FaceCapture from './FaceCapture';
 import IdentityVerification from './IdentityVerification';
 import SkillProfile from './SkillProfile';
+import DocumentUpload from './DocumentUpload';
 import SkillGap from './SkillGap';
 import '../../styles/Onboarding.css';
 
 const Onboarding = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [userData, setUserData] = useState({
+        fullName: '',
+        phoneNumber: '',
+        email: '',
+        dateOfBirth: '',
+        gender: '',
+        state: '',
+        district: '',
+        faceImage: null,
         aadhaar: null,
         verified: false,
         education: null,
-        skills: []
+        skills: [],
+        jobRoles: [],
+        resume: null,
+        certificates: []
     });
 
     const handleNext = (data) => {
@@ -22,24 +36,48 @@ const Onboarding = () => {
         setCurrentStep(currentStep - 1);
     };
 
+    const steps = [
+        { number: 1, label: 'Basic Info' },
+        { number: 2, label: 'Face Capture' },
+        { number: 3, label: 'Verification' },
+        { number: 4, label: 'Skills' },
+        { number: 5, label: 'Documents' },
+        { number: 6, label: 'Assessment' }
+    ];
+
     return (
         <div className="onboarding-container">
-            <div className="progress-bar">
-                <div className={`progress-step ${currentStep >= 1 ? 'active' : ''}`}>1</div>
-                <div className="progress-line"></div>
-                <div className={`progress-step ${currentStep >= 2 ? 'active' : ''}`}>2</div>
-                <div className="progress-line"></div>
-                <div className={`progress-step ${currentStep >= 3 ? 'active' : ''}`}>3</div>
+            <div className="progress-bar-wrapper">
+                <div className="progress-bar">
+                    {steps.map((step, index) => (
+                        <div 
+                            key={step.number}
+                            className="progress-step-container"
+                        >
+                            <div className={`progress-step ${currentStep >= step.number ? 'active' : ''} ${currentStep > step.number ? 'completed' : ''}`}>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             <div className="step-content">
                 {currentStep === 1 && (
-                    <IdentityVerification onNext={handleNext} />
+                    <BasicInfo onNext={handleNext} />
                 )}
                 {currentStep === 2 && (
-                    <SkillProfile onNext={handleNext} onBack={handleBack} />
+                    <FaceCapture onComplete={handleNext} onBack={handleBack} />
                 )}
                 {currentStep === 3 && (
+                    <IdentityVerification onNext={handleNext} onBack={handleBack} />
+                )}
+                {currentStep === 4 && (
+                    <SkillProfile onNext={handleNext} onBack={handleBack} />
+                )}
+                {currentStep === 5 && (
+                    <DocumentUpload onNext={handleNext} onBack={handleBack} />
+                )}
+                {currentStep === 6 && (
                     <SkillGap data={userData} onBack={handleBack} />
                 )}
             </div>

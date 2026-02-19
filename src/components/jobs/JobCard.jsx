@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
 import Badge from '../ui/Badge';
@@ -6,7 +7,19 @@ import MatchScore from '../dashboard/MatchScore';
 import { MapPin, Building2, Info } from 'lucide-react';
 
 const JobCard = ({ job, onApply }) => {
+    const navigate = useNavigate();
     const [showTooltip, setShowTooltip] = useState(false);
+
+    const handleApply = () => {
+        // Navigate to interview bot with job details
+        navigate('/interview', {
+            state: {
+                title: job.title,
+                company: job.company,
+                matchScore: job.matchScore
+            }
+        });
+    };
 
     return (
         <Card className="job-card">
@@ -56,7 +69,7 @@ const JobCard = ({ job, onApply }) => {
 
             <div className="job-actions mt-4 pt-4 border-t border-gray-100 flex justify-end gap-2">
                 <Button variant="outline" size="sm">Details</Button>
-                <Button size="sm" onClick={() => onApply(job.id)}>Apply Now</Button>
+                <Button size="sm" onClick={handleApply}>Apply Now</Button>
             </div>
         </Card>
     );

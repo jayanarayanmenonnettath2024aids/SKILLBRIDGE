@@ -31,46 +31,46 @@ const CandidateDashboard = () => {
 
     return (
         <div className="container dashboard-container">
-            <div className="dashboard-header flex justify-between items-center">
-                <div>
+            <div className="dashboard-header">
+                <div className="header-content">
                     <h1 className="dashboard-title">Welcome back, {user.name || 'Rahul'}!</h1>
                     <p className="dashboard-subtitle">Here is your career progress today.</p>
                 </div>
-                <Link to="/jobs">
+                <Link to="/certificate-upload">
                     <Button>
-                        <Briefcase size={18} className="mr-2" />
-                        Find Jobs
+                        <Briefcase size={18} />
+                        <span style={{ marginLeft: '0.5rem' }}>Find Jobs</span>
                     </Button>
                 </Link>
             </div>
 
             {/* Top Section: Job Matches & Credentials */}
-            <div className="dashboard-grid mb-12">
+            <div className="dashboard-grid">
                 {/* Job Matches */}
-                <div className="dashboard-section col-span-2">
+                <div className="dashboard-section job-matches-section">
                     <div className="section-head">
                         <h3>Top Job Matches</h3>
                         <Link to="/jobs" className="view-all">View All Jobs</Link>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="job-matches-grid">
                         {jobMatches.map((job, index) => (
-                            <div key={index} className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm">
+                            <div key={index} className="job-match-card">
                                 <MatchScore score={job.score} size={100} />
-                                <h4 className="mt-3 font-semibold text-center">{job.title}</h4>
-                                <p className="text-sm text-secondary">{job.company}</p>
-                                <Button variant="outline" size="sm" className="mt-3 w-full">Apply</Button>
+                                <h4 className="job-match-title">{job.title}</h4>
+                                <p className="job-match-company">{job.company}</p>
+                                <Button variant="outline" size="sm" className="apply-btn">Apply</Button>
                             </div>
                         ))}
                     </div>
                 </div>
 
                 {/* Credentials Preview */}
-                <div className="dashboard-section">
+                <div className="dashboard-section credentials-section">
                     <div className="section-head">
                         <h3>Verified Credentials</h3>
-                        <span className="view-all">Wallet</span>
+                        <Link to="/wallet" className="view-all">Wallet</Link>
                     </div>
-                    <div className="flex flex-col gap-4">
+                    <div className="credentials-list">
                         {credentials.map((cred, index) => (
                             <CredentialCard key={index} {...cred} isVerified={cred.verified} />
                         ))}
@@ -79,12 +79,12 @@ const CandidateDashboard = () => {
             </div>
 
             {/* Recommended Learning */}
-            <div className="dashboard-section">
+            <div className="dashboard-section learning-section">
                 <div className="section-head">
                     <h3>Recommended Skilling</h3>
                     <Link to="/learning" className="view-all">Browse Courses</Link>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="learning-grid">
                     {recommendedLearning.map((course, index) => (
                         <LearningCard key={index} {...course} />
                     ))}

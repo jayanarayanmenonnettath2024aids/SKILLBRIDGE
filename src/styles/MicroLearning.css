@@ -126,8 +126,11 @@
 }
 
 .domain-icon-large {
-  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: var(--spacing-md);
+  color: var(--domain-color, var(--color-primary));
 }
 
 .domain-selection-card h3 {
@@ -870,8 +873,9 @@
     font-size: 1.5rem;
   }
 
-  .domain-icon-large {
-    font-size: 2.5rem;
+  .domain-icon-large svg {
+    width: 40px;
+    height: 40px;
   }
 
   .modal-actions {

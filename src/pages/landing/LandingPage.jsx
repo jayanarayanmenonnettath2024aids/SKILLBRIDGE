@@ -19,7 +19,7 @@ const LandingPage = () => {
     };
 
     const handleFindJob = () => {
-        navigate('/jobs');
+        navigate('/certificate-upload');
     };
 
     const handleGuidanceNext = () => {
@@ -32,7 +32,7 @@ const LandingPage = () => {
             <section className="hero-section">
                 <div className="container hero-container">
                     <div className="hero-content">
-                        <Badge variant="primary" className="mb-4">Official Partner: National Skill Mission</Badge>
+                        <Badge variant="primary" className="mb-4">Connecting Talent to Opportunity</Badge>
                         <h1 className="hero-title">
                             Get Hired. Get Verified. <span className="text-accent">Get Ahead.</span>
                         </h1>
@@ -99,28 +99,38 @@ const LandingPage = () => {
                         <p className="section-subtitle">Bridging the gap between talent and opportunity.</p>
                     </div>
 
-                    <div className="features-grid">
-                        <div className="feature-item">
-                            <div className="feature-icon bg-indigo-100 text-primary">
-                                <ShieldCheck size={32} />
+                    <div className="process-flow">
+                        <div className="process-step step-orange">
+                            <div className="step-pin">
+                                <div className="pin-icon">
+                                    <Users size={28} />
+                                </div>
                             </div>
-                            <h3>Verified Credentials</h3>
-                            <p>Your skills and education are verified on the blockchain. No more fake resumes.</p>
+                            <h3 className="step-title">Verified Credentials</h3>
+                            <p className="step-description">Your skills and education are verified on the blockchain. No more fake resumes.</p>
                         </div>
-                        <div className="feature-item">
-                            <div className="feature-icon bg-amber-100 text-accent">
-                                <TrendingUp size={32} />
+                        
+                        <div className="process-step step-green">
+                            <div className="step-pin">
+                                <div className="pin-icon">
+                                    <TrendingUp size={28} />
+                                </div>
                             </div>
-                            <h3>Skill-Gap Analysis</h3>
-                            <p>Find out exactly what skills you need to get your dream job with our AI assessment.</p>
+                            <h3 className="step-title">Skill-Gap Analysis</h3>
+                            <p className="step-description">Find out exactly what skills you need to get your dream job with our AI assessment.</p>
                         </div>
-                        <div className="feature-item">
-                            <div className="feature-icon bg-emerald-100 text-success">
-                                <CheckCircle size={32} />
+                        
+                        <div className="process-step step-red">
+                            <div className="step-pin">
+                                <div className="pin-icon">
+                                    <CheckCircle size={28} />
+                                </div>
                             </div>
-                            <h3>Instant Matching</h3>
-                            <p>Our AI matches you with jobs that fit your profile perfectly. Apply with one click.</p>
+                            <h3 className="step-title">Instant Matching</h3>
+                            <p className="step-description">Our AI matches you with jobs that fit your profile perfectly. Apply with one click.</p>
                         </div>
+                        
+                        <div className="arrow-point"></div>
                     </div>
                 </div>
             </section>

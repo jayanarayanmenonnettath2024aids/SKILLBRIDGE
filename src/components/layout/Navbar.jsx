@@ -20,6 +20,7 @@ const Navbar = () => {
 
                 <div className="nav-desktop">
                     <Link to="/jobs" className="nav-link">Find Jobs</Link>
+                    <Link to="/internships" className="nav-link">Internships</Link>
                     <Link to="/employer" className="nav-link">For Employers</Link>
                     <Link to="/kiosk" className="nav-link">Kiosk Mode</Link>
 
@@ -47,6 +48,7 @@ const Navbar = () => {
             {isOpen && (
                 <div className="mobile-menu">
                     <Link to="/jobs" className="mobile-link" onClick={() => setIsOpen(false)}>Find Jobs</Link>
+                    <Link to="/internships" className="mobile-link" onClick={() => setIsOpen(false)}>Internships</Link>
                     <Link to="/employer" className="mobile-link" onClick={() => setIsOpen(false)}>For Employers</Link>
                     <Link to="/kiosk" className="mobile-link" onClick={() => setIsOpen(false)}>Kiosk Mode</Link>
                     <hr />
