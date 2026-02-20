@@ -1,0 +1,126 @@
+.kiosk-container {
+    background-color: #F3F4F6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.kiosk-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+}
+
+.kiosk-header h1 {
+    font-size: 2rem;
+    color: var(--color-primary-dark);
+    margin: 0;
+}
+
+.language-toggle {
+    display: flex;
+    gap: 1rem;
+}
+
+.lang-btn {
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    border: 2px solid #E5E7EB;
+    border-radius: 0.5rem;
+    background: white;
+    font-weight: bold;
+}
+
+.lang-btn.active {
+    background-color: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+.kiosk-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2rem;
+    flex: 1;
+}
+
+.kiosk-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-lg);
+    text-decoration: none;
+    transition: transform 0.2s;
+    background: white;
+    color: var(--color-text-primary);
+}
+
+.kiosk-tile:active {
+    transform: scale(0.98);
+}
+
+.kiosk-tile h3 {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+/* Kiosk Colors */
+.bg-blue {
+    border-bottom: 8px solid #3B82F6;
+}
+
+.bg-blue svg {
+    color: #3B82F6;
+}
+
+.bg-green {
+    border-bottom: 8px solid #10B981;
+}
+
+.bg-green svg {
+    color: #10B981;
+}
+
+.bg-indigo {
+    border-bottom: 8px solid #4F46E5;
+}
+
+.bg-indigo svg {
+    color: #4F46E5;
+}
+
+.bg-amber {
+    border-bottom: 8px solid #F59E0B;
+}
+
+.bg-amber svg {
+    color: #F59E0B;
+}
+
+.kiosk-footer {
+    margin-top: 3rem;
+    text-align: center;
+    color: #6B7280;
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-home {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    color: var(--color-text-secondary);
+}

@@ -1,0 +1,7 @@
+python-dotenv>=1.0.0
+requests>=2.31.0
+
+# 100% FREE Voice Interview Dependencies (NO API KEYS!)
+pyaudio>=0.2.13      # Audio recording
+pyttsx3>=2.90        # FREE offline text-to-speech
+vosk>=0.3.38         # FREE offline speech-to-text (latest available)

@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+.env
+# Mac
+.DS_Store
+# Voice models and large downloads
+vosk-model-en-us-0.22/
+vosk-model-small-en-us-0.15/
+# Headless / test artifacts
+automated_headless_report.json
+*interview_report.json
+# Local setup scripts
+setup_voice.sh
+setup_voice_free.sh

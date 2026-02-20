@@ -1,0 +1,6 @@
+python-dotenv>=1.0.0
+requests>=2.31.0
+
+# Voice Interview Dependencies
+openai>=1.12.0
+pyaudio>=0.2.13

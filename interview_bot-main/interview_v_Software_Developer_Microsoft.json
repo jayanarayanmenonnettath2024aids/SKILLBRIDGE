@@ -1,0 +1,191 @@
+{
+  "candidate_name": "v",
+  "role": "Software Developer",
+  "company": "Microsoft",
+  "interview_date": "2026-01-07 17:25:27",
+  "duration_minutes": 5.07,
+  "total_questions": 6,
+  "overall_score": 1.78,
+  "performance_level": "Needs Improvement",
+  "category_scores": {
+    "HR": 2.02,
+    "Technical": 0.8,
+    "Scenario": 1.8
+  },
+  "key_strengths": [
+    "Answer provided",
+    "Shows basic understanding"
+  ],
+  "areas_for_improvement": [
+    "Missing key concepts (only 33% covered)",
+    "Answer is too brief - add more detail",
+    "Missing key concepts (only 16% covered)",
+    "Improve structure with multiple sentences",
+    "Missing key concepts (only 0% covered)"
+  ],
+  "recommendation": "Significant gaps identified. Further preparation needed before proceeding.",
+  "detailed_responses": [
+    {
+      "question_number": 1,
+      "question": "Why do you want to work at Microsoft specifically?",
+      "category": "HR - Company Fit",
+      "answer": "nothing specific",
+      "evaluation": {
+        "score": 1.2,
+        "semantic_similarity": 0.9,
+        "keyword_coverage": 0.0,
+        "clarity_score": 2,
+        "depth_score": 3,
+        "strengths": [
+          "Answer provided",
+          "Shows basic understanding"
+        ],
+        "weaknesses": [
+          "Answer could be more relevant to the question",
+          "Missing key concepts (only 0% covered)",
+          "Answer is too brief - add more detail",
+          "Improve structure with multiple sentences"
+        ],
+        "feedback": "Answer needs significant improvement. Focus on key concepts and provide more detail.",
+        "ideal_answer": "Research Microsoft's products, culture (growth mindset, innovation, diversity, customer success), recent achievements, and explain how your values and skills align. Show genuine enthusiasm and knowledge about the company."
+      },
+      "ideal_answer": "Research Microsoft's products, culture (growth mindset, innovation, diversity, customer success), recent achievements, and explain how your values and skills align. Show genuine enthusiasm and knowledge about the company.",
+      "timestamp": "2026-01-07T17:25:58.593315"
+    },
+    {
+      "question_number": 2,
+      "question": "How do your values align with Microsoft's culture?",
+      "category": "HR - Cultural Fit",
+      "answer": "no",
+      "evaluation": {
+        "score": 1.1,
+        "semantic_similarity": 0.7,
+        "keyword_coverage": 0.0,
+        "clarity_score": 2,
+        "depth_score": 3,
+        "strengths": [
+          "Answer provided",
+          "Shows basic understanding"
+        ],
+        "weaknesses": [
+          "Answer could be more relevant to the question",
+          "Missing key concepts (only 0% covered)",
+          "Answer is too brief - add more detail",
+          "Improve structure with multiple sentences"
+        ],
+        "feedback": "Answer needs significant improvement. Focus on key concepts and provide more detail.",
+        "ideal_answer": "Discuss Microsoft's core values: growth mindset, innovation, diversity, customer success. Provide specific examples from your experience that demonstrate these values."
+      },
+      "ideal_answer": "Discuss Microsoft's core values: growth mindset, innovation, diversity, customer success. Provide specific examples from your experience that demonstrate these values.",
+      "timestamp": "2026-01-07T17:26:11.722672"
+    },
+    {
+      "question_number": 3,
+      "question": "Describe your experience with technologies used at Microsoft.",
+      "category": "Technical - Technology Stack",
+      "answer": "2 years",
+      "evaluation": {
+        "score": 0.8,
+        "semantic_similarity": 0.0,
+        "keyword_coverage": 0.0,
+        "clarity_score": 2,
+        "depth_score": 3,
+        "strengths": [
+          "Answer provided",
+          "Shows basic understanding"
+        ],
+        "weaknesses": [
+          "Answer could be more relevant to the question",
+          "Missing key concepts (only 0% covered)",
+          "Answer is too brief - add more detail",
+          "Improve structure with multiple sentences"
+        ],
+        "feedback": "Answer needs significant improvement. Focus on key concepts and provide more detail.",
+        "ideal_answer": "Discuss experience with Microsoft's tech stack: C#, .NET, Azure, TypeScript, React. Mention specific projects, challenges solved, and depth of knowledge."
+      },
+      "ideal_answer": "Discuss experience with Microsoft's tech stack: C#, .NET, Azure, TypeScript, React. Mention specific projects, challenges solved, and depth of knowledge.",
+      "timestamp": "2026-01-07T17:26:23.380009"
+    },
+    {
+      "question_number": 4,
+      "question": "Describe a challenging project relevant to Microsoft's focus areas.",
+      "category": "Scenario - Project Experience",
+      "answer": "i have used to create a dynamic website for users as the current website has many issues with it using html,css,js,node",
+      "evaluation": {
+        "score": 1.8,
+        "semantic_similarity": 1.1,
+        "keyword_coverage": 0.0,
+        "clarity_score": 2,
+        "depth_score": 6,
+        "strengths": [
+          "Answer provided",
+          "Shows basic understanding"
+        ],
+        "weaknesses": [
+          "Answer could be more relevant to the question",
+          "Missing key concepts (only 0% covered)",
+          "Answer is too brief - add more detail",
+          "Improve structure with multiple sentences"
+        ],
+        "feedback": "Answer needs significant improvement. Focus on key concepts and provide more detail.",
+        "ideal_answer": "Discuss project related to cloud computing, AI, productivity, accessibility. Explain challenges, your approach, technical decisions, and outcomes."
+      },
+      "ideal_answer": "Discuss project related to cloud computing, AI, productivity, accessibility. Explain challenges, your approach, technical decisions, and outcomes.",
+      "timestamp": "2026-01-07T17:27:34.783287"
+    },
+    {
+      "question_number": 5,
+      "question": "Tell me about yourself and your technical background.",
+      "category": "HR",
+      "answer": "myself v experience in cloud computing,ai engineer,ml model specalist build many projects on hands on and good in aws",
+      "evaluation": {
+        "score": 3.0,
+        "semantic_similarity": 3.1,
+        "keyword_coverage": 33.3,
+        "clarity_score": 2,
+        "depth_score": 3,
+        "strengths": [
+          "Answer provided",
+          "Shows basic understanding"
+        ],
+        "weaknesses": [
+          "Answer could be more relevant to the question",
+          "Missing key concepts (only 33% covered)",
+          "Answer is too brief - add more detail",
+          "Improve structure with multiple sentences"
+        ],
+        "feedback": "Answer needs significant improvement. Focus on key concepts and provide more detail.",
+        "ideal_answer": "A strong answer includes: educational background, relevant technical skills, key projects or work experience, passion for software development, and career goals. Should be concise (2-3 minutes) and highlight achievements with specific examples."
+      },
+      "ideal_answer": "A strong answer includes: educational background, relevant technical skills, key projects or work experience, passion for software development, and career goals. Should be concise (2-3 minutes) and highlight achievements with specific examples.",
+      "timestamp": "2026-01-07T17:29:18.594729"
+    },
+    {
+      "question_number": 6,
+      "question": "Why do you want to work for our company?",
+      "category": "HR",
+      "answer": "stress free environment best work culture intrested to learn more about the ai field and recent technical updates in the software area",
+      "evaluation": {
+        "score": 2.8,
+        "semantic_similarity": 2.3,
+        "keyword_coverage": 16.7,
+        "clarity_score": 2,
+        "depth_score": 6,
+        "strengths": [
+          "Answer provided",
+          "Shows basic understanding"
+        ],
+        "weaknesses": [
+          "Answer could be more relevant to the question",
+          "Missing key concepts (only 16% covered)",
+          "Answer is too brief - add more detail",
+          "Improve structure with multiple sentences"
+        ],
+        "feedback": "Answer needs significant improvement. Focus on key concepts and provide more detail.",
+        "ideal_answer": "Research-based answer showing knowledge of company's products, culture, and values. Mention specific technologies they use, recent achievements, or projects that align with your interests."
+      },
+      "ideal_answer": "Research-based answer showing knowledge of company's products, culture, and values. Mention specific technologies they use, recent achievements, or projects that align with your interests.",
+      "timestamp": "2026-01-07T17:30:31.984309"
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "candidate_name": "jay",
+  "role": "Data Scientist",
+  "company": "Netflix",
+  "interview_date": "2026-01-07 21:40:09",
+  "duration_minutes": 8.11,
+  "total_questions": 6,
+  "overall_score": 2.15,
+  "performance_level": "Needs Improvement",
+  "category_scores": {
+    "HR": 3.07,
+    "Scenario": 0.9,
+    "Technical": 1.4
+  },
+  "key_strengths": [
+    "Strong alignment with expected answer",
+    "Well-structured answer with multiple points",
+    "Shows basic understanding",
+    "Answer provided"
+  ],
+  "areas_for_improvement": [
+    "Answer is too brief - add more detail",
+    "Improve structure with multiple sentences",
+    "Missing key concepts (only 16% covered)",
+    "Missing key concepts (only 0% covered)",
+    "Answer could be more relevant to the question"
+  ],
+  "recommendation": "Significant gaps identified. Further preparation needed before proceeding.",
+  "detailed_responses": [
+    {
+      "question_number": 1,
+      "question": "Why do you want to work at Netflix specifically?",
+      "category": "HR - Company Fit",
+      "answer": "it is my dream company and it is where i wanted to work and it will provide me an environment which helps in my carrer as data scientist significantly",
+      "evaluation": {
+        "score": 2.5,
+        "semantic_similarity": 2.7,
+        "keyword_coverage": 0.0,
+        "clarity_score": 2,
+        "depth_score": 6,
+        "strengths": [
+          "Answer provided",
+          "Shows basic understanding"
+        ],
+        "weaknesses": [
+          "Answer could be more relevant to the question",
+          "Missing key concepts (only 0% covered)",
+          "Answer is too brief - add more detail",
+          "Improve structure with multiple sentences"
+        ],
+        "feedback": "Answer needs significant improvement. Focus on key concepts and provide more detail.",
+        "ideal_answer": "Research Netflix's products, culture (freedom and responsibility, context not control, high performance), recent achievements, and explain how your values and skills align. Show genuine enthusiasm and knowledge about the company."
+      },
+      "ideal_answer": "Research Netflix's products, culture (freedom and responsibility, context not control, high performance), recent achievements, and explain how your values and skills align. Show genuine enthusiasm and knowledge about the company.",
+      "timestamp": "2026-01-07T21:41:40.907521"
+    },
+    {
+      "question_number": 2,
+      "question": "How do your values align with Netflix's culture?",
+      "category": "HR - Cultural Fit",
+      "answer": "Netflix\u2019s culture of freedom with accountability matches how I work best. I\u2019m comfortable taking ownership, making decisions independently, and being accountable for outcomes. I value honest feedback and focus on impact rather than rigid processes, which aligns closely with Netflix\u2019s emphasis on high performance and responsibility.",
+      "evaluation": {
+        "score": 5.2,
+        "semantic_similarity": 7.3,
+        "keyword_coverage": 16.7,
+        "clarity_score": 6,
+        "depth_score": 6,
+        "strengths": [
+          "Strong alignment with expected answer",
+          "Well-structured answer with multiple points"
+        ],
+        "weaknesses": [
+          "Missing key concepts (only 16% covered)"
+        ],
+        "feedback": "Adequate answer but needs more depth and coverage of key concepts.",
+        "ideal_answer": "Discuss Netflix's core values: freedom and responsibility, context not control, high performance. Provide specific examples from your experience that demonstrate these values."
+      },
+      "ideal_answer": "Discuss Netflix's core values: freedom and responsibility, context not control, high performance. Provide specific examples from your experience that demonstrate these values.",
+      "timestamp": "2026-01-07T21:43:52.966195"
+    },
+    {
+      "question_number": 3,
+      "question": "Describe a challenging project relevant to Netflix's focus areas.",
+      "category": "Scenario - Project Experience",
+      "answer": "idk",
+      "evaluation": {
+        "score": 0.9,
+        "semantic_similarity": 0.4,
+        "keyword_coverage": 0.0,
+        "clarity_score": 2,
+        "depth_score": 3,
+        "strengths": [
+          "Answer provided",
+          "Shows basic understanding"
+        ],
+        "weaknesses": [
+          "Answer could be more relevant to the question",
+          "Missing key concepts (only 0% covered)",
+          "Answer is too brief - add more detail",
+          "Improve structure with multiple sentences"
+        ],
+        "feedback": "Answer needs significant improvement. Focus on key concepts and provide more detail.",
+        "ideal_answer": "Discuss project related to streaming, personalization, microservices, chaos engineering. Explain challenges, your approach, technical decisions, and outcomes."
+      },
+      "ideal_answer": "Discuss project related to streaming, personalization, microservices, chaos engineering. Explain challenges, your approach, technical decisions, and outcomes.",
+      "timestamp": "2026-01-07T21:45:26.975662"
+    },
+    {
+      "question_number": 4,
+      "question": "How would you approach data analysis/ML problems at Netflix?",
+      "category": "Technical - Data/ML",
+      "answer": "using ai",
+      "evaluation": {
+        "score": 1.9,
+        "semantic_similarity": 2.7,
+        "keyword_coverage": 0.0,
+        "clarity_score": 2,
+        "depth_score": 3,
+        "strengths": [
+          "Answer provided",
+          "Shows basic understanding"
+        ],
+        "weaknesses": [
+          "Answer could be more relevant to the question",
+          "Missing key concepts (only 0% covered)",
+          "Answer is too brief - add more detail",
+          "Improve structure with multiple sentences"
+        ],
+        "feedback": "Answer needs significant improvement. Focus on key concepts and provide more detail.",
+        "ideal_answer": "Discuss Netflix's data challenges, scale, tools. Mention statistical methods, ML algorithms, A/B testing, experimentation, and measuring impact."
+      },
+      "ideal_answer": "Discuss Netflix's data challenges, scale, tools. Mention statistical methods, ML algorithms, A/B testing, experimentation, and measuring impact.",
+      "timestamp": "2026-01-07T21:46:13.171988"
+    },
+    {
+      "question_number": 5,
+      "question": "What motivated you to pursue data science?",
+      "category": "HR",
+      "answer": "it was the only course i colud understand",
+      "evaluation": {
+        "score": 1.5,
+        "semantic_similarity": 1.8,
+        "keyword_coverage": 0.0,
+        "clarity_score": 2,
+        "depth_score": 3,
+        "strengths": [
+          "Answer provided",
+          "Shows basic understanding"
+        ],
+        "weaknesses": [
+          "Answer could be more relevant to the question",
+          "Missing key concepts (only 0% covered)",
+          "Answer is too brief - add more detail",
+          "Improve structure with multiple sentences"
+        ],
+        "feedback": "Answer needs significant improvement. Focus on key concepts and provide more detail.",
+        "ideal_answer": "Discuss passion for solving problems with data, interest in machine learning and statistics, specific projects or experiences that sparked interest, career goals in data science."
+      },
+      "ideal_answer": "Discuss passion for solving problems with data, interest in machine learning and statistics, specific projects or experiences that sparked interest, career goals in data science.",
+      "timestamp": "2026-01-07T21:46:54.943885"
+    },
+    {
+      "question_number": 6,
+      "question": "Explain the bias-variance tradeoff in machine learning.",
+      "category": "Technical",
+      "answer": "i leave the paper blank ",
+      "evaluation": {
+        "score": 0.9,
+        "semantic_similarity": 0.2,
+        "keyword_coverage": 0.0,
+        "clarity_score": 2,
+        "depth_score": 3,
+        "strengths": [
+          "Answer provided",
+          "Shows basic understanding"
+        ],
+        "weaknesses": [
+          "Answer could be more relevant to the question",
+          "Missing key concepts (only 0% covered)",
+          "Answer is too brief - add more detail",
+          "Improve structure with multiple sentences"
+        ],
+        "feedback": "Answer needs significant improvement. Focus on key concepts and provide more detail.",
+        "ideal_answer": "Bias is error from overly simplistic models (underfitting). Variance is error from overly complex models (overfitting). Goal is to find balance that minimizes total error on new data."
+      },
+      "ideal_answer": "Bias is error from overly simplistic models (underfitting). Variance is error from overly complex models (overfitting). Goal is to find balance that minimizes total error on new data.",
+      "timestamp": "2026-01-07T21:48:16.751537"
+    }
+  ]
+}

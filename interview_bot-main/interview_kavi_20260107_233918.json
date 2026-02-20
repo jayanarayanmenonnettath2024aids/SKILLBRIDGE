@@ -1,0 +1,98 @@
+{
+  "candidate_name": "kavi",
+  "mode": "role_based",
+  "roles": [
+    "Marketing Manager",
+    "Machine Learning Engineer",
+    "Product Manager",
+    "Data Analyst"
+  ],
+  "company": null,
+  "interview_date": "2026-01-07 23:25:15",
+  "duration_minutes": 14.05,
+  "questions_answered": 3,
+  "average_score": 1.57,
+  "score_trend": "Declining",
+  "category_performance": {
+    "HR": 2.7,
+    "Technical": 1.0
+  },
+  "ai_assessment": {
+    "overall_assessment": "Based on 3 questions with an average score of 1.6/10, the candidate needs substantial preparation before interviewing. Responses lacked depth, specific examples, and clear structure. Recommend intensive practice, technical review, and mock interviews before proceeding.",
+    "readiness_level": "Not Ready",
+    "top_strengths": [
+      "Attempted to address the question",
+      "Clear communication style"
+    ],
+    "critical_gaps": [
+      "Add specific examples or experiences to illustrate your points",
+      "Use a clearer structure (e.g., STAR method: Situation, Task, Action, Result)",
+      "Provide more detailed and comprehensive answers"
+    ],
+    "specific_recommendations": [
+      "Practice STAR method (Situation, Task, Action, Result) for behavioral questions",
+      "Prepare 3-5 detailed project examples with quantifiable results",
+      "Review technical fundamentals and practice explaining concepts clearly"
+    ],
+    "estimated_success_probability": "20-30% - Significant preparation needed"
+  },
+  "detailed_history": [
+    {
+      "question_number": 1,
+      "question": "Where do you see yourself in 5 years?",
+      "category": "HR",
+      "difficulty": "Easy",
+      "answer": "in your seat",
+      "score": 2.7,
+      "feedback": "This answer needs significant improvement. Provide more specific details and examples to demonstrate your expertise.",
+      "strengths": [
+        "Attempted to address the question",
+        "Clear communication style"
+      ],
+      "improvements": [
+        "Add specific examples or experiences to illustrate your points",
+        "Use a clearer structure (e.g., STAR method: Situation, Task, Action, Result)",
+        "Provide more detailed and comprehensive answers"
+      ],
+      "timestamp": "2026-01-07T23:26:20.991132"
+    },
+    {
+      "question_number": 2,
+      "question": "Describe your technical expertise and key projects you've worked on.",
+      "category": "Technical",
+      "difficulty": "Easy",
+      "answer": "nothing",
+      "score": 1.2,
+      "feedback": "This answer needs significant improvement. Provide more specific details and examples to demonstrate your expertise.",
+      "strengths": [
+        "Attempted to address the question",
+        "Clear communication style"
+      ],
+      "improvements": [
+        "Add specific examples or experiences to illustrate your points",
+        "Use a clearer structure (e.g., STAR method: Situation, Task, Action, Result)",
+        "Provide more detailed and comprehensive answers"
+      ],
+      "timestamp": "2026-01-07T23:36:21.054837"
+    },
+    {
+      "question_number": 3,
+      "question": "Describe your technical expertise and key projects you've worked on.",
+      "category": "Technical",
+      "difficulty": "Easy",
+      "answer": "may i know your name",
+      "score": 0.8,
+      "feedback": "This answer needs significant improvement. Provide more specific details and examples to demonstrate your expertise.",
+      "strengths": [
+        "Attempted to address the question",
+        "Clear communication style"
+      ],
+      "improvements": [
+        "Add specific examples or experiences to illustrate your points",
+        "Use a clearer structure (e.g., STAR method: Situation, Task, Action, Result)",
+        "Provide more detailed and comprehensive answers"
+      ],
+      "timestamp": "2026-01-07T23:38:05.324359"
+    }
+  ]
+}
