@@ -4,10 +4,12 @@ import {
     Search, MapPin, Clock, DollarSign, Briefcase, Building2,
     Calendar, Users, Users2, ChevronRight
 } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 import '../../styles/Internships.css';
 
 const Internships = () => {
     const navigate = useNavigate();
+    const { t } = useLanguage();
     const [filters, setFilters] = useState({
         domain: '',
         location: '',
@@ -74,20 +76,20 @@ const Internships = () => {
             {/* ── Page Header Section ── */}
             <header className="internships-header">
                 <div className="header-container">
-                    <h1 className="internships-title">Available Internships (4)</h1>
-                    <p className="internships-subtitle">Gain real-world experience and kickstart your career.</p>
+                    <h1 className="internships-title">{t('availableInternships')} (4)</h1>
+                    <p className="internships-subtitle">{t('internshipSubtitle')}</p>
                 </div>
             </header>
 
             {/* ── Results Toolbar ── */}
             <div className="results-toolbar">
-                <div className="results-info">4 Internships Found</div>
+                <div className="results-info">4 {t('internshipsFound')}</div>
                 <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-400">Sort by:</span>
+                    <span className="text-sm text-gray-400">{t('sortBy')}:</span>
                     <select className="sort-dropdown">
-                        <option>Most Recent</option>
-                        <option>Stipend (High to Low)</option>
-                        <option>Relevant</option>
+                        <option>{t('mostRecent')}</option>
+                        <option>{t('stipendHighToLow')}</option>
+                        <option>{t('relevant')}</option>
                     </select>
                 </div>
             </div>
@@ -96,38 +98,38 @@ const Internships = () => {
             <div className="internships-layout">
                 {/* ── Minimalist Sidebar ── */}
                 <aside className="filter-sidebar">
-                    <span className="sidebar-header">Filters</span>
+                    <span className="sidebar-header">{t('filters')}</span>
 
                     <div className="filter-group">
-                        <label className="filter-label">Job Type</label>
+                        <label className="filter-label">{t('jobType')}</label>
                         <select className="filter-dropdown">
-                            <option>All Domains</option>
-                            <option>Technology</option>
-                            <option>Marketing</option>
-                            <option>Design</option>
+                            <option>{t('allDomains')}</option>
+                            <option>{t('technology')}</option>
+                            <option>{t('marketing')}</option>
+                            <option>{t('design')}</option>
                         </select>
                     </div>
 
                     <div className="filter-group">
-                        <label className="filter-label">Location</label>
+                        <label className="filter-label">{t('location')}</label>
                         <select className="filter-dropdown">
-                            <option>All Locations</option>
-                            <option>Remote</option>
+                            <option>{t('allLocations')}</option>
+                            <option>{t('remote')}</option>
                             <option>Bangalore</option>
                             <option>Mumbai</option>
                         </select>
                     </div>
 
                     <div className="filter-group">
-                        <label className="filter-label">Internship Type</label>
+                        <label className="filter-label">{t('internshipType')}</label>
                         <select className="filter-dropdown">
-                            <option>All Types</option>
-                            <option>Paid</option>
-                            <option>Unpaid</option>
+                            <option>{t('allTypes')}</option>
+                            <option>{t('paid')}</option>
+                            <option>{t('unpaid')}</option>
                         </select>
                     </div>
 
-                    <button className="apply-filters-btn">Apply Filters</button>
+                    <button className="apply-filters-btn">{t('applyFilters')}</button>
                 </aside>
 
                 {/* ── Internship Cards ── */}
@@ -146,10 +148,10 @@ const Internships = () => {
                                 </div>
                                 <div className="status-tags-row">
                                     <span className={`status-tag-pill ${internship.type === 'paid' ? 'tag-paid-green' : 'tag-neutral'}`}>
-                                        {internship.type === 'paid' ? 'PAID' : 'UNPAID'}
+                                        {internship.type === 'paid' ? t('paid').toUpperCase() : t('unpaid').toUpperCase()}
                                     </span>
                                     {internship.location === 'Remote' && (
-                                        <span className="status-tag-pill tag-remote-blue">REMOTE</span>
+                                        <span className="status-tag-pill tag-remote-blue">{t('remote').toUpperCase()}</span>
                                     )}
                                 </div>
                             </div>
@@ -162,7 +164,7 @@ const Internships = () => {
                                 </div>
                                 <div className="metric-block">
                                     <Users size={16} className="metric-icon-16" />
-                                    <span className="metric-text-14">{internship.applicants} Applicants</span>
+                                    <span className="metric-text-14">{internship.applicants} {t('applicants')}</span>
                                 </div>
                                 <div className="metric-block">
                                     <Clock size={16} className="metric-icon-16" />
@@ -172,12 +174,12 @@ const Internships = () => {
 
                             {/* Card Action Footer */}
                             <div className="card-action-footer">
-                                <button className="btn-details-outline">View Details</button>
+                                <button className="btn-details-outline">{t('viewDetails')}</button>
                                 <button
                                     className="btn-apply-gradient"
                                     onClick={() => handleApply(internship.id)}
                                 >
-                                    Apply Now
+                                    {t('applyNow')}
                                 </button>
                             </div>
                         </div>

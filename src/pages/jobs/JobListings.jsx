@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import JobCard from '../../components/jobs/JobCard';
 import JobFilter from '../../components/jobs/JobFilter';
+import { useLanguage } from '../../context/LanguageContext';
 import '../../styles/Jobs.css';
 import { Search, MapPin, SlidersHorizontal, X } from 'lucide-react';
 
 const JobListings = () => {
+    const { t } = useLanguage();
     const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
     const [jobs] = useState([
@@ -53,9 +55,9 @@ const JobListings = () => {
             {/* ── Hero Search Section ── */}
             <header className="jobs-hero">
                 <div className="hero-container">
-                    <h1 className="hero-title">Find Your Perfect Job</h1>
+                    <h1 className="hero-title">{t('findPerfectJob')}</h1>
                     <p className="hero-subtitle">
-                        AI-matched opportunities based on your verified profile.
+                        {t('aiMatchedOpportunities')}
                     </p>
 
                     {/* Unified Capsule Search Bar */}
@@ -64,7 +66,7 @@ const JobListings = () => {
                             <Search size={18} />
                             <input
                                 type="text"
-                                placeholder="Job title, skill, or company"
+                                placeholder={t('searchPlaceholder')}
                                 className="search-input"
                             />
                         </div>
@@ -75,12 +77,12 @@ const JobListings = () => {
                             <MapPin size={18} />
                             <input
                                 type="text"
-                                placeholder="Location"
+                                placeholder={t('location')}
                                 className="search-input"
                             />
                         </div>
 
-                        <button className="search-btn">Search</button>
+                        <button className="search-btn">{t('search')}</button>
                     </div>
                 </div>
             </header>
@@ -89,13 +91,13 @@ const JobListings = () => {
             <div className="jobs-toolbar-wrapper">
                 <div className="jobs-toolbar">
                     <div className="results-count">
-                        {jobs.length} Jobs Found
+                        {jobs.length} {t('jobsFound')}
                     </div>
                     <div className="flex items-center gap-4">
                         <select className="bg-transparent border-none text-sm font-medium outline-none cursor-pointer">
-                            <option>Most Relevant</option>
-                            <option>Newest</option>
-                            <option>Salary Range</option>
+                            <option>{t('mostRelevant')}</option>
+                            <option>{t('newest')}</option>
+                            <option>{t('salaryRange')}</option>
                         </select>
 
                         {/* Mobile Filter Button */}
@@ -103,7 +105,7 @@ const JobListings = () => {
                             className="lg:hidden flex items-center gap-2 text-sm font-semibold text-primary"
                             onClick={() => setIsMobileFilterOpen(true)}
                         >
-                            <SlidersHorizontal size={16} /> Filters
+                            <SlidersHorizontal size={16} /> {t('filters')}
                         </button>
                     </div>
                 </div>
@@ -141,7 +143,7 @@ const JobListings = () => {
                             className="mobile-drawer"
                         >
                             <div className="flex justify-between items-center mb-8">
-                                <h3 className="text-xl font-bold">Filters</h3>
+                                <h3 className="text-xl font-bold">{t('filters')}</h3>
                                 <button onClick={() => setIsMobileFilterOpen(false)}>
                                     <X size={24} />
                                 </button>
