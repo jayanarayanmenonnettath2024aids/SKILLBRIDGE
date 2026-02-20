@@ -847,3 +847,240 @@ select.input-field {
         width: 100%;
     }
 }
+
+/* Password Toggle Button */
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-toggle-btn {
+    position: absolute;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: #9CA3AF;
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.password-toggle-btn:hover {
+    color: #6B7280;
+}
+
+.password-toggle-btn:focus {
+    outline: none;
+    color: var(--color-primary);
+}
+
+/* Login Page Specific Styles */
+.login-wrapper {
+    min-height: calc(100vh - 64px - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem var(--spacing-md);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 450px;
+    padding: 2rem;
+}
+
+.login-step {
+    width: 100%;
+}
+
+.login-form {
+    margin-top: 1.5rem;
+}
+
+.login-form .form-group {
+    margin-bottom: 1.25rem;
+}
+
+.login-btn {
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.login-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+.login-footer .link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.login-footer .link:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: #9CA3AF;
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.password-toggle:hover {
+    color: #6B7280;
+}
+
+.password-toggle:focus {
+    outline: none;
+    color: var(--color-primary);
+}
+
+/* Error Banner */
+.error-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    background-color: #FEF2F2;
+    border: 1px solid #FCA5A5;
+    border-radius: 8px;
+    color: #DC2626;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Success Banner */
+.success-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    background-color: #F0FDF4;
+    border: 1px solid #86EFAC;
+    border-radius: 8px;
+    color: #16A34A;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    animation: slideDown 0.3s ease-out;
+    font-weight: 500;
+}
+
+/* Match Percentage Display */
+.match-percentage-display {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.percentage-indicator {
+    background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+    padding: 1.5rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    animation: scaleIn 0.4s ease-out;
+}
+
+.percentage-value {
+    font-size: 3rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.percentage-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced Form Sections for Multi-part Forms */
+.form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.form-section h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1F2937;
+    margin-bottom: 1rem;
+}
+
+.password-toggle {
+    background: none;
+    border: none;
+    color: #6B7280;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.password-toggle:hover {
+    color: #3B82F6;
+}
+
+.password-toggle:focus {
+    outline: none;
+    color: #2563EB;
+}

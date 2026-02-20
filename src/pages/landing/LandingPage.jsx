@@ -4,12 +4,14 @@ import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';
 import '../../styles/LandingPage.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import studentImage from '../../assets/images/studnt.png';
 import opportunityImage from '../../assets/images/os.png';
 import heroImage from '../../assets/images/image.png';
 
 const LandingPage = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const [selectedInterest, setSelectedInterest] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [educationLevel, setEducationLevel] = useState('');
@@ -32,33 +34,46 @@ const LandingPage = () => {
             <section className="hero-section">
                 <div className="container hero-container">
                     <div className="hero-content">
-                        <Badge variant="primary" className="mb-4">Connecting Talent to Opportunity</Badge>
+                        <Badge variant="primary" className="mb-4">{t('landing.hero.badge')}</Badge>
                         <h1 className="hero-title">
-                            Get Hired. Get Verified. <span className="text-accent">Get Ahead.</span>
+                            {t('landing.hero.title')} <span className="text-accent">{t('landing.hero.titleAccent')}</span>
                         </h1>
                         <p className="hero-subtitle">
-                            India's first blockchain-verified employment platform for rural talent.
-                            Connect with top employers and prove your skills instantly.
+                            {t('landing.hero.subtitle')}
                         </p>
                         <div className="hero-actions">
                             <Link to="/onboarding">
-                                <Button size="lg" variant="primary">I'm a Job Seeker</Button>
+                                <Button size="lg" variant="primary">{t('landing.hero.registerNow')}</Button>
+                            </Link>
+                            <Link to="/login">
+                                <Button size="lg" variant="secondary">{t('landing.hero.login')}</Button>
                             </Link>
                             <Link to="/learning">
-                                <Button size="lg" variant="secondary">
+                                <Button size="lg" variant="outline">
                                     <BookOpen size={20} style={{ marginRight: '8px' }} />
-                                    Start Learning
+                                    {t('landing.hero.startLearning')}
                                 </Button>
+                            </Link>
+                        </div>
+                        <div className="employer-cta" style={{ marginTop: '1.5rem', padding: '1rem', background: '#F3F4F6', borderRadius: '8px', textAlign: 'center' }}>
+                            <p style={{ margin: '0 0 0.5rem 0', color: '#6B7280', fontSize: '0.875rem' }}>
+                                {t('landing.hero.employerCTA')}
+                            </p>
+                            <Link to="/employer-register">
+                                <Button size="sm" variant="accent" style={{ marginRight: '0.5rem' }}>{t('landing.hero.employerRegister')}</Button>
+                            </Link>
+                            <Link to="/employer-login">
+                                <Button size="sm" variant="secondary">{t('landing.hero.employerLogin')}</Button>
                             </Link>
                         </div>
                         <div className="trust-badges">
                             <div className="trust-item">
                                 <ShieldCheck size={20} className="text-success" />
-                                <span>Government Verified</span>
+                                <span>{t('landing.hero.govVerified')}</span>
                             </div>
                             <div className="trust-item">
                                 <Users size={20} className="text-primary" />
-                                <span>10L+ Candidates</span>
+                                <span>{t('landing.hero.candidates')}</span>
                             </div>
                         </div>
                     </div>
@@ -264,7 +279,7 @@ const LandingPage = () => {
                             </button>
                         </Card>
 
-                        {/* Guidance Card */}
+                        
                         <Card className="action-card guidance-card">
                             <div className="guidance-header">
                                 <div>

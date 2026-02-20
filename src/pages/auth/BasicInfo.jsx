@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
-import { UserCircle, Mail, Phone, MapPin, Calendar } from 'lucide-react';
+import { UserCircle, Mail, Phone, MapPin, Calendar, Lock, Eye, EyeOff } from 'lucide-react';
 import '../../styles/Onboarding.css';
 
 const BasicInfo = ({ onNext }) => {
@@ -12,8 +12,13 @@ const BasicInfo = ({ onNext }) => {
         dateOfBirth: '',
         gender: '',
         state: '',
-        district: ''
+        district: '',
+        password: '',
+        confirmPassword: ''
     });
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const [errors, setErrors] = useState({});
 
@@ -58,9 +63,25 @@ const BasicInfo = ({ onNext }) => {
             newErrors.phoneNumber = 'Enter a valid 10-digit Indian mobile number';
         }
 
-        // Email validation (optional but validate if provided)
-        if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        // Email validation (required for login)
+        if (!formData.email) {
+            newErrors.email = 'Email is required';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
             newErrors.email = 'Enter a valid email address';
+        }
+
+        // Password validation
+        if (!formData.password) {
+            newErrors.password = 'Password is required';
+        } else if (formData.password.length < 6) {
+            newErrors.password = 'Password must be at least 6 characters';
+        }
+
+        // Confirm Password validation
+        if (!formData.confirmPassword) {
+            newErrors.confirmPassword = 'Please confirm your password';
+        } else if (formData.password !== formData.confirmPassword) {
+            newErrors.confirmPassword = 'Passwords do not match';
         }
 
         // Date of Birth validation
@@ -156,10 +177,10 @@ const BasicInfo = ({ onNext }) => {
                         {errors.phoneNumber && <span className="error-message">{errors.phoneNumber}</span>}
                     </div>
 
-                    {/* Email (Optional) */}
+                    {/* Email */}
                     <div className="form-group">
                         <label htmlFor="email">
-                            Email Address <span className="text-secondary">(Optional)</span>
+                            Email Address <span className="text-error">*</span>
                         </label>
                         <div className="input-with-icon">
                             <Mail size={20} className="input-icon" />
@@ -174,6 +195,60 @@ const BasicInfo = ({ onNext }) => {
                             />
                         </div>
                         {errors.email && <span className="error-message">{errors.email}</span>}
+                    </div>
+
+                    {/* Password */}
+                    <div className="form-group">
+                        <label htmlFor="password">
+                            Password <span className="text-error">*</span>
+                        </label>
+                        <div className="input-with-icon">
+                            <Lock size={20} className="input-icon" />
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                id="password"
+                                name="password"
+                                placeholder="Create a password (min 6 characters)"
+                                value={formData.password}
+                                onChange={handleChange}
+                                className={`input-field ${errors.password ? 'error' : ''}`}
+                            />
+                            <button
+                                type="button"
+                                className="password-toggle-btn"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </button>
+                        </div>
+                        {errors.password && <span className="error-message">{errors.password}</span>}
+                    </div>
+
+                    {/* Confirm Password */}
+                    <div className="form-group">
+                        <label htmlFor="confirmPassword">
+                            Confirm Password <span className="text-error">*</span>
+                        </label>
+                        <div className="input-with-icon">
+                            <Lock size={20} className="input-icon" />
+                            <input
+                                type={showConfirmPassword ? 'text' : 'password'}
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Re-enter your password"
+                                value={formData.confirmPassword}
+                                onChange={handleChange}
+                                className={`input-field ${errors.confirmPassword ? 'error' : ''}`}
+                            />
+                            <button
+                                type="button"
+                                className="password-toggle-btn"
+                                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                            >
+                                {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </button>
+                        </div>
+                        {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
                     </div>
 
                     {/* Date of Birth */}
