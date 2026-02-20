@@ -21,7 +21,7 @@ import {
     Target, Briefcase, BookOpen, Code, Lightbulb, Trophy, Youtube,
     Play, FileText, Menu, Plus, Calendar
 } from 'lucide-react';
-import { getAllUsers, getSkillGapAnalysis, seedSkillGapData, getResumeAnalysisAPI, analyzeResumeAPI, getLearningVideosAPI } from '../../services/api';
+import { getAllUsers, getSkillGapAnalysis, getSkillGapAnalysisReal, seedSkillGapData, getResumeAnalysisAPI, analyzeResumeAPI, getLearningVideosAPI } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -113,32 +113,43 @@ const SkillGapDashboard = () => {
 
     /**
      * Fetch skill gap analysis for selected user
+     * Tries to get REAL skill gap analysis based on resume data
+     * Falls back to empty state if no resume/analysis available
      */
     const loadAnalysis = async (userId) => {
         try {
-            const data = await getSkillGapAnalysis(userId);
-            if (data && data.success && data.data) {
-                if (data.data.geminiAnalysis) {
-                    setResumeAnalysis(data.data.geminiAnalysis);
+            // First, get user data to check for resume
+            const userData = await getSkillGapAnalysis(userId);
+            if (userData && userData.success && userData.data) {
+                if (userData.data.geminiAnalysis) {
+                    setResumeAnalysis(userData.data.geminiAnalysis);
                 }
-                setAnalysisData({
-                    skill_gaps: [],
-                    summary: { total_skills_required: 0, critical_gaps: 0, moderate_gaps: 0, good_skills: 0 },
-                    user_info: { role: "" },
-                    match_percentage: 0,
-                    readiness_score: 0
-                });
-            } else if (data && data.match_percentage !== undefined) {
-                setAnalysisData(data);
-            } else {
-                setAnalysisData({
-                    skill_gaps: [],
-                    summary: { total_skills_required: 0, critical_gaps: 0, moderate_gaps: 0, good_skills: 0 },
-                    user_info: { role: "" },
-                    match_percentage: 0,
-                    readiness_score: 0
-                });
+                
+                // Try to fetch REAL skill gap analysis if user has resume
+                if (userData.data.geminiAnalysis || userData.data.skills) {
+                    try {
+                        const realSkillGap = await getSkillGapAnalysisReal(userId);
+                        if (realSkillGap && realSkillGap.match_percentage !== undefined) {
+                            // Use REAL skill gap analysis data
+                            setAnalysisData(realSkillGap);
+                            setError(null);
+                            setLoading(false);
+                            return;
+                        }
+                    } catch (err) {
+                        console.log('Real skill gap analysis not available, using empty state:', err.message);
+                    }
+                }
             }
+            
+            // Fallback: empty analysis data (no resume or no skill gap calculated)
+            setAnalysisData({
+                skill_gaps: [],
+                summary: { total_skills_required: 0, critical_gaps: 0, moderate_gaps: 0, good_skills: 0 },
+                user_info: { role: "" },
+                match_percentage: 0,
+                readiness_score: 0
+            });
             setError(null);
         } catch (err) {
             console.log('No skill gap analysis found:', err.message);

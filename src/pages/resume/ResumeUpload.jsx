@@ -129,9 +129,9 @@ const ResumeUpload = () => {
           <div className="upload-icon-circle">
             <Upload size={28} />
           </div>
-          <h1 className="hero-title">Upload Your Resume</h1>
+          <h1 className="hero-title">{t('uploadResumeTitle')}</h1>
           <p className="hero-subtitle">
-            Upload your resume in PDF format for AI-powered skill analysis and personalized recommendations.
+            {t('uploadResumeSubtitle')}
           </p>
         </header>
 
@@ -158,9 +158,9 @@ const ResumeUpload = () => {
               {!selectedFile ? (
                 <>
                   <FileText size={32} className="dropzone-icon" />
-                  <div className="dropzone-main-text">Choose PDF file</div>
-                  <div className="dropzone-sub-text">or drag and drop here</div>
-                  <div className="dropzone-hint">Max file size: 5MB</div>
+                  <div className="dropzone-main-text">{t('chooseFile')}</div>
+                  <div className="dropzone-sub-text">{t('dragDropHere')}</div>
+                  <div className="dropzone-hint">{t('maxFileSize')}</div>
                 </>
               ) : (
                 <>
@@ -176,7 +176,7 @@ const ResumeUpload = () => {
                       }}
                       disabled={uploading || analyzing}
                     >
-                      Change File
+                      {t('changeFile')}
                     </button>
                   )}
                 </>
@@ -194,14 +194,14 @@ const ResumeUpload = () => {
           {uploadSuccess && !analyzing && (
             <div className="status-toast success">
               <CheckCircle size={18} />
-              <span>Resume uploaded successfully!</span>
+              <span>{t('resumeUploadedSuccess')}</span>
             </div>
           )}
 
           {analyzing && (
             <div className="status-toast info">
               <Loader size={18} className="animate-spin" />
-              <span>Analyzing your resume with AI...</span>
+              <span>{t('analyzingResume')}</span>
             </div>
           )}
 
@@ -214,36 +214,36 @@ const ResumeUpload = () => {
               style={{ width: '100%', maxWidth: '300px' }}
             >
               {uploading ? (
-                <><Loader size={18} className="animate-spin" /> Uploading...</>
+                <><Loader size={18} className="animate-spin" /> {t('uploading')}...</>
               ) : analyzing ? (
-                <><Loader size={18} className="animate-spin" /> Analyzing...</>
+                <><Loader size={18} className="animate-spin" /> {t('analyzing')}...</>
               ) : uploadSuccess ? (
-                <><CheckCircle size={18} /> Uploaded</>
+                <><CheckCircle size={18} /> {t('uploaded')}</>
               ) : (
-                'Upload & Analyze'
+                t('uploadAndAnalyze')
               )}
             </button>
 
             <button className="button-secondary" onClick={handleSkip} style={{ height: '48px', padding: '0 32px' }}>
-              Skip for Now
+              {t('skipForNowBtn')}
             </button>
           </div>
 
           {/* Divider & What Happens Next */}
           <div className="upload-next-steps">
-            <h4 className="next-steps-title">What happens next?</h4>
+            <h4 className="next-steps-title">{t('whatHappensNext')}</h4>
             <div className="next-steps-list">
               <div className="step-row">
                 <CheckCircle size={16} className="step-icon" />
-                <span>Your resume is securely stored in Firebase Storage</span>
+                <span>{t('securelyStored')}</span>
               </div>
               <div className="step-row">
                 <CheckCircle size={16} className="step-icon" />
-                <span>AI analyzes your skills, experience, and education</span>
+                <span>{t('aiAnalyzes')}</span>
               </div>
               <div className="step-row">
                 <CheckCircle size={16} className="step-icon" />
-                <span>Get personalized job recommendations and skill gap analysis</span>
+                <span>{t('personalizedRecommendations')}</span>
               </div>
             </div>
           </div>
@@ -252,7 +252,7 @@ const ResumeUpload = () => {
         {/* Security Footer Note */}
         <footer className="security-footer">
           <CheckCircle size={14} className="lock-icon" />
-          <span>Your data is encrypted and securely stored</span>
+          <span>{t('encryptedSecure')}</span>
         </footer>
       </div>
     </div>
