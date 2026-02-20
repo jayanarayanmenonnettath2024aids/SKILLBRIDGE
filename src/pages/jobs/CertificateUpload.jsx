@@ -74,8 +74,6 @@ const CertificateUpload = () => {
     };
 
     const handleResumeFile = (file) => {
-        const newErrors = [];
-        
         // Validate file type
         const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
         if (!validTypes.includes(file.type)) {

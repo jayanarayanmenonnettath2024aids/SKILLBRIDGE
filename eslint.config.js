@@ -5,7 +5,15 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores([
+    'dist',
+    'interview_bot-main/**',
+    'skillgap-backend/**',
+    'SKILLBRIDGE-main/**',
+    '**/venv/**',
+    '**/__pycache__/**',
+    '**/node_modules/**'
+  ]),
   {
     files: ['**/*.{js,jsx}'],
     extends: [

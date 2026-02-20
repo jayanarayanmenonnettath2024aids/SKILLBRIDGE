@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, CheckCircle, PlayCircle, Award, ChevronRight, ChevronLeft } from 'lucide-react';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
@@ -7,10 +7,8 @@ import '../../styles/MicroLearning.css';
 
 const LessonView = () => {
     const { moduleId } = useParams();
-    const navigate = useNavigate();
     const [currentLesson, setCurrentLesson] = useState(0);
     const [completedLessons, setCompletedLessons] = useState([]);
-    const [showQuiz, setShowQuiz] = useState(false);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [quizSubmitted, setQuizSubmitted] = useState(false);
 
@@ -596,10 +594,9 @@ const LessonView = () => {
         }
 
         if (lesson.isQuiz) {
-            setShowQuiz(true);
+            // Quiz already displayed
         } else if (!isLastLesson) {
             setCurrentLesson(currentLesson + 1);
-            setShowQuiz(false);
             setSelectedAnswer(null);
             setQuizSubmitted(false);
         }
@@ -611,7 +608,6 @@ const LessonView = () => {
             setTimeout(() => {
                 if (!isLastLesson) {
                     setCurrentLesson(currentLesson + 1);
-                    setShowQuiz(false);
                     setSelectedAnswer(null);
                     setQuizSubmitted(false);
                 }
@@ -622,7 +618,6 @@ const LessonView = () => {
     const handlePrevious = () => {
         if (!isFirstLesson) {
             setCurrentLesson(currentLesson - 1);
-            setShowQuiz(false);
             setSelectedAnswer(null);
             setQuizSubmitted(false);
         }
@@ -650,7 +645,6 @@ const LessonView = () => {
                         className={`progress-step ${index === currentLesson ? 'active' : ''} ${completedLessons.includes(index) ? 'completed' : ''}`}
                         onClick={() => {
                             setCurrentLesson(index);
-                            setShowQuiz(false);
                             setSelectedAnswer(null);
                             setQuizSubmitted(false);
                         }}

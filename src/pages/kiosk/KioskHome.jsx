@@ -3,12 +3,15 @@ import { UserPlus, Search, Shield, BookOpen, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import '../../styles/Kiosk.css';
 
-const KioskTile = ({ icon: Icon, title, color, to }) => (
-    <Link to={to} className={`kiosk-tile ${color}`}>
-        <Icon size={64} />
-        <h3>{title}</h3>
-    </Link>
-);
+const KioskTile = ({ icon, title, color, to }) => {
+    const IconComponent = icon;
+    return (
+        <Link to={to} className={`kiosk-tile ${color}`}>
+            <IconComponent size={64} />
+            <h3>{title}</h3>
+        </Link>
+    );
+};
 
 const KioskHome = () => {
     return (

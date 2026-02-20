@@ -12,7 +12,7 @@ const MicroLearning = () => {
     const [activeCategory, setActiveCategory] = useState('all');
     const [showDomainSelector, setShowDomainSelector] = useState(true);
     const [selectedDomains, setSelectedDomains] = useState([]);
-    const [userProgress, setUserProgress] = useState({
+    const [userProgress] = useState({
         completedModules: 15,
         totalModules: 22,
         learningStreak: 7,

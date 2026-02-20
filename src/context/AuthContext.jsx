@@ -1,17 +1,36 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
 
+const STORAGE_KEY = 'skillbridge_auth';
+
+const defaultUser = {
+    isAuthenticated: false,
+    role: null,
+    name: '',
+    id: null
+};
+
 export const AuthProvider = ({ children }) => {
-    // Roles: 'candidate', 'employer', 'kiosk', or null (guest)
-    const [user, setUser] = useState({
-        isAuthenticated: false,
-        role: null, // 'candidate' | 'employer' | 'kiosk'
-        name: '',
-        id: null
+    const [user, setUser] = useState(() => {
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            return stored ? JSON.parse(stored) : defaultUser;
+        } catch {
+            return defaultUser;
+        }
     });
+
+    useEffect(() => {
+        if (user.isAuthenticated) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+        } else {
+            localStorage.removeItem(STORAGE_KEY);
+        }
+    }, [user]);
 
     const login = (role, name = 'User') => {
         setUser({
@@ -23,12 +42,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        setUser({
-            isAuthenticated: false,
-            role: null,
-            name: '',
-            id: null
-        });
+        setUser(defaultUser);
     };
 
     return (

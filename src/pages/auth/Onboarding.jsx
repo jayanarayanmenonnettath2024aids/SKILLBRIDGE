@@ -49,7 +49,7 @@ const Onboarding = () => {
         <div className="onboarding-container">
             <div className="progress-bar-wrapper">
                 <div className="progress-bar">
-                    {steps.map((step, index) => (
+                    {steps.map((step) => (
                         <div 
                             key={step.number}
                             className="progress-step-container"

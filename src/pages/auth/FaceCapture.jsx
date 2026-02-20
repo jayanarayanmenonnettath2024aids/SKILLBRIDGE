@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { Camera, CheckCircle, RotateCcw, AlertCircle } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import '../../styles/Onboarding.css';
@@ -11,17 +11,7 @@ function FaceCapture({ onComplete, onBack }) {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
 
-  useEffect(() => {
-    startCamera();
-    return () => {
-      // Cleanup: stop camera when component unmounts
-      if (stream) {
-        stream.getTracks().forEach(track => track.stop());
-      }
-    };
-  }, []);
-
-  const startCamera = async () => {
+  const startCamera = useCallback(async () => {
     try {
       setError('');
       const mediaStream = await navigator.mediaDevices.getUserMedia({
@@ -43,7 +33,27 @@ function FaceCapture({ onComplete, onBack }) {
       console.error('Camera access error:', err);
       setError('Unable to access camera. Please ensure camera permissions are granted.');
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    let mounted = true;
+    
+    const initCamera = async () => {
+      if (!mounted) return;
+      await startCamera();
+    };
+    
+    initCamera();
+    
+    return () => {
+      mounted = false;
+      // Cleanup: stop camera when component unmounts
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const capturePhoto = () => {
     if (!videoRef.current || !canvasRef.current) return;

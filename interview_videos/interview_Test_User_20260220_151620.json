@@ -1,0 +1,74 @@
+{
+  "session_id": "87d0b63d-54c2-4a7b-8c14-51b70ed721df",
+  "candidate_name": "Test User",
+  "job_title": "Software Engineer",
+  "company": "TechCorp",
+  "started_at": "2026-02-20T15:16:09.015141",
+  "completed_at": "2026-02-20T15:16:20.261982",
+  "total_questions": 2,
+  "answers_submitted": 2,
+  "overall_score": 6.0,
+  "recommendation": "Maybe - Adequate performance, needs further evaluation",
+  "answers": [
+    {
+      "question_number": 1,
+      "question": "Tell me about yourself and your relevant experience.",
+      "answer": "I have 5 years of experience in software development, working with Python, JavaScript, and cloud technologies. I've built scalable web applications and led teams of 3-4 developers.",
+      "evaluation": {
+        "score": 6.0,
+        "interviewer_assessment": "Thank you for your answer. Consider providing more specific examples and details.",
+        "feedback": "Answer received. Please continue.",
+        "specific_mistakes": [],
+        "how_to_improve": [
+          "Provide more specific examples",
+          "Be more detailed in your response"
+        ],
+        "what_question_tested": "Communication and technical knowledge",
+        "model_answer": "A strong answer would include specific examples and demonstrate clear understanding."
+      },
+      "timestamp": "2026-02-20T15:16:13.808331"
+    },
+    {
+      "question_number": 2,
+      "question": "Why do you want to work at TechCorp?",
+      "answer": "TechCorp has a strong reputation for innovation and employee growth. I'm particularly interested in your AI products and would love to contribute to cutting-edge projects.",
+      "evaluation": {
+        "score": 6.0,
+        "interviewer_assessment": "Thank you for your answer. Consider providing more specific examples and details.",
+        "feedback": "Answer received. Please continue.",
+        "specific_mistakes": [],
+        "how_to_improve": [
+          "Provide more specific examples",
+          "Be more detailed in your response"
+        ],
+        "what_question_tested": "Communication and technical knowledge",
+        "model_answer": "A strong answer would include specific examples and demonstrate clear understanding."
+      },
+      "timestamp": "2026-02-20T15:16:18.114908"
+    }
+  ],
+  "ai_assessment": {
+    "overall_score": 6.0,
+    "summary": "Candidate completed 2 questions with an average score of 6.0/10.",
+    "strengths": [
+      "Good communication",
+      "Professional demeanor"
+    ],
+    "areas_for_improvement": [
+      "Continue building experience",
+      "Practice technical concepts"
+    ],
+    "hiring_recommendation": "Maybe",
+    "detailed_analysis": "Test User demonstrated adequate performance during the interview for Software Engineer at TechCorp."
+  },
+  "strengths": [
+    "Good communication",
+    "Professional demeanor"
+  ],
+  "areas_for_improvement": [
+    "Continue building experience",
+    "Practice technical concepts"
+  ],
+  "detailed_analysis": "Test User demonstrated adequate performance during the interview for Software Engineer at TechCorp.",
+  "hiring_recommendation": "Maybe"
+}

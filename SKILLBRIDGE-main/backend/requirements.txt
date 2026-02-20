@@ -1,0 +1,7 @@
+flask
+flask-cors
+python-dotenv
+google-generativeai>=0.3.0
+requests
+firebase-admin
+PyPDF2

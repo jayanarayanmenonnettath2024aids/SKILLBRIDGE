@@ -1,0 +1,16 @@
+# Python virtual environments
+interview_bot-main/venv/
+**/venv/
+**/__pycache__/
+
+# Build outputs
+dist/
+build/
+*.pyc
+
+# Dependencies
+node_modules/
+
+# Backend folders (Python)
+skillgap-backend/
+interview_bot-main/

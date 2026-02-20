@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShieldCheck, TrendingUp, Users, CheckCircle, MapPin, Search, Grid, HelpCircle, BookOpen, Clock, Award } from 'lucide-react';
+import { ShieldCheck, TrendingUp, Users, CheckCircle, MapPin, Search, Grid, HelpCircle, BookOpen, Clock, Award, LogIn, LayoutDashboard } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';
 import '../../styles/LandingPage.css';
@@ -7,9 +7,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import studentImage from '../../assets/images/studnt.png';
 import opportunityImage from '../../assets/images/os.png';
 import heroImage from '../../assets/images/image.png';
+import { useAuth } from '../../context/AuthContext';
 
 const LandingPage = () => {
     const navigate = useNavigate();
+    const { user } = useAuth();
     const [selectedInterest, setSelectedInterest] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [educationLevel, setEducationLevel] = useState('');
@@ -109,7 +111,7 @@ const LandingPage = () => {
                             <h3 className="step-title">Verified Credentials</h3>
                             <p className="step-description">Your skills and education are verified on the blockchain. No more fake resumes.</p>
                         </div>
-                        
+
                         <div className="process-step step-green">
                             <div className="step-pin">
                                 <div className="pin-icon">
@@ -119,7 +121,7 @@ const LandingPage = () => {
                             <h3 className="step-title">Skill-Gap Analysis</h3>
                             <p className="step-description">Find out exactly what skills you need to get your dream job with our AI assessment.</p>
                         </div>
-                        
+
                         <div className="process-step step-red">
                             <div className="step-pin">
                                 <div className="pin-icon">
@@ -129,7 +131,7 @@ const LandingPage = () => {
                             <h3 className="step-title">Instant Matching</h3>
                             <p className="step-description">Our AI matches you with jobs that fit your profile perfectly. Apply with one click.</p>
                         </div>
-                        
+
                         <div className="arrow-point"></div>
                     </div>
                 </div>
@@ -189,9 +191,28 @@ const LandingPage = () => {
                 <div className="container text-center">
                     <h2>Ready to start your career journey?</h2>
                     <p className="mb-6">Join thousands of others securing their future today.</p>
-                    <Link to="/onboarding">
-                        <Button size="lg" variant="secondary">Create Free Profile</Button>
-                    </Link>
+                    <div className="hero-actions" style={{ justifyContent: 'center' }}>
+                        {user.isAuthenticated ? (
+                            <Link to={user.role === 'employer' ? '/employer' : '/dashboard'}>
+                                <Button size="lg" variant="secondary">
+                                    <LayoutDashboard size={20} style={{ marginRight: '8px' }} />
+                                    Go to Dashboard
+                                </Button>
+                            </Link>
+                        ) : (
+                            <>
+                                <Link to="/login">
+                                    <Button size="lg" variant="secondary">
+                                        <LogIn size={20} style={{ marginRight: '8px' }} />
+                                        Login
+                                    </Button>
+                                </Link>
+                                <Link to="/onboarding">
+                                    <Button size="lg" variant="secondary">Create Free Profile</Button>
+                                </Link>
+                            </>
+                        )}
+                    </div>
                 </div>
             </section>
 
@@ -202,20 +223,20 @@ const LandingPage = () => {
                         <MapPin size={20} />
                         <span>Opportunities near you</span>
                     </div>
-                    
+
                     <div className="action-cards-grid">
                         {/* Student Card */}
                         <Card className="action-card student-card">
                             <h2 className="action-card-title">I want to be a...</h2>
                             <p className="action-card-subtitle">Student</p>
-                            
+
                             <div className="card-illustration student-illustration">
                                 <img src={studentImage} alt="Student" className="illustration-image" />
                             </div>
 
                             <div className="card-input">
                                 <Grid size={20} className="input-icon" />
-                                <select 
+                                <select
                                     value={selectedInterest}
                                     onChange={(e) => setSelectedInterest(e.target.value)}
                                     className="select-input"
@@ -230,7 +251,7 @@ const LandingPage = () => {
                             </div>
 
                             <p className="card-hint">Interest areas like Automotive, Electronics etc.</p>
-                            
+
                             <button className="action-button" onClick={handleFindCourse}>
                                 FIND COURSE
                             </button>
@@ -240,7 +261,7 @@ const LandingPage = () => {
                         <Card className="action-card opportunities-card">
                             <h2 className="action-card-title">I want to explore...</h2>
                             <p className="action-card-subtitle">Opportunities</p>
-                            
+
                             <div className="card-illustration opportunities-illustration">
                                 <img src={opportunityImage} alt="Opportunities" className="illustration-image" />
                             </div>
@@ -258,7 +279,7 @@ const LandingPage = () => {
                             </div>
 
                             <p className="card-hint">Opportunities for Job Exchange, Apprenticeship and Entrepreneurship</p>
-                            
+
                             <button className="action-button" onClick={handleFindJob}>
                                 FIND JOB
                             </button>
@@ -280,7 +301,7 @@ const LandingPage = () => {
 
                             <div className="guidance-form">
                                 <label className="guidance-label">What is your highest education level?</label>
-                                <select 
+                                <select
                                     value={educationLevel}
                                     onChange={(e) => setEducationLevel(e.target.value)}
                                     className="select-input"
@@ -293,7 +314,7 @@ const LandingPage = () => {
                                     <option value="diploma">Diploma</option>
                                 </select>
                             </div>
-                            
+
                             <button className="action-button guidance-button" onClick={handleGuidanceNext}>
                                 NEXT
                             </button>

@@ -1,0 +1,233 @@
+/* ==================== Login Page ==================== */
+
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    padding: 40px 20px;
+    background: #f8f9fb;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 520px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+    padding: 48px 44px;
+}
+
+/* ---- Header ---- */
+.login-header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.login-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+}
+
+.login-icon.employer-icon {
+    background: #e8ecf8;
+    color: #1e3a8a;
+}
+
+.login-header h1 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin: 0 0 6px;
+}
+
+.login-header .welcome-title {
+    font-style: italic;
+    font-size: 1.65rem;
+}
+
+.login-header p {
+    font-size: 0.92rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* ---- Form ---- */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.login-field label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.login-field label svg {
+    color: #475569;
+}
+
+.login-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.login-input-wrap input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 0.94rem;
+    color: #1e293b;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+.login-input-wrap input::placeholder {
+    color: #94a3b8;
+}
+
+.login-input-wrap input:focus {
+    border-color: #1e3a8a;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.08);
+}
+
+.toggle-pw {
+    position: absolute;
+    right: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #94a3b8;
+    display: flex;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.toggle-pw:hover {
+    color: #1e3a8a;
+}
+
+/* ---- Submit Button ---- */
+.login-submit {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #1e3a8a;
+    color: #fff;
+    font-size: 0.98rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.01em;
+}
+
+.login-submit:hover {
+    background: #162e6e;
+}
+
+.login-submit:active {
+    transform: scale(0.985);
+}
+
+/* ---- Footer Links ---- */
+.login-footer {
+    text-align: center;
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.login-footer p {
+    font-size: 0.88rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.login-footer a,
+.login-footer .link-btn {
+    color: #1e3a8a;
+    font-weight: 600;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.88rem;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.login-footer a:hover,
+.login-footer .link-btn:hover {
+    color: #162e6e;
+    text-decoration: underline;
+}
+
+/* ---- Wide card for face verification ---- */
+.login-card-wide {
+    max-width: 640px;
+}
+
+.back-to-form {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #1e3a8a;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 0;
+    margin-bottom: 14px;
+    transition: color 0.2s;
+}
+
+.back-to-form:hover {
+    color: #162e6e;
+    text-decoration: underline;
+}
+
+/* Override onboarding step styles inside the login card */
+.login-card .onboarding-step {
+    padding: 0;
+}
+
+.login-card .step-header {
+    display: none;
+}
+
+.login-card .step-footer {
+    display: none;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 560px) {
+    .login-card {
+        padding: 36px 24px;
+    }
+
+    .login-header h1 {
+        font-size: 1.35rem;
+    }
+
+    .login-card-wide {
+        max-width: 100%;
+    }
+}

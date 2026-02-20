@@ -6,7 +6,7 @@ import Badge from '../ui/Badge';
 import MatchScore from '../dashboard/MatchScore';
 import { MapPin, Building2, Info } from 'lucide-react';
 
-const JobCard = ({ job, onApply }) => {
+const JobCard = ({ job }) => {
     const navigate = useNavigate();
     const [showTooltip, setShowTooltip] = useState(false);
 

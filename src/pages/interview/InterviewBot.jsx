@@ -51,7 +51,7 @@ const InterviewBot = () => {
     const [videoPlaying, setVideoPlaying] = useState(false);
     const [microphoneActive, setMicrophoneActive] = useState(false);
     const [apiError, setApiError] = useState(null);
-    const [totalQuestions, setTotalQuestions] = useState(7); // Default, will update based on interview
+    const [totalQuestions] = useState(7); // Default, will update based on interview
 
     const [recordedVideoUrl, setRecordedVideoUrl] = useState(null);
     const [showPlayback, setShowPlayback] = useState(false);
@@ -64,7 +64,7 @@ const InterviewBot = () => {
 
     // Proctoring hook
     const {
-        violations: proctorViolations,
+        violations: _proctorViolations,
         warningCount: proctorWarningCount,
         currentWarning: proctorCurrentWarning,
         showFinalWarning: proctorShowFinalWarning,
@@ -403,7 +403,7 @@ const InterviewBot = () => {
                     };
                     setChatMessages(prev => [...prev, questionMessage]);
                     setIsLoading(false);
-                } catch (error) {
+                } catch {
                     setApiError('Failed to load question');
                     setIsLoading(false);
                 }
@@ -470,7 +470,7 @@ const InterviewBot = () => {
                     };
                     setChatMessages(prev => [...prev, questionMessage]);
                     setIsBotSpeaking(false);
-                } catch (error) {
+                } catch {
                     // No more questions or error - complete interview
                     completeInterview();
                 }
@@ -813,6 +813,7 @@ const InterviewBot = () => {
                                         </div>
 
                                         {/* Debug info overlay */}
+                                        {/* eslint-disable-next-line no-undef */}
                                         {process.env.NODE_ENV === 'development' && (
                                             <div className="video-debug-info">
                                                 <p>Video Playing: {videoPlaying ? 'Yes' : 'No'}</p>

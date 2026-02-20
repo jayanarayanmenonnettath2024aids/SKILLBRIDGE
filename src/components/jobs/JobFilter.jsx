@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
 
-const JobFilter = ({ onFilter }) => {
+const JobFilter = () => {
     return (
         <Card className="filter-card p-4">
             <h4 className="mb-4 font-bold">Filters</h4>
