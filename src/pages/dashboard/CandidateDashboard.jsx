@@ -1,17 +1,16 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import MatchScore from '../../components/dashboard/MatchScore';
 import CredentialCard from '../../components/dashboard/CredentialCard';
 import '../../styles/Dashboard.css';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 import Button from '../../components/ui/Button';
-import { Briefcase, TrendingUp, BookOpen, Clock, Users, MapPin, Calendar, IndianRupee, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Briefcase, TrendingUp, BookOpen, Clock, Users, MapPin, IndianRupee } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const CandidateDashboard = () => {
     const { user } = useAuth();
     const { t } = useLanguage();
-    const internshipScrollRef = useRef(null);
 
     // Mock Data
     const jobMatches = [
@@ -50,14 +49,6 @@ const CandidateDashboard = () => {
             enrolled: '8.1k enrolled',
             image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop',
         },
-        {
-            title: 'Customer Service Skills',
-            provider: 'TCS iON',
-            duration: '1.5 hrs',
-            level: 'Beginner',
-            enrolled: '3.7k enrolled',
-            image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&h=250&fit=crop',
-        },
     ];
 
     const internships = [
@@ -88,61 +79,35 @@ const CandidateDashboard = () => {
             duration: '4 Months',
             stipend: '₹15,000/month',
         },
-        {
-            title: 'Operations Intern',
-            company: 'Amazon',
-            initial: 'A',
-            color: '#f97316',
-            location: 'Hyderabad',
-            duration: '6 Months',
-            stipend: '₹20,000/month',
-        },
-        {
-            title: 'Sales Intern',
-            company: 'Infosys',
-            initial: 'I',
-            color: '#10b981',
-            location: 'Pune',
-            duration: '3 Months',
-            stipend: '₹14,000/month',
-        },
     ];
 
-    const scrollInternships = (direction) => {
-        if (internshipScrollRef.current) {
-            const amount = 380;
-            internshipScrollRef.current.scrollBy({ left: direction === 'left' ? -amount : amount, behavior: 'smooth' });
-        }
-    };
-
     return (
-        <div className="container dashboard-container">
-            <div className="dashboard-header">
+        <div className="dashboard-container">
+            {/* 1. Header Strip */}
+            <header className="dashboard-header">
                 <div className="header-content">
-                    <h1 className="dashboard-title">{t('welcomeBack2')}, {user.name || 'Rahul'}!</h1>
+                    <h1>{t('welcome')}, {user.name || 'Rahul'}</h1>
                     <p className="dashboard-subtitle">{t('careerProgress')}</p>
                 </div>
-                <div style={{ display: 'flex', gap: '0.75rem' }}>
+                <div style={{ display: 'flex', gap: '12px' }}>
                     <Link to="/skillgap">
-                        <Button variant="outline">
-                            <TrendingUp size={18} />
-                            <span style={{ marginLeft: '0.5rem' }}>{t('viewSkillGap')}</span>
+                        <Button variant="ghost" style={{ padding: '0 20px' }}>
+                            {t('viewSkillGap')}
                         </Button>
                     </Link>
-                    <Link to="/certificate-upload">
-                        <Button>
-                            <Briefcase size={18} />
-                            <span style={{ marginLeft: '0.5rem' }}>{t('findJobs')}</span>
+                    <Link to="/jobs">
+                        <Button className="onboarding-btn-primary" style={{ padding: '0 24px', height: '44px' }}>
+                            {t('findJobs')}
                         </Button>
                     </Link>
                 </div>
-            </div>
+            </header>
 
             {/* ======= Micro-Learning Courses ======= */}
             <div className="dashboard-section micro-courses-section">
                 <div className="section-head">
                     <h3><BookOpen size={20} style={{ marginRight: '8px', verticalAlign: 'text-bottom' }} />{t('recommendedForYou')}</h3>
-                    <Link to="/learning" className="view-all">{t('allCourses')}</Link>
+                    <Link to="/learning" className="view-all">{t('viewAll')}</Link>
                 </div>
                 <div className="micro-courses-grid">
                     {microCourses.map((course, index) => (
@@ -223,18 +188,78 @@ const CandidateDashboard = () => {
                     </div>
                 </div>
 
-                <div className="dashboard-section credentials-section">
-                    <div className="section-head">
+                {/* Right - Verified Credentials */}
+                <div className="dashboard-card">
+                    <div className="section-title-row">
                         <h3>{t('myCredentials')}</h3>
-                        <Link to="/wallet" className="view-all">{t('viewDetails')}</Link>
                     </div>
-                    <div className="credentials-list">
+                    <div className="credentials-minimal-list">
                         {credentials.map((cred, index) => (
                             <CredentialCard key={index} {...cred} isVerified={cred.verified} />
                         ))}
                     </div>
                 </div>
             </div>
+
+            {/* 3. Internship Opportunities */}
+            <section className="internships-full-section">
+                <div className="section-title-row" style={{ marginBottom: '24px' }}>
+                    <h3 style={{ fontSize: '20px' }}>Internship Opportunities</h3>
+                    <Link to="/internships" className="view-all-link">View All</Link>
+                </div>
+                <div className="internships-grid-premium">
+                    {internships.map((intern, index) => (
+                        <div key={index} className="internship-card-modern">
+                            <div className="internship-header-row">
+                                <div className="company-logo-circle" style={{ backgroundColor: intern.color }}>
+                                    {intern.initial}
+                                </div>
+                                <div>
+                                    <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '700' }}>{intern.title}</h4>
+                                    <p style={{ margin: 0, fontSize: '14px', color: 'var(--dash-text-muted)' }}>{intern.company}</p>
+                                </div>
+                            </div>
+                            <div className="internship-meta-row">
+                                <span><MapPin size={14} /> {intern.location}</span>
+                                <span><Clock size={14} /> {intern.duration}</span>
+                                <span className="stipend-text"><IndianRupee size={14} /> {intern.stipend}</span>
+                            </div>
+                            <Button style={{ width: '100%', height: '44px', borderRadius: '12px' }}>
+                                Apply Now
+                            </Button>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* 4. Micro-Learning Courses */}
+            <section className="courses-section">
+                <div className="section-title-row" style={{ marginBottom: '24px' }}>
+                    <h3 style={{ fontSize: '20px' }}>Recommended Micro-Learning</h3>
+                    <Link to="/learning" className="view-all-link">View All</Link>
+                </div>
+                <div className="courses-grid-premium">
+                    {microCourses.map((course, index) => (
+                        <div key={index} className="course-card-premium">
+                            <div className="course-image-top">
+                                <img src={course.image} alt={course.title} />
+                                <span className="course-level-tag">{course.level}</span>
+                            </div>
+                            <div className="course-content-body">
+                                <p className="course-provider-muted">{course.provider}</p>
+                                <h4 className="course-title-bold">{course.title}</h4>
+                                <div className="course-stats-row">
+                                    <span><Clock size={14} /> {course.duration}</span>
+                                    <span><Users size={14} /> {course.enrolled}</span>
+                                </div>
+                                <Button variant="outline" style={{ width: '100%', marginTop: 'auto', borderRadius: '12px' }}>
+                                    Start Learning
+                                </Button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
         </div>
     );
 };

@@ -9,4 +9,12 @@ const Card = ({ children, className = '', ...props }) => {
     );
 };
 
+export const CardContent = ({ children, className = '', ...props }) => {
+    return (
+        <div className={`card-content ${className}`} {...props}>
+            {children}
+        </div>
+    );
+};
+
 export default Card;

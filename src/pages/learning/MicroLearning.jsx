@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
+import {
     BookOpen, Clock, Award, TrendingUp, CheckCircle, PlayCircle, Star, Brain, Database, Shield, Code, Smartphone, Cloud, Wifi, Network, Settings,
     Bot, BrainCircuit, BarChart3, Lock, Globe, MonitorSmartphone, CloudCog, Cable, NetworkIcon, Laptop
 } from 'lucide-react';
@@ -20,76 +20,16 @@ const MicroLearning = () => {
     });
 
     const allDomains = [
-        { 
-            id: 'ai', 
-            name: 'Artificial Intelligence (AI)', 
-            icon: Bot,
-            color: '#3B82F6',
-            description: 'Building smart systems that can learn and make decisions'
-        },
-        { 
-            id: 'ml', 
-            name: 'Machine Learning (ML)', 
-            icon: BrainCircuit,
-            color: '#8B5CF6',
-            description: 'Algorithms that learn from data'
-        },
-        { 
-            id: 'data-science', 
-            name: 'Data Science', 
-            icon: BarChart3,
-            color: '#10B981',
-            description: 'Extracting insights from large datasets'
-        },
-        { 
-            id: 'cybersecurity', 
-            name: 'Cybersecurity', 
-            icon: Lock,
-            color: '#EF4444',
-            description: 'Protecting systems and data from attacks'
-        },
-        { 
-            id: 'web-dev', 
-            name: 'Web Development', 
-            icon: Globe,
-            color: '#F59E0B',
-            description: 'Creating websites and web applications'
-        },
-        { 
-            id: 'mobile-dev', 
-            name: 'Mobile App Development', 
-            icon: MonitorSmartphone,
-            color: '#EC4899',
-            description: 'Building Android and iOS applications'
-        },
-        { 
-            id: 'cloud', 
-            name: 'Cloud Computing', 
-            icon: CloudCog,
-            color: '#06B6D4',
-            description: 'Using remote servers and cloud services'
-        },
-        { 
-            id: 'iot', 
-            name: 'Internet of Things (IoT)', 
-            icon: Cable,
-            color: '#F97316',
-            description: 'Connecting physical devices to the internet'
-        },
-        { 
-            id: 'networks', 
-            name: 'Computer Networks', 
-            icon: NetworkIcon,
-            color: '#6366F1',
-            description: 'Communication between computers and systems'
-        },
-        { 
-            id: 'software-eng', 
-            name: 'Software Engineering', 
-            icon: Laptop,
-            color: '#14B8A6',
-            description: 'Designing and developing software systems'
-        }
+        { id: 'ai', name: 'Artificial Intelligence', icon: Bot, description: 'Building smart systems that learn and decide' },
+        { id: 'ml', name: 'Machine Learning', icon: BrainCircuit, description: 'Data-driven algorithms and models' },
+        { id: 'data-science', name: 'Data Science', icon: BarChart3, description: 'Extracting insights from large datasets' },
+        { id: 'cybersecurity', name: 'Cybersecurity', icon: Lock, description: 'Protecting systems and data from threats' },
+        { id: 'web-dev', name: 'Web Development', icon: Globe, description: 'Building modern web applications' },
+        { id: 'mobile-dev', name: 'Mobile App Dev', icon: MonitorSmartphone, description: 'iOS and Android app development' },
+        { id: 'cloud', name: 'Cloud Computing', icon: CloudCog, description: 'Cloud infrastructure and services' },
+        { id: 'iot', name: 'IoT', icon: Cable, description: 'Connecting physical devices to the web' },
+        { id: 'networks', name: 'Networks', icon: NetworkIcon, description: 'Computer communication systems' },
+        { id: 'software-eng', name: 'Software Engineering', icon: Laptop, description: 'Formal software development practices' }
     ];
 
     const categories = [
@@ -98,30 +38,22 @@ const MicroLearning = () => {
         { id: 'ml', name: 'Machine Learning', icon: TrendingUp },
         { id: 'data-science', name: 'Data Science', icon: Database },
         { id: 'cybersecurity', name: 'Cybersecurity', icon: Shield },
-        { id: 'web-dev', name: 'Web Development', icon: Code },
-        { id: 'mobile-dev', name: 'Mobile Development', icon: Smartphone },
-        { id: 'cloud', name: 'Cloud Computing', icon: Cloud },
+        { id: 'web-dev', name: 'Web Dev', icon: Code },
+        { id: 'mobile-dev', name: 'Mobile Dev', icon: Smartphone },
+        { id: 'cloud', name: 'Cloud', icon: Cloud },
         { id: 'iot', name: 'IoT', icon: Wifi },
         { id: 'networks', name: 'Networks', icon: Network },
-        { id: 'software-eng', name: 'Software Engineering', icon: Settings }
+        { id: 'software-eng', name: 'Engineering', icon: Settings }
     ];
 
     const toggleDomain = (domainId) => {
-        if (selectedDomains.includes(domainId)) {
-            setSelectedDomains(selectedDomains.filter(d => d !== domainId));
-        } else {
-            setSelectedDomains([...selectedDomains, domainId]);
-        }
+        setSelectedDomains(prev =>
+            prev.includes(domainId) ? prev.filter(d => d !== domainId) : [...prev, domainId]
+        );
     };
 
     const handleDomainSelection = () => {
-        if (selectedDomains.length > 0) {
-            setShowDomainSelector(false);
-        }
-    };
-
-    const handleSkipDomainSelection = () => {
-        setShowDomainSelector(false);
+        if (selectedDomains.length > 0) setShowDomainSelector(false);
     };
 
     const microModules = [
@@ -196,458 +128,163 @@ const MicroLearning = () => {
             points: 60,
             image: 'https://images.unsplash.com/photo-1543286386-713bdd548da4?w=400&h=250&fit=crop',
             description: 'Create stunning visualizations with Python'
-        },
-        {
-            id: 7,
-            title: 'Network Security Fundamentals',
-            category: 'cybersecurity',
-            duration: '11 mins',
-            lessons: 6,
-            completed: 0,
-            difficulty: 'Beginner',
-            points: 60,
-            image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=250&fit=crop',
-            description: 'Learn how to protect networks from attacks'
-        },
-        {
-            id: 8,
-            title: 'Ethical Hacking Basics',
-            category: 'cybersecurity',
-            duration: '14 mins',
-            lessons: 8,
-            completed: 0,
-            difficulty: 'Advanced',
-            points: 80,
-            image: 'https://images.unsplash.com/photo-1520869562399-e772f042f422?w=400&h=250&fit=crop',
-            description: 'Introduction to penetration testing'
-        },
-        {
-            id: 9,
-            title: 'HTML & CSS Fundamentals',
-            category: 'web-dev',
-            duration: '10 mins',
-            lessons: 6,
-            completed: 4,
-            difficulty: 'Beginner',
-            points: 60,
-            image: 'https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=400&h=250&fit=crop',
-            description: 'Build your first web page from scratch'
-        },
-        {
-            id: 10,
-            title: 'JavaScript Essentials',
-            category: 'web-dev',
-            duration: '12 mins',
-            lessons: 7,
-            completed: 0,
-            difficulty: 'Beginner',
-            points: 70,
-            image: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=250&fit=crop',
-            description: 'Learn JavaScript programming basics'
-        },
-        {
-            id: 11,
-            title: 'React for Beginners',
-            category: 'web-dev',
-            duration: '15 mins',
-            lessons: 8,
-            completed: 0,
-            difficulty: 'Intermediate',
-            points: 80,
-            image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=250&fit=crop',
-            description: 'Build modern web apps with React'
-        },
-        {
-            id: 12,
-            title: 'Android Development Basics',
-            category: 'mobile-dev',
-            duration: '13 mins',
-            lessons: 7,
-            completed: 0,
-            difficulty: 'Intermediate',
-            points: 70,
-            image: 'https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=400&h=250&fit=crop',
-            description: 'Create your first Android application'
-        },
-        {
-            id: 13,
-            title: 'iOS App Development',
-            category: 'mobile-dev',
-            duration: '14 mins',
-            lessons: 8,
-            completed: 0,
-            difficulty: 'Intermediate',
-            points: 80,
-            image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop',
-            description: 'Build apps for iPhone and iPad'
-        },
-        {
-            id: 14,
-            title: 'AWS Cloud Basics',
-            category: 'cloud',
-            duration: '11 mins',
-            lessons: 6,
-            completed: 0,
-            difficulty: 'Beginner',
-            points: 60,
-            image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=250&fit=crop',
-            description: 'Introduction to Amazon Web Services'
-        },
-        {
-            id: 15,
-            title: 'Docker and Containers',
-            category: 'cloud',
-            duration: '12 mins',
-            lessons: 7,
-            completed: 0,
-            difficulty: 'Intermediate',
-            points: 70,
-            image: 'https://images.unsplash.com/photo-1605745341112-85968b19335b?w=400&h=250&fit=crop',
-            description: 'Learn containerization with Docker'
-        },
-        {
-            id: 16,
-            title: 'IoT with Arduino',
-            category: 'iot',
-            duration: '13 mins',
-            lessons: 7,
-            completed: 0,
-            difficulty: 'Beginner',
-            points: 70,
-            image: 'https://images.unsplash.com/photo-1553406830-ef2513450d76?w=400&h=250&fit=crop',
-            description: 'Build IoT projects with Arduino boards'
-        },
-        {
-            id: 17,
-            title: 'Raspberry Pi Projects',
-            category: 'iot',
-            duration: '14 mins',
-            lessons: 8,
-            completed: 0,
-            difficulty: 'Intermediate',
-            points: 80,
-            image: 'https://images.unsplash.com/photo-1553406830-b8e3c6b9b04b?w=400&h=250&fit=crop',
-            description: 'Create smart home devices with Raspberry Pi'
-        },
-        {
-            id: 18,
-            title: 'TCP/IP Networking',
-            category: 'networks',
-            duration: '10 mins',
-            lessons: 6,
-            completed: 0,
-            difficulty: 'Beginner',
-            points: 60,
-            image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=250&fit=crop',
-            description: 'Understanding internet protocols'
-        },
-        {
-            id: 19,
-            title: 'Network Configuration',
-            category: 'networks',
-            duration: '12 mins',
-            lessons: 7,
-            completed: 0,
-            difficulty: 'Intermediate',
-            points: 70,
-            image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=250&fit=crop',
-            description: 'Setup and configure computer networks'
-        },
-        {
-            id: 20,
-            title: 'Software Design Patterns',
-            category: 'software-eng',
-            duration: '13 mins',
-            lessons: 7,
-            completed: 1,
-            difficulty: 'Intermediate',
-            points: 70,
-            image: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=400&h=250&fit=crop',
-            description: 'Learn common software design patterns'
-        },
-        {
-            id: 21,
-            title: 'Agile Development',
-            category: 'software-eng',
-            duration: '10 mins',
-            lessons: 6,
-            completed: 0,
-            difficulty: 'Beginner',
-            points: 60,
-            image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=400&h=250&fit=crop',
-            description: 'Master Agile software development methods'
-        },
-        {
-            id: 22,
-            title: 'Git Version Control',
-            category: 'software-eng',
-            duration: '11 mins',
-            lessons: 6,
-            completed: 0,
-            difficulty: 'Beginner',
-            points: 60,
-            image: 'https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=250&fit=crop',
-            description: 'Learn version control with Git and GitHub'
         }
     ];
 
-    // Filter modules based on selected domains and active category
     const filteredModules = microModules.filter(module => {
-        // If domains are selected, filter by domains
         const domainMatch = selectedDomains.length === 0 || selectedDomains.includes(module.category);
-        
-        // Filter by active category
         const categoryMatch = activeCategory === 'all' || module.category === activeCategory;
-        
         return domainMatch && categoryMatch;
     });
 
-    const calculateProgress = (completed, total) => {
-        return Math.round((completed / total) * 100);
-    };
+    const calculateProgress = (completed, total) => Math.round((completed / total) * 100);
 
     return (
-        <div className="container micro-learning-container">
+        <div className="micro-learning-page">
             {/* Domain Selection Modal */}
             {showDomainSelector && (
-                <div className="domain-selector-overlay">
-                    <Card className="domain-selector-modal">
-                        <div className="modal-header">
-                            <BookOpen size={48} style={{ color: 'var(--color-primary)' }} />
-                            <h2>Choose Your Learning Domains</h2>
-                            <p>Select areas you want to focus on. We'll personalize your learning experience!</p>
-                        </div>
+                <div className="domain-modal-overlay">
+                    <div className="domain-modal-container">
+                        <header className="modal-header">
+                            <div className="header-top">
+                                <h2>Choose Your Learning Domains</h2>
+                                <button className="close-modal-btn" onClick={() => setShowDomainSelector(false)}>✕</button>
+                            </div>
+                            <p className="modal-subtitle">Select areas you want to focus on. We'll personalize your learning experience!</p>
+                        </header>
 
-                        <div className="domains-selection-grid">
+                        <div className="domains-grid-layout">
                             {allDomains.map(domain => {
                                 const isSelected = selectedDomains.includes(domain.id);
-                                const IconComponent = domain.icon;
+                                const DomainIcon = domain.icon;
                                 return (
                                     <div
                                         key={domain.id}
-                                        className={`domain-selection-card ${isSelected ? 'selected' : ''}`}
+                                        className={`domain-card-item ${isSelected ? 'selected' : ''}`}
                                         onClick={() => toggleDomain(domain.id)}
-                                        style={{ '--domain-color': domain.color }}
                                     >
-                                        {isSelected && (
-                                            <div className="domain-check-badge">
-                                                <CheckCircle size={20} />
-                                            </div>
-                                        )}
-                                        <div className="domain-icon-large">
-                                            <IconComponent size={48} />
+                                        <div className="domain-icon-wrapper">
+                                            <DomainIcon size={28} />
                                         </div>
-                                        <h3>{domain.name}</h3>
-                                        <p>{domain.description}</p>
+                                        <h3 className="domain-title-text">{domain.name}</h3>
+                                        <p className="domain-description-text">{domain.description}</p>
                                     </div>
                                 );
                             })}
                         </div>
 
-                        {selectedDomains.length > 0 && (
-                            <div className="selected-domains-info">
-                                <CheckCircle size={18} style={{ color: 'var(--color-success)' }} />
-                                <span>You've selected {selectedDomains.length} {selectedDomains.length === 1 ? 'domain' : 'domains'}</span>
-                            </div>
-                        )}
-
-                        <div className="modal-actions">
-                            <Button variant="outline" onClick={handleSkipDomainSelection}>
-                                Skip for Now
-                            </Button>
-                            <Button 
-                                variant="primary" 
+                        <footer className="modal-footer">
+                            <span className="skip-link-text" onClick={() => setShowDomainSelector(false)}>Skip for Now</span>
+                            <Button
+                                className="primary-modal-btn"
                                 onClick={handleDomainSelection}
                                 disabled={selectedDomains.length === 0}
                             >
-                                Continue with {selectedDomains.length > 0 ? selectedDomains.length : ''} {selectedDomains.length === 1 ? 'Domain' : 'Domains'}
+                                Continue with {selectedDomains.length || ''} {selectedDomains.length === 1 ? 'Domain' : 'Domains'}
                             </Button>
-                        </div>
-                    </Card>
-                </div>
-            )}
-
-            {/* Header Section */}
-            <div className="learning-header">
-                <div>
-                    <h1 className="page-title">Micro Learning</h1>
-                    <p className="page-subtitle">
-                        {selectedDomains.length > 0 
-                            ? `Showing courses for ${selectedDomains.length} selected ${selectedDomains.length === 1 ? 'domain' : 'domains'} • ${filteredModules.length} ${filteredModules.length === 1 ? 'module' : 'modules'} available`
-                            : 'Master new skills in bite-sized lessons - anywhere, anytime'
-                        }
-                    </p>
-                </div>
-                {selectedDomains.length > 0 && !showDomainSelector && (
-                    <Button variant="outline" size="sm" onClick={() => setShowDomainSelector(true)}>
-                        <Settings size={18} />
-                        Change Domains
-                    </Button>
-                )}
-            </div>
-
-            {/* Stats Dashboard */}
-            <div className="stats-grid">
-                <Card className="stat-card">
-                    <div className="stat-icon" style={{ background: 'var(--color-primary)', opacity: 0.1 }}>
-                        <BookOpen size={24} style={{ color: 'var(--color-primary)' }} />
-                    </div>
-                    <div className="stat-content">
-                        <span className="stat-value">{userProgress.completedModules}/{filteredModules.length > 0 ? filteredModules.length : userProgress.totalModules}</span>
-                        <span className="stat-label">Modules {selectedDomains.length > 0 ? 'Available' : 'Completed'}</span>
-                    </div>
-                </Card>
-
-                <Card className="stat-card">
-                    <div className="stat-icon" style={{ background: '#F59E0B', opacity: 0.1 }}>
-                        <Award size={24} style={{ color: '#F59E0B' }} />
-                    </div>
-                    <div className="stat-content">
-                        <span className="stat-value">{userProgress.totalPoints}</span>
-                        <span className="stat-label">Total Points</span>
-                    </div>
-                </Card>
-
-                <Card className="stat-card">
-                    <div className="stat-icon" style={{ background: '#10B981', opacity: 0.1 }}>
-                        <TrendingUp size={24} style={{ color: '#10B981' }} />
-                    </div>
-                    <div className="stat-content">
-                        <span className="stat-value">{userProgress.learningStreak} Days</span>
-                        <span className="stat-label">Learning Streak</span>
-                    </div>
-                </Card>
-
-                <Card className="stat-card">
-                    <div className="stat-icon" style={{ background: '#8B5CF6', opacity: 0.1 }}>
-                        <CheckCircle size={24} style={{ color: '#8B5CF6' }} />
-                    </div>
-                    <div className="stat-content">
-                        <span className="stat-value">{calculateProgress(userProgress.completedModules, userProgress.totalModules)}%</span>
-                        <span className="stat-label">Overall Progress</span>
-                    </div>
-                </Card>
-            </div>
-
-            {/* Selected Domains Display */}
-            {selectedDomains.length > 0 && (
-                <div className="selected-domains-container">
-                    <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '0.75rem', color: 'var(--color-text-primary)' }}>
-                        Selected Domains:
-                    </h3>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                        {selectedDomains.map(domainId => {
-                            const domain = allDomains.find(d => d.id === domainId);
-                            return domain ? (
-                                <span 
-                                    key={domainId}
-                                    style={{
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        gap: '0.5rem',
-                                        padding: '0.5rem 1rem',
-                                        background: 'var(--color-primary)',
-                                        color: 'white',
-                                        borderRadius: '20px',
-                                        fontSize: '0.875rem',
-                                        fontWeight: '500'
-                                    }}
-                                >
-                                    <domain.icon size={16} />
-                                    {domain.name}
-                                </span>
-                            ) : null;
-                        })}
+                        </footer>
                     </div>
                 </div>
             )}
 
-            {/* Category Filter */}
-            <div className="category-filter">
-                {categories.map(cat => (
-                    <button
-                        key={cat.id}
-                        className={`category-btn ${activeCategory === cat.id ? 'active' : ''}`}
-                        onClick={() => setActiveCategory(cat.id)}
-                    >
-                        <cat.icon size={18} />
-                        <span>{cat.name}</span>
-                    </button>
-                ))}
-            </div>
+            <div className="micro-learning-page-container">
+                {/* Hero Header */}
+                <header className="page-hero-section">
+                    <h1 className="hero-main-title">Micro Learning</h1>
+                    <p className="hero-sub-title">Learn new skills in bite-sized lessons</p>
+                </header>
 
-            {/* Modules Grid */}
-            <div className="modules-grid">
-                {filteredModules.map(module => {
-                    const progress = calculateProgress(module.completed, module.lessons);
-                    const isCompleted = module.completed === module.lessons;
+                {/* Stats Grid */}
+                <div className="learning-stats-grid">
+                    <div className="stat-box">
+                        <span className="stat-number-val">{userProgress.completedModules}/{userProgress.totalModules}</span>
+                        <span className="stat-label-text">Modules Completed</span>
+                    </div>
+                    <div className="stat-box">
+                        <span className="stat-number-val">{userProgress.totalPoints}</span>
+                        <span className="stat-label-text">Total Points Earned</span>
+                    </div>
+                    <div className="stat-box">
+                        <span className="stat-number-val">{userProgress.learningStreak}</span>
+                        <span className="stat-label-text">Day Learning Streak</span>
+                    </div>
+                    <div className="stat-box">
+                        <span className="stat-number-val">{calculateProgress(userProgress.completedModules, userProgress.totalModules)}%</span>
+                        <span className="stat-label-text">Overall Course Progress</span>
+                    </div>
+                </div>
 
-                    return (
-                        <Card key={module.id} className="module-card">
-                            <div className="module-image">
-                                <img src={module.image} alt={module.title} />
-                                {isCompleted && (
-                                    <div className="completed-badge">
-                                        <CheckCircle size={20} />
-                                        <span>Completed</span>
+                {/* Filter Chip Bar */}
+                <div className="domain-filter-chips">
+                    {categories.map(cat => (
+                        <button
+                            key={cat.id}
+                            className={`filter-chip-item ${activeCategory === cat.id ? 'active' : ''}`}
+                            onClick={() => setActiveCategory(cat.id)}
+                        >
+                            {cat.name}
+                        </button>
+                    ))}
+                </div>
+
+                {/* Courses Grid */}
+                <div className="micro-courses-grid">
+                    {filteredModules.map(module => {
+                        const progress = calculateProgress(module.completed, module.lessons);
+                        const isCompleted = module.completed === module.lessons;
+
+                        return (
+                            <div key={module.id} className="micro-course-card">
+                                <div className="card-image-wrapper">
+                                    <img src={module.image} alt={module.title} />
+                                    {isCompleted && (
+                                        <div className="course-completed-badge">
+                                            <CheckCircle size={16} />
+                                            <span>Completed</span>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="card-details-section">
+                                    <div className="card-top-row">
+                                        <span className={`difficulty-badge-pill ${module.difficulty.toLowerCase()}`}>
+                                            {module.difficulty}
+                                        </span>
                                     </div>
-                                )}
-                            </div>
 
-                            <div className="module-content">
-                                <div className="module-header">
-                                    <span className={`difficulty-badge ${module.difficulty.toLowerCase()}`}>
-                                        {module.difficulty}
-                                    </span>
-                                    <div className="module-meta">
-                                        <Clock size={14} />
+                                    <h3 className="card-course-title">{module.title}</h3>
+                                    <p className="card-course-desc">{module.description}</p>
+
+                                    <div className="card-metadata-row">
+                                        <span>{module.lessons} lessons</span>
+                                        <span>•</span>
+                                        <span>{module.points} pts</span>
+                                        <span>•</span>
                                         <span>{module.duration}</span>
                                     </div>
-                                </div>
 
-                                <h3 className="module-title">{module.title}</h3>
-                                <p className="module-description">{module.description}</p>
-
-                                <div className="module-info">
-                                    <span className="lesson-count">
-                                        <PlayCircle size={16} />
-                                        {module.lessons} lessons
-                                    </span>
-                                    <span className="points-badge">
-                                        <Award size={16} />
-                                        {module.points} pts
-                                    </span>
-                                </div>
-
-                                {module.completed > 0 && (
-                                    <div className="progress-section">
-                                        <div className="progress-info">
-                                            <span className="progress-text">
-                                                {module.completed}/{module.lessons} lessons
-                                            </span>
-                                            <span className="progress-percentage">{progress}%</span>
+                                    {module.completed > 0 && (
+                                        <div className="card-progress-wrapper">
+                                            <div className="progress-bar-bg">
+                                                <div
+                                                    className="progress-bar-fill"
+                                                    style={{ width: `${progress}%` }}
+                                                ></div>
+                                            </div>
+                                            <span className="progress-percentage-label">{progress}% complete</span>
                                         </div>
-                                        <div className="progress-bar">
-                                            <div 
-                                                className="progress-fill" 
-                                                style={{ width: `${progress}%` }}
-                                            ></div>
-                                        </div>
-                                    </div>
-                                )}
+                                    )}
 
-                                <Link to={`/learning/${module.id}`} className="full-width-link">
-                                    <Button 
-                                        variant={isCompleted ? 'outline' : 'primary'} 
-                                        className="w-full"
-                                    >
-                                        {isCompleted ? 'Review Module' : module.completed > 0 ? 'Continue Learning' : 'Start Learning'}
-                                    </Button>
-                                </Link>
+                                    <Link to={`/learning/${module.id}`} className="card-action-link">
+                                        <Button className="card-primary-btn">
+                                            {isCompleted ? 'Review Module' : module.completed > 0 ? 'Continue' : 'Start Learning'}
+                                        </Button>
+                                    </Link>
+                                </div>
                             </div>
-                        </Card>
-                    );
-                })}
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );

@@ -15,48 +15,90 @@ const SkillGap = ({ data, onBack }) => {
     };
 
     return (
-        <div className="onboarding-step fade-in">
-            <div className="step-header">
-                <div className="icon-bg bg-indigo-100 text-primary">
-                    <TrendingUp size={32} />
+        <div className="onboarding-step-body fade-in">
+            <div className="assessment-results-layout">
+                {/* LEFT - Circular Progress */}
+                <div className="visual-score-column">
+                    <div className="circular-progress-large" style={{
+                        position: 'relative',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: '50%',
+                        background: 'conic-gradient(#4F46E5 75%, #F1F5F9 0)'
+                    }}>
+                        <div style={{
+                            width: '180px',
+                            height: '180px',
+                            background: 'white',
+                            borderRadius: '50%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}>
+                            <span style={{ fontSize: '40px', fontWeight: '800', color: '#111827' }}>75%</span>
+                            <span style={{ fontSize: '14px', color: '#6B7280', fontWeight: '600' }}>Overall Match</span>
+                        </div>
+                    </div>
+                    <p style={{ textAlign: 'center', marginTop: '24px', fontSize: '15px', color: '#374151' }}>
+                        High match for <strong>{data.jobRoles?.[0] || 'Data Entry Operator'}</strong>
+                    </p>
                 </div>
-                <h2>Your Career Potential</h2>
-                <p>Based on your profile, here is where you stand and what you can achieve.</p>
+
+                {/* RIGHT - Recommendations */}
+                <div className="recommendations-column">
+                    <Card className="onboarding-card-base" style={{ padding: '32px' }}>
+                        <h3 className="card-heading-text" style={{ fontSize: '18px', marginBottom: '20px' }}>
+                            Next steps for your career
+                        </h3>
+                        <div className="recommendation-list-premium">
+                            <div className="recommendation-row-item">
+                                <div className="rec-icon">
+                                    <TrendingUp size={18} />
+                                </div>
+                                <div className="rec-content">
+                                    <p style={{ margin: 0, fontWeight: '600' }}>Enhance Typing Speed</p>
+                                    <p style={{ margin: 0, fontSize: '13px', color: '#6B7280' }}>Practice to reach 35 words per minute for senior roles.</p>
+                                </div>
+                            </div>
+
+                            <div className="recommendation-row-item">
+                                <div className="rec-icon">
+                                    <CheckCircle size={18} />
+                                </div>
+                                <div className="rec-content">
+                                    <p style={{ margin: 0, fontWeight: '600' }}>Computer Basics Verified</p>
+                                    <p style={{ margin: 0, fontSize: '13px', color: '#6B7280' }}>Your fundamental technical skills are already verified.</p>
+                                </div>
+                            </div>
+
+                            <div className="recommendation-row-item">
+                                <div className="rec-icon">
+                                    <TrendingUp size={18} />
+                                </div>
+                                <div className="rec-content">
+                                    <p style={{ margin: 0, fontWeight: '600' }}>Complete Advanced Excel</p>
+                                    <p style={{ margin: 0, fontSize: '13px', color: '#6B7280' }}>Learning VLOOKUP will increase your match score to 90%.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
+                </div>
             </div>
 
-            <Card className="onboarding-card">
-                <div className="gap-analysis">
-                    <div className="gap-chart">
-                        {/* Simple visual representation of skill match */}
-                        <div className="chart-circle">
-                            <span className="score">75%</span>
-                            <span className="label">Match</span>
-                        </div>
-                        <p className="chart-caption">Match for <strong>Data Entry Operator</strong></p>
-                    </div>
-
-                    <div className="recommendations">
-                        <h4>Recommended to Reach 100%:</h4>
-                        <ul className="gap-list">
-                            <li>
-                                <div className="gap-icon bad">!</div>
-                                <span>Typing Speed (Needs 30wpm)</span>
-                            </li>
-                            <li>
-                                <div className="gap-icon good"><CheckCircle size={14} /></div>
-                                <span>Computer Basics (Verified)</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div className="actions-row">
-                    <Button variant="outline" onClick={onBack}>Back</Button>
-                    <Button onClick={handleFinish} className="w-full">
-                        Go to Dashboard
-                    </Button>
-                </div>
-            </Card>
+            <footer className="onboarding-actions-row">
+                <button onClick={onBack} className="onboarding-btn-text">
+                    Back to Uploads
+                </button>
+                <div style={{ flex: 1 }}></div>
+                <button
+                    onClick={handleFinish}
+                    className="onboarding-btn-primary"
+                >
+                    Continue to Dashboard
+                </button>
+            </footer>
         </div>
     );
 };

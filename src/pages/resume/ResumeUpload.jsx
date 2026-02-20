@@ -16,59 +16,31 @@ const ResumeUpload = () => {
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [error, setError] = useState('');
   const [resumeURL, setResumeURL] = useState('');
-  const [dragActive, setDragActive] = useState(false);
   const navigate = useNavigate();
   const { user } = useAuth();
   const { t } = useLanguage();
 
-  const validateFile = (file) => {
+  const handleFileSelect = (e) => {
+    const file = e.type === 'drop' ? e.dataTransfer.files[0] : e.target.files[0];
+    if (!file) return;
+
     if (file.type !== 'application/pdf') {
       setError('Please upload a PDF file');
-      return false;
+      return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
       setError('File size must be less than 5MB');
-      return false;
+      return;
     }
 
-    return true;
+    setSelectedFile(file);
+    setError('');
+    setUploadSuccess(false);
   };
 
-  const handleFileSelect = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    if (validateFile(file)) {
-      setSelectedFile(file);
-      setError('');
-      setUploadSuccess(false);
-    }
-  };
-
-  const handleDrag = (e) => {
+  const handleDragOver = (e) => {
     e.preventDefault();
-    e.stopPropagation();
-    if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true);
-    } else if (e.type === "dragleave") {
-      setDragActive(false);
-    }
-  };
-
-  const handleDrop = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-    
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const file = e.dataTransfer.files[0];
-      if (validateFile(file)) {
-        setSelectedFile(file);
-        setError('');
-        setUploadSuccess(false);
-      }
-    }
   };
 
   const handleUpload = async () => {
@@ -82,13 +54,11 @@ const ResumeUpload = () => {
       return;
     }
 
-    console.log('Starting upload...', { fileName: selectedFile.name, userId: user.id });
     setUploading(true);
     setError('');
 
     try {
       const uploadResult = await uploadResumeAPI(selectedFile, user.id);
-      console.log('Upload result:', uploadResult);
 
       if (!uploadResult.success) {
         throw new Error(uploadResult.error || 'Upload failed');
@@ -129,7 +99,6 @@ const ResumeUpload = () => {
     } catch (err) {
       setUploading(false);
       setAnalyzing(false);
-      console.error('Upload error caught:', err);
 
       const errorMsg = err.error || err.message || 'Failed to upload resume. Please try again.';
       if (errorMsg.includes('quota') || errorMsg.includes('exceeded')) {
@@ -145,23 +114,36 @@ const ResumeUpload = () => {
   };
 
   return (
-    <div className="resume-upload-container">
-      <div className="upload-content">
-        <div className="upload-header">
-          <div className="icon-bg bg-primary-light">
-            <Upload size={32} />
-          </div>
-          <h1>{t('uploadResumeTitle')}</h1>
-          <p>{t('uploadResumeSubtitle')}</p>
+    <div className="resume-upload-page">
+      {/* Clean Top Nav */}
+      <nav className="upload-top-nav">
+        <div className="nav-logo">SkillBridge AI</div>
+        <div className="nav-actions">
+          <Button variant="ghost" onClick={handleSkip} size="sm">Cancel</Button>
         </div>
+      </nav>
 
-        <Card className="upload-card">
-          <div 
-            className={`upload-area ${selectedFile ? 'has-file' : ''} ${dragActive ? 'drag-active' : ''}`}
-            onDragEnter={handleDrag}
-            onDragLeave={handleDrag}
-            onDragOver={handleDrag}
-            onDrop={handleDrop}
+      <div className="resume-upload-container">
+        {/* Hero Section */}
+        <header className="upload-hero">
+          <div className="upload-icon-circle">
+            <Upload size={28} />
+          </div>
+          <h1 className="hero-title">Upload Your Resume</h1>
+          <p className="hero-subtitle">
+            Upload your resume in PDF format for AI-powered skill analysis and personalized recommendations.
+          </p>
+        </header>
+
+        {/* Main Upload Card */}
+        <Card className="main-upload-card">
+          <div
+            className={`dropzone-area ${selectedFile ? 'has-file' : ''}`}
+            onDragOver={handleDragOver}
+            onDrop={(e) => {
+              e.preventDefault();
+              handleFileSelect(e);
+            }}
           >
             <input
               type="file"
@@ -172,22 +154,22 @@ const ResumeUpload = () => {
               hidden
             />
 
-            <label htmlFor="resume-upload" className="upload-label">
+            <label htmlFor="resume-upload" className="dropzone-label">
               {!selectedFile ? (
                 <>
-                  <FileText size={48} className="upload-icon" />
-                  <h3>{t('browseFiles')}</h3>
-                  <p>{t('dragDropResume')}</p>
-                  <span className="file-requirements">{t('fileRequirements')}</span>
+                  <FileText size={32} className="dropzone-icon" />
+                  <div className="dropzone-main-text">Choose PDF file</div>
+                  <div className="dropzone-sub-text">or drag and drop here</div>
+                  <div className="dropzone-hint">Max file size: 5MB</div>
                 </>
               ) : (
                 <>
-                  <FileText size={48} className="upload-icon text-success" />
-                  <h3>{selectedFile.name}</h3>
-                  <p>{(selectedFile.size / 1024).toFixed(2)} KB</p>
+                  <FileText size={32} className="dropzone-icon success" />
+                  <div className="dropzone-main-text">{selectedFile.name}</div>
+                  <div className="dropzone-sub-text">{(selectedFile.size / 1024).toFixed(2)} KB</div>
                   {!uploadSuccess && (
-                    <Button
-                      variant="text"
+                    <button
+                      className="change-file-btn"
                       onClick={(e) => {
                         e.preventDefault();
                         setSelectedFile(null);
@@ -195,7 +177,7 @@ const ResumeUpload = () => {
                       disabled={uploading || analyzing}
                     >
                       Change File
-                    </Button>
+                    </button>
                   )}
                 </>
               )}
@@ -203,74 +185,75 @@ const ResumeUpload = () => {
           </div>
 
           {error && (
-            <div className="status-message error-message">
-              <AlertCircle size={20} />
+            <div className="status-toast error">
+              <AlertCircle size={18} />
               <span>{error}</span>
             </div>
           )}
 
           {uploadSuccess && !analyzing && (
-            <div className="status-message success-message">
-              <CheckCircle size={20} />
-              <span>{t('uploadSuccess')}</span>
+            <div className="status-toast success">
+              <CheckCircle size={18} />
+              <span>Resume uploaded successfully!</span>
             </div>
           )}
 
           {analyzing && (
-            <div className="status-message analyzing-message">
-              <Loader size={20} className="spin" />
-              <span>{t('analyzing')}</span>
+            <div className="status-toast info">
+              <Loader size={18} className="animate-spin" />
+              <span>Analyzing your resume with AI...</span>
             </div>
           )}
 
-          <div className="upload-actions">
-            <Button
+          {/* Action Row */}
+          <div className="upload-action-row">
+            <button
               onClick={handleUpload}
               disabled={!selectedFile || uploading || analyzing || uploadSuccess}
-              className="upload-btn"
+              className="button-primary"
+              style={{ width: '100%', maxWidth: '300px' }}
             >
               {uploading ? (
-                <><Loader size={18} className="spin" /> {t('uploading')}</>
+                <><Loader size={18} className="animate-spin" /> Uploading...</>
               ) : analyzing ? (
-                <><Loader size={18} className="spin" /> {t('analyzing')}</>
+                <><Loader size={18} className="animate-spin" /> Analyzing...</>
               ) : uploadSuccess ? (
-                <><CheckCircle size={18} /> {t('uploaded')}</>
+                <><CheckCircle size={18} /> Uploaded</>
               ) : (
-                <><Upload size={18} /> {t('uploadAndAnalyze')}</>
+                'Upload & Analyze'
               )}
-            </Button>
+            </button>
 
-            <Button
-              variant="outline"
-              onClick={handleSkip}
-              disabled={uploading || analyzing}
-            >
-              {t('skipForNow')}
-            </Button>
+            <button className="button-secondary" onClick={handleSkip} style={{ height: '48px', padding: '0 32px' }}>
+              Skip for Now
+            </button>
           </div>
 
-          <div className="upload-info">
-            <h4>{t('whatHappensNext')}</h4>
-            <ul>
-              <li>
-                <CheckCircle size={16} />
-                {t('securelyStored')}
-              </li>
-              <li>
-                <CheckCircle size={16} />
-                {t('aiAnalyzes')}
-              </li>
-              <li>
-                <CheckCircle size={16} />
-                {t('personalizedRecommendations')}
-              </li>
-            </ul>
+          {/* Divider & What Happens Next */}
+          <div className="upload-next-steps">
+            <h4 className="next-steps-title">What happens next?</h4>
+            <div className="next-steps-list">
+              <div className="step-row">
+                <CheckCircle size={16} className="step-icon" />
+                <span>Your resume is securely stored in Firebase Storage</span>
+              </div>
+              <div className="step-row">
+                <CheckCircle size={16} className="step-icon" />
+                <span>AI analyzes your skills, experience, and education</span>
+              </div>
+              <div className="step-row">
+                <CheckCircle size={16} className="step-icon" />
+                <span>Get personalized job recommendations and skill gap analysis</span>
+              </div>
+            </div>
           </div>
         </Card>
 
-        <div className="privacy-notice">
-          <span>🔒 Your data is encrypted and securely stored</span>
-        </div>
+        {/* Security Footer Note */}
+        <footer className="security-footer">
+          <CheckCircle size={14} className="lock-icon" />
+          <span>Your data is encrypted and securely stored</span>
+        </footer>
       </div>
     </div>
   );

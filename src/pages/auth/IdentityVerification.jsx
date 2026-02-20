@@ -27,96 +27,85 @@ const IdentityVerification = ({ onNext, onBack }) => {
     };
 
     return (
-        <div className="onboarding-step fade-in">
-            <div className="step-header">
-                <div className="icon-bg bg-emerald-100 text-success">
-                    <ShieldCheck size={32} />
+        <div className="onboarding-step-body fade-in">
+            <Card className="onboarding-card-base aadhaar-centered-card">
+                <div className="aadhaar-icon-circle">
+                    <ShieldCheck size={36} />
                 </div>
-                <h2>Verify Your Identity</h2>
-                <p>We link your profile to your Aadhaar for verified credentials.</p>
-            </div>
 
-            <Card className="onboarding-card">
                 {step === 'aadhaar' ? (
-                    <form onSubmit={handleSendOtp}>
+                    <form onSubmit={handleSendOtp} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                         <div className="form-group">
-                            <label htmlFor="aadhaar">Aadhaar Number</label>
+                            <label className="input-label-premium" htmlFor="aadhaar">Aadhaar Number</label>
                             <input
                                 type="text"
                                 id="aadhaar"
                                 placeholder="0000 0000 0000"
                                 value={aadhaar}
                                 onChange={(e) => setAadhaar(e.target.value.replace(/\D/g, '').slice(0, 12))}
-                                className="input-field"
+                                className="input-field-premium"
                                 required
                             />
                         </div>
-                        <div className="form-button-group">
-                            <Button
-                                type="submit"
-                                disabled={aadhaar.length !== 12}
-                            >
-                                Send OTP
-                            </Button>
-                            {onBack && (
-                                <Button
-                                    type="button"
-                                    variant="outline"
-                                    onClick={onBack}
-                                >
-                                    Back
-                                </Button>
-                            )}
-                        </div>
+                        <button
+                            type="submit"
+                            disabled={aadhaar.length !== 12}
+                            className="onboarding-btn-primary"
+                            style={{ width: '100%', justifyContent: 'center' }}
+                        >
+                            Send Verification OTP
+                        </button>
                     </form>
                 ) : (
-                    <form onSubmit={handleVerify}>
+                    <form onSubmit={handleVerify} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                         <div className="form-group">
-                            <label htmlFor="otp">Enter OTP</label>
+                            <label className="input-label-premium" htmlFor="otp">Enter Verification Code</label>
                             <input
                                 type="text"
                                 id="otp"
                                 placeholder="123456"
                                 value={otp}
                                 onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                                className="input-field"
+                                className="input-field-premium"
                                 required
                             />
-                            <p className="text-sm text-secondary mt-1">OTP sent to linked mobile number</p>
+                            <p className="text-secondary" style={{ fontSize: '13px', marginTop: '8px' }}>
+                                A 6-digit code has been sent to your registered mobile number.
+                            </p>
                         </div>
-                        <div className="form-button-group">
-                            <Button
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                            <button
                                 type="submit"
                                 disabled={otp.length !== 6}
+                                className="onboarding-btn-primary"
+                                style={{ width: '100%', justifyContent: 'center' }}
                             >
                                 Verify & Continue
-                            </Button>
+                            </button>
                             <button
                                 type="button"
-                                className="link-button"
+                                className="onboarding-btn-text"
+                                style={{ width: '100%', justifyContent: 'center' }}
                                 onClick={() => setStep('aadhaar')}
                             >
-                                Change Aadhaar Number
+                                Use a different Aadhaar number
                             </button>
                         </div>
-                        {onBack && (
-                            <Button
-                                type="button"
-                                variant="outline"
-                                className="w-full mt-3"
-                                onClick={onBack}
-                            >
-                                Back
-                            </Button>
-                        )}
                     </form>
                 )}
+
+                <div className="security-assurance-note" style={{ marginTop: '32px', borderTop: '1px solid #F1F5F9', paddingTop: '24px', justifyContent: 'center' }}>
+                    <ShieldCheck size={16} />
+                    <span>Your data is encrypted and processed securely.</span>
+                </div>
             </Card>
 
-            <div className="trust-note">
-                <Phone size={16} />
-                <span>Your data is encrypted and secure.</span>
-            </div>
+            <footer className="onboarding-actions-row">
+                <button onClick={onBack} className="onboarding-btn-text">
+                    Back
+                </button>
+            </footer>
         </div>
     );
 };

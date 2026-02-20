@@ -1,6 +1,4 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
 import AuthLanding from './pages/auth/AuthLanding';
 import LandingPage from './pages/landing/LandingPage';
 import LoginPage from './pages/auth/LoginPage';
@@ -21,6 +19,9 @@ import ResumeUpload from './pages/resume/ResumeUpload';
 import ProfileSetup from './pages/profile/ProfileSetup';
 import MicroLearning from './pages/learning/MicroLearning';
 import LessonView from './pages/learning/LessonView';
+import StaggeredMenu from './components/layout/StaggeredMenu';
+import ThemeToggle from './components/layout/ThemeToggle';
+import SiteFooter from './components/layout/Footer';
 import InterviewBot from './pages/interview/InterviewBot';
 import { useAuth } from './context/AuthContext';
 
@@ -34,7 +35,8 @@ function App() {
 
   return (
     <div className="app-container">
-      {!hideNavAndFooter && <Navbar />}
+      {!hideNavAndFooter && <StaggeredMenu />}
+      <ThemeToggle />
       <main>
         <Routes>
           {/* Auth Routes */}
@@ -43,31 +45,31 @@ function App() {
           <Route path="/about" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/onboarding/*" element={<Onboarding />} />
-          
+
           {/* Profile & Resume Routes */}
           <Route path="/resume" element={<ResumeUpload />} />
           <Route path="/resume-upload" element={<ResumeUpload />} />
           <Route path="/profile-setup" element={<ProfileSetup />} />
           <Route path="/profile-editor" element={<div className="container mx-auto p-4"><ProfileEditor /></div>} />
-          
+
           {/* Dashboard Routes */}
           <Route path="/dashboard" element={<CandidateDashboard />} />
           <Route path="/dashboard/skills" element={<SkillGapDashboard />} />
           <Route path="/skillgap" element={<SkillGapDashboard />} />
-          
+
           {/* Jobs Routes */}
           <Route path="/jobs" element={<JobListings />} />
           <Route path="/job-recommendations" element={<JobRecommendation />} />
           <Route path="/job-matching" element={<JobMatching />} />
           <Route path="/certificate-upload" element={<CertificateUpload />} />
-          
+
           {/* Other Routes */}
           <Route path="/internships" element={<Internships />} />
           <Route path="/interview" element={<InterviewBot />} />
           <Route path="/learning" element={<MicroLearning />} />
           <Route path="/learning/:moduleId" element={<LessonView />} />
           <Route path="/opportunities" element={<div className="container mx-auto p-4"><OpportunitySearch /></div>} />
-          
+
           {/* Employer & System Routes */}
           <Route
             path="/employer"
@@ -75,15 +77,14 @@ function App() {
           />
           <Route path="/kiosk" element={<KioskHome />} />
           <Route path="/wallet" element={<Wallet />} />
-          
+
           {/* Test Route */}
-          <Route path="/test" element={<div style={{padding: '20px', textAlign: 'center'}}><h1>Test Page Works!</h1><p>If you see this, routing is working.</p></div>} />
+          <Route path="/test" element={<div style={{ padding: '20px', textAlign: 'center' }}><h1>Test Page Works!</h1><p>If you see this, routing is working.</p></div>} />
         </Routes>
       </main>
-      {!hideNavAndFooter && <Footer />}
+      {!hideNavAndFooter && <SiteFooter />}
     </div>
   );
 }
 
 export default App;
-

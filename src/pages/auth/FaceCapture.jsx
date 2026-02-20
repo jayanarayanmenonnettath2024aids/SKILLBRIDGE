@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Camera, CheckCircle, RotateCcw, AlertCircle } from 'lucide-react';
+import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import '../../styles/Onboarding.css';
 
@@ -21,7 +22,7 @@ function FaceCapture({ onComplete, onBack }) {
           facingMode: 'user'
         }
       });
-      
+
       setStream(mediaStream);
       if (videoRef.current) {
         videoRef.current.srcObject = mediaStream;
@@ -37,14 +38,14 @@ function FaceCapture({ onComplete, onBack }) {
 
   useEffect(() => {
     let mounted = true;
-    
+
     const initCamera = async () => {
       if (!mounted) return;
       await startCamera();
     };
-    
+
     initCamera();
-    
+
     return () => {
       mounted = false;
       // Cleanup: stop camera when component unmounts
@@ -92,30 +93,30 @@ function FaceCapture({ onComplete, onBack }) {
   };
 
   return (
-    <div className="onboarding-step">
-      <div className="step-header">
-        <h2>Face Verification</h2>
-        <p>Capture your photo for identity verification</p>
-      </div>
-
-      <div className="face-capture-container">
-        {!capturedImage ? (
-          <div className="camera-section">
-            <div className="camera-frame">
+    <div className="onboarding-step-body fade-in">
+      <div className="face-verification-grid">
+        {/* LEFT - Camera Section */}
+        <div className="camera-display-column">
+          {!capturedImage ? (
+            <div className="camera-preview-container">
               {!cameraReady && !error && (
                 <div className="camera-loading">
                   <Camera size={48} />
                   <p>Initializing camera...</p>
                 </div>
               )}
-              
+
               {error && (
                 <div className="camera-error">
                   <AlertCircle size={48} color="#e53e3e" />
                   <p>{error}</p>
-                  <Button onClick={startCamera} variant="secondary">
-                    Retry
-                  </Button>
+                  <button
+                    onClick={startCamera}
+                    className="onboarding-btn-text"
+                    style={{ color: '#EF4444' }}
+                  >
+                    Try Again
+                  </button>
                 </div>
               )}
 
@@ -126,63 +127,89 @@ function FaceCapture({ onComplete, onBack }) {
                 muted
                 style={{ display: cameraReady && !error ? 'block' : 'none' }}
               />
-              
+
               <div className="camera-guide">
                 <div className="guide-oval"></div>
               </div>
             </div>
-
-            <div className="capture-instructions">
-              <h4>Instructions:</h4>
-              <ul>
-                <li>Position your face within the oval guide</li>
-                <li>Ensure good lighting</li>
-                <li>Remove glasses if possible</li>
-                <li>Look directly at the camera</li>
-              </ul>
-            </div>
-
-            <Button
-              onClick={capturePhoto}
-              disabled={!cameraReady || error}
-              className="capture-btn"
-            >
-              <Camera size={20} />
-              Capture Photo
-            </Button>
-          </div>
-        ) : (
-          <div className="preview-section">
-            <div className="image-preview">
-              <img src={capturedImage} alt="Captured face" />
-              <div className="preview-success">
-                <CheckCircle size={32} color="#48bb78" />
+          ) : (
+            <div className="camera-preview-container">
+              <img
+                src={capturedImage}
+                alt="Captured face"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+              <div className="success-badge-overlay">
+                <CheckCircle size={14} />
+                Verification Photo Ready
               </div>
             </div>
+          )}
+        </div>
 
-            <div className="preview-actions">
-              <Button onClick={retakePhoto} variant="secondary">
-                <RotateCcw size={20} />
-                Retake Photo
-              </Button>
-              <Button onClick={handleContinue}>
-                Continue
-              </Button>
+        {/* RIGHT - Instructions & Status */}
+        <aside className="instruction-sidebar-column">
+          <Card className="onboarding-card-base" style={{ padding: '28px', borderRadius: '20px' }}>
+            <h3 className="card-heading-text" style={{ fontSize: '18px', fontWeight: '600', marginBottom: '16px' }}>Photo Requirements</h3>
+            <div className="instruction-item-row">
+              <CheckCircle size={18} />
+              <span>Position your face within the oval guide</span>
             </div>
-          </div>
-        )}
+            <div className="instruction-item-row">
+              <CheckCircle size={18} />
+              <span>Ensure your environment reached good lighting</span>
+            </div>
+            <div className="instruction-item-row">
+              <CheckCircle size={18} />
+              <span>Look directly at the camera with a neutral expression</span>
+            </div>
+            <div className="instruction-item-row">
+              <CheckCircle size={18} />
+              <span>Avoid wearing glasses or headgear if possible</span>
+            </div>
+          </Card>
+
+          {!capturedImage ? (
+            <button
+              onClick={capturePhoto}
+              disabled={!cameraReady || error}
+              className="onboarding-btn-primary"
+              style={{ width: '100%', marginTop: '24px' }}
+            >
+              <Camera size={18} />
+              Capture Verification Photo
+            </button>
+          ) : (
+            <button
+              onClick={retakePhoto}
+              className="onboarding-btn-text"
+              style={{ width: '100%', marginTop: '24px', justifyContent: 'center', display: 'flex', gap: '8px' }}
+            >
+              <RotateCcw size={18} />
+              Retake Photo
+            </button>
+          )}
+        </aside>
       </div>
 
       {/* Hidden canvas for capturing image */}
       <canvas ref={canvasRef} style={{ display: 'none' }} />
 
-      <div className="step-footer">
-        <Button onClick={onBack} variant="secondary">
+      <footer className="onboarding-actions-row">
+        <button onClick={onBack} className="onboarding-btn-text">
           Back
-        </Button>
-      </div>
+        </button>
+        <div style={{ flex: 1 }}></div>
+        <button
+          onClick={handleContinue}
+          disabled={!capturedImage}
+          className="onboarding-btn-primary"
+        >
+          Continue
+        </button>
+      </footer>
     </div>
   );
-}
+};
 
 export default FaceCapture;

@@ -102,103 +102,83 @@ const BasicInfo = ({ onNext }) => {
     };
 
     return (
-        <div className="onboarding-step fade-in">
-            <div className="step-header">
-                <div className="icon-bg bg-blue-100 text-primary">
-                    <UserCircle size={32} />
-                </div>
-                <h2>Basic Information</h2>
-                <p>Please provide your details to get started with registration.</p>
-            </div>
-
-            <Card className="onboarding-card">
-                <form onSubmit={handleSubmit}>
+        <div className="onboarding-step-body" style={{ maxWidth: '880px', margin: '0 auto', width: '100%' }}>
+            <Card className="onboarding-card-base">
+                <form onSubmit={handleSubmit} className="form-grid-2col">
                     {/* Full Name */}
-                    <div className="form-group">
-                        <label htmlFor="fullName">
+                    <div className="form-group col-span-full">
+                        <label className="input-label-premium" htmlFor="fullName">
                             Full Name <span className="text-error">*</span>
                         </label>
-                        <div className="input-with-icon">
-                            <UserCircle size={20} className="input-icon" />
-                            <input
-                                type="text"
-                                id="fullName"
-                                name="fullName"
-                                placeholder="Enter your full name"
-                                value={formData.fullName}
-                                onChange={handleChange}
-                                className={`input-field ${errors.fullName ? 'error' : ''}`}
-                            />
-                        </div>
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="Enter your full name"
+                            value={formData.fullName}
+                            onChange={handleChange}
+                            className={`input-field-premium ${errors.fullName ? 'error' : ''}`}
+                        />
                         {errors.fullName && <span className="error-message">{errors.fullName}</span>}
                     </div>
 
                     {/* Phone Number */}
                     <div className="form-group">
-                        <label htmlFor="phoneNumber">
+                        <label className="input-label-premium" htmlFor="phoneNumber">
                             Mobile Number <span className="text-error">*</span>
                         </label>
-                        <div className="input-with-icon">
-                            <Phone size={20} className="input-icon" />
-                            <input
-                                type="tel"
-                                id="phoneNumber"
-                                name="phoneNumber"
-                                placeholder="10-digit mobile number"
-                                value={formData.phoneNumber}
-                                onChange={(e) => {
-                                    const value = e.target.value.replace(/\D/g, '').slice(0, 10);
-                                    handleChange({ target: { name: 'phoneNumber', value } });
-                                }}
-                                className={`input-field ${errors.phoneNumber ? 'error' : ''}`}
-                            />
-                        </div>
+                        <input
+                            type="tel"
+                            id="phoneNumber"
+                            name="phoneNumber"
+                            placeholder="10-digit mobile number"
+                            value={formData.phoneNumber}
+                            onChange={(e) => {
+                                const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                                handleChange({ target: { name: 'phoneNumber', value } });
+                            }}
+                            className={`input-field-premium ${errors.phoneNumber ? 'error' : ''}`}
+                        />
                         {errors.phoneNumber && <span className="error-message">{errors.phoneNumber}</span>}
                     </div>
 
                     {/* Email (Optional) */}
                     <div className="form-group">
-                        <label htmlFor="email">
+                        <label className="input-label-premium" htmlFor="email">
                             Email Address <span className="text-secondary">(Optional)</span>
                         </label>
-                        <div className="input-with-icon">
-                            <Mail size={20} className="input-icon" />
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="your.email@example.com"
-                                value={formData.email}
-                                onChange={handleChange}
-                                className={`input-field ${errors.email ? 'error' : ''}`}
-                            />
-                        </div>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="your.email@example.com"
+                            value={formData.email}
+                            onChange={handleChange}
+                            className={`input-field-premium ${errors.email ? 'error' : ''}`}
+                        />
                         {errors.email && <span className="error-message">{errors.email}</span>}
                     </div>
 
                     {/* Date of Birth */}
                     <div className="form-group">
-                        <label htmlFor="dateOfBirth">
+                        <label className="input-label-premium" htmlFor="dateOfBirth">
                             Date of Birth <span className="text-error">*</span>
                         </label>
-                        <div className="input-with-icon">
-                            <Calendar size={20} className="input-icon" />
-                            <input
-                                type="date"
-                                id="dateOfBirth"
-                                name="dateOfBirth"
-                                value={formData.dateOfBirth}
-                                onChange={handleChange}
-                                max={new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString().split('T')[0]}
-                                className={`input-field ${errors.dateOfBirth ? 'error' : ''}`}
-                            />
-                        </div>
+                        <input
+                            type="date"
+                            id="dateOfBirth"
+                            name="dateOfBirth"
+                            value={formData.dateOfBirth}
+                            onChange={handleChange}
+                            max={new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString().split('T')[0]}
+                            className={`input-field-premium ${errors.dateOfBirth ? 'error' : ''}`}
+                        />
                         {errors.dateOfBirth && <span className="error-message">{errors.dateOfBirth}</span>}
                     </div>
 
                     {/* Gender */}
                     <div className="form-group">
-                        <label htmlFor="gender">
+                        <label className="input-label-premium" htmlFor="gender">
                             Gender <span className="text-error">*</span>
                         </label>
                         <select
@@ -206,7 +186,7 @@ const BasicInfo = ({ onNext }) => {
                             name="gender"
                             value={formData.gender}
                             onChange={handleChange}
-                            className={`input-field ${errors.gender ? 'error' : ''}`}
+                            className={`input-field-premium ${errors.gender ? 'error' : ''}`}
                         >
                             <option value="">Select Gender</option>
                             <option value="male">Male</option>
@@ -218,61 +198,60 @@ const BasicInfo = ({ onNext }) => {
 
                     {/* State */}
                     <div className="form-group">
-                        <label htmlFor="state">
+                        <label className="input-label-premium" htmlFor="state">
                             State <span className="text-error">*</span>
                         </label>
-                        <div className="input-with-icon">
-                            <MapPin size={20} className="input-icon" />
-                            <select
-                                id="state"
-                                name="state"
-                                value={formData.state}
-                                onChange={handleChange}
-                                className={`input-field ${errors.state ? 'error' : ''}`}
-                            >
-                                <option value="">Select State</option>
-                                {states.map(state => (
-                                    <option key={state} value={state}>{state}</option>
-                                ))}
-                            </select>
-                        </div>
+                        <select
+                            id="state"
+                            name="state"
+                            value={formData.state}
+                            onChange={handleChange}
+                            className={`input-field-premium ${errors.state ? 'error' : ''}`}
+                        >
+                            <option value="">Select State</option>
+                            {states.map(state => (
+                                <option key={state} value={state}>{state}</option>
+                            ))}
+                        </select>
                         {errors.state && <span className="error-message">{errors.state}</span>}
                     </div>
 
                     {/* District */}
                     <div className="form-group">
-                        <label htmlFor="district">
+                        <label className="input-label-premium" htmlFor="district">
                             District <span className="text-error">*</span>
                         </label>
-                        <div className="input-with-icon">
-                            <MapPin size={20} className="input-icon" />
-                            <input
-                                type="text"
-                                id="district"
-                                name="district"
-                                placeholder="Enter your district"
-                                value={formData.district}
-                                onChange={handleChange}
-                                className={`input-field ${errors.district ? 'error' : ''}`}
-                            />
-                        </div>
+                        <input
+                            type="text"
+                            id="district"
+                            name="district"
+                            placeholder="Enter your district"
+                            value={formData.district}
+                            onChange={handleChange}
+                            className={`input-field-premium ${errors.district ? 'error' : ''}`}
+                        />
                         {errors.district && <span className="error-message">{errors.district}</span>}
                     </div>
-
-                    <Button
-                        type="submit"
-                        className="w-full mt-4"
-                    >
-                        Continue to Aadhar Verification
-                    </Button>
                 </form>
             </Card>
 
-            <div className="trust-note">
-                <span className="text-secondary">
-                    <span className="text-error">*</span> Required fields
-                </span>
-            </div>
+            <footer className="onboarding-actions-row">
+                <button
+                    type="button"
+                    className="onboarding-btn-text"
+                    style={{ padding: 0 }}
+                >
+                    Back
+                </button>
+                <div style={{ flex: 1 }}></div>
+                <button
+                    type="submit"
+                    className="onboarding-btn-primary"
+                    onClick={handleSubmit}
+                >
+                    Continue
+                </button>
+            </footer>
         </div>
     );
 };

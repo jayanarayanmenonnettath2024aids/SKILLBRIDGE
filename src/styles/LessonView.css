@@ -1,0 +1,390 @@
+/* Lesson View - Premium SaaS Redesign */
+
+.lesson-view-page {
+    min-height: 100vh;
+    background: var(--bg-main);
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-primary);
+}
+
+.lesson-view-container {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* 1. Top Navigation Row */
+.lesson-top-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 32px;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 150ms ease;
+}
+
+.back-link:hover {
+    color: var(--text-primary);
+}
+
+.course-main-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* 2. Progress Indicator */
+.lesson-progress-section {
+    margin-bottom: 32px;
+}
+
+.progress-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.lesson-progress-bar-bg {
+    height: 6px;
+    background: var(--bg-tertiary);
+    border-radius: 999px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.lesson-progress-fill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 999px;
+    transition: width 0.4s ease;
+}
+
+/* 3. Title Block */
+.lesson-title-block {
+    margin-bottom: 24px;
+}
+
+.current-lesson-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.lesson-meta-info {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.meta-separator {
+    color: var(--border-color);
+}
+
+/* 4. Video Section */
+.lesson-video-frame {
+    aspect-ratio: 16/9;
+    width: 100%;
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 32px;
+}
+
+.lesson-video-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-placeholder-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    color: var(--text-muted);
+    gap: 12px;
+}
+
+/* 5. Content Section Card */
+.lesson-content-card {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 20px !important;
+    padding: 32px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.description-text {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.section-heading {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.points-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.point-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.bullet-icon {
+    margin-top: 6px;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bullet-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+}
+
+.point-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* 6. Navigation Buttons */
+.lesson-nav-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-bottom: 48px;
+}
+
+.prev-lesson-btn {
+    height: 42px;
+    padding: 0 20px !important;
+    border-radius: 12px !important;
+    border: 1px solid var(--border-color) !important;
+    background: var(--bg-card) !important;
+    color: var(--text-secondary) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: all 150ms ease !important;
+    cursor: pointer;
+}
+
+.prev-lesson-btn:hover:not(:disabled) {
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
+}
+
+.next-lesson-btn {
+    height: 44px;
+    padding: 0 24px !important;
+    border-radius: 14px !important;
+    background: var(--gradient-primary) !important;
+    color: var(--text-inverted) !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    cursor: pointer;
+}
+
+.next-lesson-btn:hover:not(:disabled) {
+    filter: brightness(1.1);
+}
+
+/* 7. Quiz View Enhancements */
+.quiz-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quiz-award-icon {
+    color: #F59E0B;
+}
+
+.quiz-question-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 16px 0;
+}
+
+.quiz-options-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.quiz-opt-btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: 14px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    text-align: left;
+    cursor: pointer;
+    transition: all 150ms ease;
+    width: 100%;
+}
+
+.quiz-opt-btn:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: var(--bg-secondary);
+}
+
+.quiz-opt-btn.selected {
+    border-color: var(--primary);
+    background: var(--primary-glow);
+}
+
+.opt-index {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.opt-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    flex: 1;
+}
+
+.quiz-feedback-box {
+    margin-top: 24px;
+    padding: 20px;
+    border-radius: 14px;
+}
+
+.quiz-feedback-box.correct {
+    background: var(--color-success-bg, rgba(16, 185, 129, 0.1));
+    border: 1px solid var(--success);
+    color: var(--color-success-text, #10B981);
+}
+
+.quiz-feedback-box.incorrect {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--error);
+    color: var(--error);
+}
+
+/* Celebration Overlay */
+.completion-overlay-view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 24px;
+}
+
+.celebration-card {
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    padding: 48px !important;
+    border-radius: 32px !important;
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.confetti-icon {
+    font-size: 64px;
+    margin-bottom: 24px;
+}
+
+.celebration-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.celebration-text {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+.celebration-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.primary-back-btn {
+    width: 100%;
+    height: 48px;
+    border-radius: 14px !important;
+    background: var(--primary) !important;
+    color: var(--text-inverted) !important;
+    font-weight: 600 !important;
+    border: none !important;
+    cursor: pointer;
+}

@@ -1,0 +1,308 @@
+/* ══════════════════════════════════════════
+   Staggered Menu — Premium GSAP Navigation
+   ══════════════════════════════════════════ */
+
+:root {
+    --sm-accent: var(--primary);
+    --sm-bg-panel: var(--bg-main);
+    --sm-text-primary: var(--text-primary);
+    --sm-text-secondary: var(--text-secondary);
+    --sm-font: var(--font-family-heading);
+    --sm-z-max: 9000;
+}
+
+.staggered-menu-wrapper {
+    position: relative;
+    z-index: var(--sm-z-max);
+    font-family: var(--sm-font);
+}
+
+.staggered-menu-wrapper.fixed-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+/* ── Layers ────────────────────────────── */
+.sm-prelayers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.sm-prelayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ── Header ────────────────────────────── */
+.staggered-menu-header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2.5rem;
+    width: 100%;
+    pointer-events: auto;
+}
+
+.sm-logo {
+    cursor: pointer;
+}
+
+.sm-logo-img {
+    height: 42px;
+    width: auto;
+}
+
+/* ── Toggle Button ─────────────────────── */
+.sm-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    /* color: var(--menu-color); Handled by GSAP JS now, but good to have fallback */
+    color: var(--menu-color);
+    transition: opacity 0.3s ease;
+    z-index: 20;
+}
+
+.sm-toggle:hover {
+    opacity: 0.8;
+}
+
+.sm-toggle-textWrap {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    overflow: hidden;
+    height: 1.2em;
+}
+
+.sm-toggle-textInner {
+    display: flex;
+    flex-direction: column;
+}
+
+.sm-toggle-line {
+    height: 1.2em;
+    display: block;
+}
+
+.sm-icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.sm-icon-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transform: translateY(-50%);
+}
+
+.sm-icon-line-v {
+    transform: translateY(-50%) rotate(90deg);
+}
+
+/* ── Panel ─────────────────────────────── */
+.staggered-menu-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--sm-bg-panel);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-left: 1px solid var(--border-color);
+}
+
+.staggered-menu-wrapper[data-open] .staggered-menu-panel {
+    box-shadow: -20px 0 60px var(--shadow-soft);
+}
+
+.sm-panel-inner {
+    width: 100%;
+    max-width: 1200px;
+    padding: 4rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+@media (min-width: 768px) {
+    .sm-panel-inner {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+}
+
+/* ── List ──────────────────────────────── */
+.sm-panel-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+}
+
+.sm-panel-itemWrap {
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.sm-panel-item {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 2rem;
+    text-decoration: none;
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: 900;
+    color: var(--sm-text-primary);
+    line-height: 1;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.sm-panel-list[data-numbering] .sm-panel-item::before {
+    content: attr(data-index);
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-top: 0.8rem;
+    color: var(--sm-accent);
+    opacity: var(--sm-num-opacity, 0);
+    transition: opacity 0.5s ease;
+}
+
+.sm-panel-itemLabel {
+    display: block;
+    transform: translateY(0);
+}
+
+.sm-panel-item:hover .sm-panel-itemLabel {
+    color: var(--sm-accent);
+}
+
+/* ── Auth Section ─────────────────────── */
+.sm-auth-section {
+    flex: 0 0 300px;
+}
+
+.sm-auth-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--sm-accent);
+}
+
+.sm-auth-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.sm-auth-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--sm-text-primary);
+    text-decoration: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sm-auth-link:hover {
+    opacity: 0.8;
+    transform: translateX(5px);
+    color: var(--sm-accent);
+}
+
+.btn-logout {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: fit-content;
+}
+
+/* ── Socials ───────────────────────────── */
+.sm-socials {
+    flex: 0 0 200px;
+}
+
+.sm-socials-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--sm-accent);
+}
+
+.sm-socials-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.sm-socials-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--sm-text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.sm-socials-link:hover {
+    color: var(--sm-text-primary);
+}
+
+/* ── Positioning ───────────────────────── */
+[data-position="right"] .staggered-menu-panel,
+[data-position="right"] .sm-prelayer {
+    left: auto;
+    right: 0;
+}
+
+/* ── Scrollbar ─────────────────────────── */
+.staggered-menu-panel::-webkit-scrollbar {
+    width: 4px;
+}
+
+.staggered-menu-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.staggered-menu-panel::-webkit-scrollbar-thumb {
+    background: var(--sm-accent);
+    border-radius: 10px;
+}

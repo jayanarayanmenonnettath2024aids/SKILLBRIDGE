@@ -84,97 +84,93 @@ const SkillProfile = ({ onNext, onBack }) => {
     };
 
     return (
-        <div className="onboarding-step fade-in">
-            <div className="step-header">
-                <div className="icon-bg bg-amber-100 text-accent">
-                    <Briefcase size={32} />
-                </div>
-                <h2>Build Your Profile</h2>
-                <p>Tell us about your education, skills and preferred job roles.</p>
-            </div>
-
-            <Card className="onboarding-card">
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label>Education Level</label>
-                        <select
-                            value={education}
-                            onChange={(e) => setEducation(e.target.value)}
-                            className="input-field"
-                        >
-                            <option value="10th Pass">10th Pass</option>
-                            <option value="12th Pass">12th Pass</option>
-                            <option value="ITI / Diploma">ITI / Diploma</option>
-                            <option value="Graduate">Graduate</option>
-                            <option value="Post Graduate">Post Graduate</option>
-                        </select>
-                    </div>
-
-                    <div className="form-group">
-                        <label>Select Your Skills</label>
-                        
-                        {/* Category Tabs */}
-                        <div className="category-tabs">
-                            {Object.keys(SKILLS_BY_CATEGORY).map(category => {
-                                const IconComponent = SKILLS_BY_CATEGORY[category].icon;
-                                return (
-                                    <button
-                                        key={category}
-                                        type="button"
-                                        className={`category-tab ${activeCategory === category ? 'active' : ''}`}
-                                        onClick={() => setActiveCategory(category)}
-                                    >
-                                        <IconComponent size={16} />
-                                        {category}
-                                    </button>
-                                );
-                            })}
+        <div className="onboarding-step-body fade-in">
+            <div className="skill-profile-grid">
+                {/* LEFT - Education & Categories */}
+                <div className="selection-sidebar-left">
+                    <Card className="onboarding-card-base" style={{ padding: '32px' }}>
+                        <div className="form-group" style={{ marginBottom: '32px' }}>
+                            <label className="input-label-premium">Highest Education</label>
+                            <select
+                                value={education}
+                                onChange={(e) => setEducation(e.target.value)}
+                                className="input-field-premium"
+                            >
+                                <option value="10th Pass">10th Pass</option>
+                                <option value="12th Pass">12th Pass</option>
+                                <option value="ITI / Diploma">ITI / Diploma</option>
+                                <option value="Graduate">Graduate</option>
+                                <option value="Post Graduate">Post Graduate</option>
+                            </select>
                         </div>
 
-                        {/* Skills Grid */}
-                        <div className="skills-grid">
+                        <div className="form-group">
+                            <label className="input-label-premium">Skill Categories</label>
+                            <div className="category-stack" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                {Object.keys(SKILLS_BY_CATEGORY).map(category => {
+                                    const IconComponent = SKILLS_BY_CATEGORY[category].icon;
+                                    const isActive = activeCategory === category;
+                                    return (
+                                        <button
+                                            key={category}
+                                            type="button"
+                                            className={`onboarding-btn-text ${isActive ? 'active' : ''}`}
+                                            style={{
+                                                justifyContent: 'flex-start',
+                                                padding: '12px 16px',
+                                                borderRadius: '12px',
+                                                background: isActive ? '#EEF2FF' : 'transparent',
+                                                color: isActive ? '#4F46E5' : '#64748B',
+                                                width: '100%',
+                                                gap: '12px'
+                                            }}
+                                            onClick={() => setActiveCategory(category)}
+                                        >
+                                            <IconComponent size={18} />
+                                            {category}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </Card>
+                </div>
+
+                {/* RIGHT - Skills & Roles */}
+                <div className="tags-content-right" style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+                    <div className="skills-selection-section">
+                        <label className="input-label-premium" style={{ marginBottom: '16px', display: 'block' }}>
+                            Select Skills in {activeCategory}
+                        </label>
+                        <div className="scroll-pane-premium" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                             {SKILLS_BY_CATEGORY[activeCategory].skills.map(skill => (
-                                <div
+                                <button
                                     key={skill}
-                                    className={`skill-chip ${selectedSkills.includes(skill) ? 'active' : ''}`}
+                                    type="button"
+                                    className={`skill-tag-clickable ${selectedSkills.includes(skill) ? 'active' : ''}`}
                                     onClick={() => toggleSkill(skill)}
                                 >
                                     {skill}
-                                    {selectedSkills.includes(skill) ? <X size={14} /> : <Plus size={14} />}
-                                </div>
+                                    {selectedSkills.includes(skill) ? (
+                                        <X size={14} style={{ marginLeft: '6px' }} />
+                                    ) : (
+                                        <Plus size={14} style={{ marginLeft: '6px' }} />
+                                    )}
+                                </button>
                             ))}
                         </div>
-
-                        {/* Selected Skills Summary */}
-                        {selectedSkills.length > 0 && (
-                            <div className="selected-skills-summary">
-                                <span className="summary-label">Selected Skills ({selectedSkills.length}):</span>
-                                <div className="selected-skills-list">
-                                    {selectedSkills.map(skill => (
-                                        <Badge key={skill} variant="primary">
-                                            {skill}
-                                            <X 
-                                                size={12} 
-                                                style={{ marginLeft: '4px', cursor: 'pointer' }}
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    toggleSkill(skill);
-                                                }}
-                                            />
-                                        </Badge>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
                     </div>
 
-                    <div className="form-group">
-                        <label>Preferred Job Roles (Select up to 5)</label>
-                        <div className="job-roles-grid">
+                    <div className="job-roles-section">
+                        <label className="input-label-premium" style={{ marginBottom: '12px', display: 'flex', justifyContent: 'space-between' }}>
+                            Preferred Roles <span>{selectedJobRoles.length}/5</span>
+                        </label>
+                        <div className="scroll-pane-premium" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', maxHeight: '240px' }}>
                             {JOB_ROLES.map(role => (
-                                <div
+                                <button
                                     key={role}
-                                    className={`skill-chip ${selectedJobRoles.includes(role) ? 'active' : ''}`}
+                                    type="button"
+                                    className={`skill-tag-clickable ${selectedJobRoles.includes(role) ? 'active' : ''}`}
                                     onClick={() => {
                                         if (selectedJobRoles.length < 5 || selectedJobRoles.includes(role)) {
                                             toggleJobRole(role);
@@ -183,20 +179,26 @@ const SkillProfile = ({ onNext, onBack }) => {
                                     style={{ opacity: selectedJobRoles.length >= 5 && !selectedJobRoles.includes(role) ? 0.5 : 1 }}
                                 >
                                     {role}
-                                    {selectedJobRoles.includes(role) ? <X size={14} /> : <Plus size={14} />}
-                                </div>
+                                </button>
                             ))}
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div className="actions-row">
-                        <Button type="button" variant="outline" onClick={onBack}>Back</Button>
-                        <Button type="submit" disabled={selectedSkills.length === 0 || selectedJobRoles.length === 0}>
-                            Next
-                        </Button>
-                    </div>
-                </form>
-            </Card>
+            <footer className="onboarding-actions-row">
+                <button onClick={onBack} className="onboarding-btn-text">
+                    Back
+                </button>
+                <div style={{ flex: 1 }}></div>
+                <button
+                    onClick={handleSubmit}
+                    disabled={selectedSkills.length === 0 || selectedJobRoles.length === 0}
+                    className="onboarding-btn-primary"
+                >
+                    Continue to Uploads
+                </button>
+            </footer>
         </div>
     );
 };

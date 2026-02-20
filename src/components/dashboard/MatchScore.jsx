@@ -7,13 +7,13 @@ const MatchScore = ({ score, size = 120, strokeWidth = 10 }) => {
     const circumference = radius * 2 * Math.PI;
     const offset = circumference - (score / 100) * circumference;
 
-    const color = score >= 80 ? 'var(--color-success)' : score >= 50 ? 'var(--color-warning)' : 'var(--color-error)';
+    const color = score >= 80 ? '#10B981' : score >= 50 ? '#F59E0B' : '#EF4444';
 
     return (
         <div style={{ position: 'relative', width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg width={size} height={size}>
+            <svg width={size} height={size} style={{ transform: 'rotate(-90deg)' }}>
                 <circle
-                    stroke="#E5E7EB"
+                    stroke="rgba(0,0,0,0.05)"
                     strokeWidth={strokeWidth}
                     fill="transparent"
                     r={radius}
@@ -23,6 +23,7 @@ const MatchScore = ({ score, size = 120, strokeWidth = 10 }) => {
                 <motion.circle
                     stroke={color}
                     strokeWidth={strokeWidth}
+                    strokeLinecap="round"
                     fill="transparent"
                     r={radius}
                     cx={size / 2}
@@ -30,13 +31,11 @@ const MatchScore = ({ score, size = 120, strokeWidth = 10 }) => {
                     strokeDasharray={circumference}
                     strokeDashoffset={circumference}
                     animate={{ strokeDashoffset: offset }}
-                    transition={{ duration: 1.5, ease: "easeOut" }}
-                    style={{ transform: 'rotate(-90deg)', transformOrigin: '50% 50%' }}
+                    transition={{ duration: 1, ease: "easeOut" }}
                 />
             </svg>
             <div style={{ position: 'absolute', textAlign: 'center' }}>
-                <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-text-primary)' }}>{score}%</span>
-                {/* <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>Match</div> */}
+                <span style={{ fontSize: `${size / 4}px`, fontWeight: '800', color: 'var(--dash-text-primary)' }}>{score}%</span>
             </div>
         </div>
     );
