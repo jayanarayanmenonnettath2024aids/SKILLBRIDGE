@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, User, BookOpen, LogIn, LogOut, Sun, Moon } from 'lucide-react';
+import { Menu, X, User, BookOpen, LogIn, LogOut, Sun, Moon, Languages } from 'lucide-react';
 import '../../styles/Navbar.css';
 import logo from '../../assets/images/logo.png';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
-import LanguageSelector from './LanguageSelector';
 import useTheme from '../../hooks/use-theme';
 
 const Navbar = () => {
@@ -13,9 +12,26 @@ const Navbar = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { user, logout } = useAuth();
-    const { t } = useLanguage();
+    const { language, changeLanguage, t } = useLanguage();
     const { theme, toggleTheme } = useTheme();
     const isKiosk = location.pathname.includes('/kiosk');
+
+    const languages = [
+        { code: 'en', label: 'EN' },
+        { code: 'ta', label: 'தமி' },
+        { code: 'ml', label: 'മല' },
+        { code: 'hi', label: 'हिं' }
+    ];
+
+    const toggleLanguage = () => {
+        const currentIndex = languages.findIndex(lang => lang.code === language);
+        const nextIndex = (currentIndex + 1) % languages.length;
+        changeLanguage(languages[nextIndex].code);
+    };
+
+    const getCurrentLanguageLabel = () => {
+        return languages.find(lang => lang.code === language)?.label || 'EN';
+    };
 
     if (isKiosk) return null; // Hide navbar on Kiosk mode
 
@@ -52,7 +68,10 @@ const Navbar = () => {
                         {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
                     </button>
 
-                    <LanguageSelector />
+                    <button className="btn btn-secondary btn-sm" onClick={toggleLanguage} title="Change Language" style={{ minWidth: '50px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <Languages size={16} />
+                        <span style={{ fontSize: '11px', fontWeight: '600' }}>{getCurrentLanguageLabel()}</span>
+                    </button>
 
                     {user.isAuthenticated ? (
                         <>
@@ -101,9 +120,10 @@ const Navbar = () => {
                         {theme === 'dark' ? <Sun size={18} style={{ marginRight: '8px' }} /> : <Moon size={18} style={{ marginRight: '8px' }} />}
                         Toggle {theme === 'dark' ? 'Light' : 'Dark'} Mode
                     </button>
-                    <div style={{ padding: '8px 16px' }}>
-                        <LanguageSelector />
-                    </div>
+                    <button className="mobile-link" onClick={() => { toggleLanguage(); setIsOpen(false); }}>
+                        <Languages size={18} style={{ marginRight: '8px' }} />
+                        Language: {getCurrentLanguageLabel()}
+                    </button>
                     {user.isAuthenticated ? (
                         <>
                             <Link to={dashboardPath} className="mobile-link" onClick={() => setIsOpen(false)}>
