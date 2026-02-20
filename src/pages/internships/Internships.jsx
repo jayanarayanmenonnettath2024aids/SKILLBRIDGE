@@ -1,22 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext';
+import { useAuth } from '../../context/AuthContext';
+import { checkUserResume } from '../../services/resumeService';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import Badge from '../../components/ui/Badge';
+import MatchScore from '../../components/dashboard/MatchScore';
 import { 
     Search, MapPin, Clock, DollarSign, Briefcase, Building2, Calendar, Users,
     Laptop, Megaphone, Palette, TrendingUp, UserCircle, BarChart3, PenTool, Settings,
-    Home, Building, Repeat, Banknote, GraduationCap
+    Home, Building, Repeat, Banknote, GraduationCap, Upload
 } from 'lucide-react';
 import '../../styles/Internships.css';
 
 const Internships = () => {
     const navigate = useNavigate();
+    const { t } = useLanguage();
+    const { user } = useAuth();
+    const [hasResume, setHasResume] = useState(false);
     const [filters, setFilters] = useState({
         domain: '',
         mode: '',
         type: ''
     });
+
+    useEffect(() => {
+        // Check if user has uploaded a resume (globally from skillgap or anywhere)
+        const checkResume = async () => {
+            if (user?.id) {
+                const resumeStatus = await checkUserResume(user.id);
+                setHasResume(resumeStatus.hasResume);
+                console.log('Resume check result (Internships):', resumeStatus);
+            } else {
+                // Fallback to localStorage for unauthenticated users
+                const uploadedResume = localStorage.getItem('uploadedResume');
+                setHasResume(!!uploadedResume);
+            }
+        };
+        
+        checkResume();
+    }, [user]);
 
     const domains = [
         { id: 'technology', name: 'Technology', icon: Laptop },
@@ -52,7 +76,8 @@ const Internships = () => {
             stipend: '₹15,000/month',
             duration: '3 months',
             applicants: 45,
-            postedDate: '2 days ago'
+            postedDate: '2 days ago',
+            matchScore: 88
         },
         {
             id: 2,
@@ -65,7 +90,8 @@ const Internships = () => {
             stipend: '₹12,000/month',
             duration: '6 months',
             applicants: 67,
-            postedDate: '1 week ago'
+            postedDate: '1 week ago',
+            matchScore: 75
         },
         {
             id: 3,
@@ -78,7 +104,8 @@ const Internships = () => {
             stipend: '₹18,000/month',
             duration: '4 months',
             applicants: 89,
-            postedDate: '3 days ago'
+            postedDate: '3 days ago',
+            matchScore: 92
         },
         {
             id: 4,
@@ -91,7 +118,8 @@ const Internships = () => {
             stipend: 'Certificate + LOR',
             duration: '2 months',
             applicants: 23,
-            postedDate: '5 days ago'
+            postedDate: '5 days ago',
+            matchScore: 70
         }
     ];
 
@@ -133,8 +161,15 @@ const Internships = () => {
                 {/* Header */}
                 <header className="internships-header">
                     <div className="header-content">
-                        <h1 className="internships-title">Find Your Dream Internship</h1>
-                        <p className="internships-subtitle">Gain real-world experience and kickstart your career</p>
+                        <h1 className="internships-title">{t('internshipsTitle')}</h1>
+                        <p className="internships-subtitle">{t('internshipsDescription')}</p>
+                        {!hasResume && (
+                            <div className="resume-prompt">
+                                <Upload size={20} />
+                                <span>{t('uploadResumePrompt')}</span>
+                                <a href="/resume">{t('uploadNow')}</a>
+                            </div>
+                        )}
                     </div>
                 </header>
 
@@ -144,10 +179,10 @@ const Internships = () => {
                     <aside className="filter-sidebar">
                         <Card className="filter-section">
                             <div className="filter-header">
-                                <h2 className="filter-title">Filters</h2>
+                                <h2 className="filter-title">{t('filters')}</h2>
                                 {(filters.domain || filters.mode || filters.type) && (
                                     <Button variant="outline" size="sm" onClick={clearFilters}>
-                                        Clear All
+                                        {t('clearFilters')}
                                     </Button>
                                 )}
                             </div>
@@ -156,7 +191,7 @@ const Internships = () => {
                             <div className="filter-group">
                                 <label htmlFor="domain-select" className="filter-group-title">
                                     <Briefcase size={20} />
-                                    Job Type
+                                    {t('domain')}
                                 </label>
                                 <select
                                     id="domain-select"
@@ -164,7 +199,7 @@ const Internships = () => {
                                     value={filters.domain}
                                     onChange={(e) => handleFilterChange('domain', e.target.value)}
                                 >
-                                    <option value="">All Domains</option>
+                                    <option value="">{t('allDomains')}</option>
                                     {domains.map(domain => {
                                         const IconComponent = domain.icon;
                                         return (
@@ -180,7 +215,7 @@ const Internships = () => {
                             <div className="filter-group">
                                 <label htmlFor="mode-select" className="filter-group-title">
                                     <MapPin size={20} />
-                                    Location
+                                    {t('location')}
                                 </label>
                                 <select
                                     id="mode-select"
@@ -188,7 +223,7 @@ const Internships = () => {
                                     value={filters.mode}
                                     onChange={(e) => handleFilterChange('mode', e.target.value)}
                                 >
-                                    <option value="">All Locations</option>
+                                    <option value="">{t('allLocations')}</option>
                                     {modes.map(mode => (
                                         <option key={mode.id} value={mode.id}>
                                             {mode.name}
@@ -201,7 +236,7 @@ const Internships = () => {
                             <div className="filter-group">
                                 <label htmlFor="type-select" className="filter-group-title">
                                     <DollarSign size={20} />
-                                    Internship Type
+                                    {t('internshipType')}
                                 </label>
                                 <select
                                     id="type-select"
@@ -209,7 +244,7 @@ const Internships = () => {
                                     value={filters.type}
                                     onChange={(e) => handleFilterChange('type', e.target.value)}
                                 >
-                                    <option value="">All Types</option>
+                                    <option value="">{t('allTypes')}</option>
                                     {types.map(type => (
                                         <option key={type.id} value={type.id}>
                                             {type.name}
@@ -218,7 +253,7 @@ const Internships = () => {
                                 </select>
                             </div>
 
-                            <Button className="apply-filters-btn">Apply Filters</Button>
+                            <Button className="apply-filters-btn">{t('applyFilters')}</Button>
                         </Card>
                     </aside>
 
@@ -254,9 +289,9 @@ const Internships = () => {
                         <Card className="no-results">
                             <div className="no-results-content">
                                 <Briefcase size={64} className="no-results-icon" />
-                                <h3>No internships found</h3>
-                                <p>Try adjusting your filters to see more results</p>
-                                <Button onClick={clearFilters}>Clear Filters</Button>
+                                <h3>{t('noInternshipsFound')}</h3>
+                                <p>{t('adjustFilters')}</p>
+                                <Button onClick={clearFilters}>{t('clearFilters')}</Button>
                             </div>
                         </Card>
                     ) : (
@@ -282,14 +317,19 @@ const Internships = () => {
                                             </div>
                                         </div>
                                         <div className="internship-badges">
+                                            {hasResume && internship.matchScore && (
+                                                <div style={{ marginBottom: '10px' }}>
+                                                    <MatchScore score={internship.matchScore} size={50} strokeWidth={5} />
+                                                </div>
+                                            )}
                                             <Badge variant={internship.type === 'paid' ? 'success' : 'neutral'}>
                                                 {internship.type === 'paid' ? (
                                                     <span style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
-                                                        <Banknote size={14} /> Paid
+                                                        <Banknote size={14} /> {t('paid')}
                                                     </span>
                                                 ) : (
                                                     <span style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
-                                                        <GraduationCap size={14} /> Unpaid
+                                                        <GraduationCap size={14} /> {t('unpaid')}
                                                     </span>
                                                 )}
                                             </Badge>
@@ -303,21 +343,21 @@ const Internships = () => {
                                         <div className="detail-item">
                                             <DollarSign size={18} />
                                             <div>
-                                                <span className="detail-label">Stipend</span>
+                                                <span className="detail-label">{t('stipend')}</span>
                                                 <span className="detail-value">{internship.stipend}</span>
                                             </div>
                                         </div>
                                         <div className="detail-item">
                                             <Users size={18} />
                                             <div>
-                                                <span className="detail-label">Applicants</span>
+                                                <span className="detail-label">{t('applicants')}</span>
                                                 <span className="detail-value">{internship.applicants}</span>
                                             </div>
                                         </div>
                                         <div className="detail-item">
                                             <Calendar size={18} />
                                             <div>
-                                                <span className="detail-label">Posted</span>
+                                                <span className="detail-label">{t('posted')}</span>
                                                 <span className="detail-value">{internship.postedDate}</span>
                                             </div>
                                         </div>
@@ -325,9 +365,9 @@ const Internships = () => {
 
                                     <div className="internship-actions">
                                         <Button className="apply-btn" onClick={() => handleApplyInternship(internship)}>
-                                            Apply Now
+                                            {t('applyNow')}
                                         </Button>
-                                        <Button variant="outline" className="details-btn">View Details</Button>
+                                        <Button variant="outline" className="details-btn">{t('details')}</Button>
                                     </div>
                                 </Card>
                             ))}

@@ -67,6 +67,12 @@
   background: #EDF2F7;
 }
 
+.upload-area.drag-active {
+  border-color: var(--color-primary);
+  background: #EDF2F7;
+  border-style: solid;
+}
+
 .upload-area.has-file {
   border-color: var(--color-success);
   background: #F0FDF4;

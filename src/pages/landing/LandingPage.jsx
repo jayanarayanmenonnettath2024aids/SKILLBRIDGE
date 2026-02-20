@@ -8,10 +8,12 @@ import studentImage from '../../assets/images/studnt.png';
 import opportunityImage from '../../assets/images/os.png';
 import heroImage from '../../assets/images/image.png';
 import { useAuth } from '../../context/AuthContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 const LandingPage = () => {
     const navigate = useNavigate();
     const { user } = useAuth();
+    const { t } = useLanguage();
     const [selectedInterest, setSelectedInterest] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [educationLevel, setEducationLevel] = useState('');
@@ -34,33 +36,32 @@ const LandingPage = () => {
             <section className="hero-section">
                 <div className="container hero-container">
                     <div className="hero-content">
-                        <Badge variant="primary" className="mb-4">Connecting Talent to Opportunity</Badge>
+                        <Badge variant="primary" className="mb-4">{t('heroTagline')}</Badge>
                         <h1 className="hero-title">
-                            Get Hired. Get Verified. <span className="text-accent">Get Ahead.</span>
+                            {t('heroTitle1')} <span className="text-accent">{t('heroTitle2')}</span>
                         </h1>
                         <p className="hero-subtitle">
-                            India's first blockchain-verified employment platform for rural talent.
-                            Connect with top employers and prove your skills instantly.
+                            {t('heroSubtitle')}
                         </p>
                         <div className="hero-actions">
                             <Link to="/onboarding">
-                                <Button size="lg" variant="primary">I'm a Job Seeker</Button>
+                                <Button size="lg" variant="primary">{t('jobSeeker')}</Button>
                             </Link>
                             <Link to="/learning">
                                 <Button size="lg" variant="secondary">
                                     <BookOpen size={20} style={{ marginRight: '8px' }} />
-                                    Start Learning
+                                    {t('startLearning')}
                                 </Button>
                             </Link>
                         </div>
                         <div className="trust-badges">
                             <div className="trust-item">
                                 <ShieldCheck size={20} className="text-success" />
-                                <span>Government Verified</span>
+                                <span>{t('governmentVerified')}</span>
                             </div>
                             <div className="trust-item">
                                 <Users size={20} className="text-primary" />
-                                <span>10L+ Candidates</span>
+                                <span>{t('candidates10L')}</span>
                             </div>
                         </div>
                     </div>
@@ -79,15 +80,15 @@ const LandingPage = () => {
                     <div className="stats-grid">
                         <Card className="stats-card">
                             <h3 className="stats-number">72%</h3>
-                            <p className="stats-label">Youth unaware of matching jobs</p>
+                            <p className="stats-label">{t('youthUnaware')}</p>
                         </Card>
                         <Card className="stats-card">
                             <h3 className="stats-number">100%</h3>
-                            <p className="stats-label">Verified Profiles</p>
+                            <p className="stats-label">{t('verifiedProfiles')}</p>
                         </Card>
                         <Card className="stats-card">
                             <h3 className="stats-number">500+</h3>
-                            <p className="stats-label">Corporate Partners</p>
+                            <p className="stats-label">{t('corporatePartners')}</p>
                         </Card>
                     </div>
                 </div>
@@ -97,8 +98,8 @@ const LandingPage = () => {
             <section className="section bg-white">
                 <div className="container">
                     <div className="section-header text-center">
-                        <h2 className="section-title">Why Choose SkillBridge?</h2>
-                        <p className="section-subtitle">Bridging the gap between talent and opportunity.</p>
+                        <h2 className="section-title">{t('whyChoose')}</h2>
+                        <p className="section-subtitle">{t('bridgingGap')}</p>
                     </div>
 
                     <div className="process-flow">
@@ -108,8 +109,8 @@ const LandingPage = () => {
                                     <Users size={28} />
                                 </div>
                             </div>
-                            <h3 className="step-title">Verified Credentials</h3>
-                            <p className="step-description">Your skills and education are verified on the blockchain. No more fake resumes.</p>
+                            <h3 className="step-title">{t('verifiedCredentialsTitle')}</h3>
+                            <p className="step-description">{t('verifiedCredentialsDesc')}</p>
                         </div>
 
                         <div className="process-step step-green">
@@ -118,8 +119,8 @@ const LandingPage = () => {
                                     <TrendingUp size={28} />
                                 </div>
                             </div>
-                            <h3 className="step-title">Skill-Gap Analysis</h3>
-                            <p className="step-description">Find out exactly what skills you need to get your dream job with our AI assessment.</p>
+                            <h3 className="step-title">{t('skillGapAnalysisTitle')}</h3>
+                            <p className="step-description">{t('skillGapAnalysisDesc')}</p>
                         </div>
 
                         <div className="process-step step-red">
@@ -128,8 +129,8 @@ const LandingPage = () => {
                                     <CheckCircle size={28} />
                                 </div>
                             </div>
-                            <h3 className="step-title">Instant Matching</h3>
-                            <p className="step-description">Our AI matches you with jobs that fit your profile perfectly. Apply with one click.</p>
+                            <h3 className="step-title">{t('instantMatchingTitle')}</h3>
+                            <p className="step-description">{t('instantMatchingDesc')}</p>
                         </div>
 
                         <div className="arrow-point"></div>
@@ -143,9 +144,9 @@ const LandingPage = () => {
                     <div className="section-header text-center">
                         <h2 className="section-title">
                             <BookOpen size={32} style={{ display: 'inline-block', marginRight: '12px', verticalAlign: 'middle', color: 'var(--color-primary)' }} />
-                            Master Skills with Micro Learning
+                            {t('microLearningTitle')}
                         </h2>
-                        <p className="section-subtitle">Learn new skills in bite-sized lessons. Master the basics in minutes, not hours.</p>
+                        <p className="section-subtitle">{t('microLearningSubtitle')}</p>
                     </div>
 
                     <div className="microlearning-grid">
@@ -153,24 +154,24 @@ const LandingPage = () => {
                             <div className="microlearning-icon">
                                 <Clock size={40} />
                             </div>
-                            <h3>5-15 Minute Lessons</h3>
-                            <p>Short, focused lessons that fit into your busy schedule</p>
+                            <h3>{t('lessonDuration')}</h3>
+                            <p>{t('lessonDurationDesc')}</p>
                         </Card>
 
                         <Card className="microlearning-card">
                             <div className="microlearning-icon">
                                 <BookOpen size={40} />
                             </div>
-                            <h3>22+ Tech Modules</h3>
-                            <p>AI, Machine Learning, Web Dev, Cybersecurity & More</p>
+                            <h3>{t('techModules')}</h3>
+                            <p>{t('techModulesDesc')}</p>
                         </Card>
 
                         <Card className="microlearning-card">
                             <div className="microlearning-icon">
                                 <Award size={40} />
                             </div>
-                            <h3>Earn Points & Badges</h3>
-                            <p>Track your progress and showcase your achievements</p>
+                            <h3>{t('earnBadges')}</h3>
+                            <p>{t('earnBadgesDesc')}</p>
                         </Card>
                     </div>
 
@@ -178,10 +179,10 @@ const LandingPage = () => {
                         <Link to="/learning">
                             <Button size="lg" variant="primary">
                                 <BookOpen size={20} style={{ marginRight: '8px' }} />
-                                Start Learning Now
+                                {t('startLearningNow')}
                             </Button>
                         </Link>
-                        <p className="microlearning-cta-text">Free • Self-paced • Certificate Ready</p>
+                        <p className="microlearning-cta-text">{t('freeSelfPaced')}</p>
                     </div>
                 </div>
             </section>
@@ -189,14 +190,14 @@ const LandingPage = () => {
             {/* CTA Section */}
             <section className="cta-section">
                 <div className="container text-center">
-                    <h2>Ready to start your career journey?</h2>
-                    <p className="mb-6">Join thousands of others securing their future today.</p>
+                    <h2>{t('readyCareer')}</h2>
+                    <p className="mb-6">{t('joinThousands')}</p>
                     <div className="hero-actions" style={{ justifyContent: 'center' }}>
                         {user.isAuthenticated ? (
                             <Link to={user.role === 'employer' ? '/employer' : '/dashboard'}>
                                 <Button size="lg" variant="secondary">
                                     <LayoutDashboard size={20} style={{ marginRight: '8px' }} />
-                                    Go to Dashboard
+                                    {t('goToDashboard')}
                                 </Button>
                             </Link>
                         ) : (
@@ -204,11 +205,11 @@ const LandingPage = () => {
                                 <Link to="/login">
                                     <Button size="lg" variant="secondary">
                                         <LogIn size={20} style={{ marginRight: '8px' }} />
-                                        Login
+                                        {t('login')}
                                     </Button>
                                 </Link>
                                 <Link to="/onboarding">
-                                    <Button size="lg" variant="secondary">Create Free Profile</Button>
+                                    <Button size="lg" variant="secondary">{t('createProfile')}</Button>
                                 </Link>
                             </>
                         )}
@@ -221,14 +222,14 @@ const LandingPage = () => {
                 <div className="container">
                     <div className="opportunities-link">
                         <MapPin size={20} />
-                        <span>Opportunities near you</span>
+                        <span>{t('opportunitiesNear')}</span>
                     </div>
 
                     <div className="action-cards-grid">
                         {/* Student Card */}
                         <Card className="action-card student-card">
-                            <h2 className="action-card-title">I want to be a...</h2>
-                            <p className="action-card-subtitle">Student</p>
+                            <h2 className="action-card-title">{t('studentTitle')}</h2>
+                            <p className="action-card-subtitle">{t('student')}</p>
 
                             <div className="card-illustration student-illustration">
                                 <img src={studentImage} alt="Student" className="illustration-image" />
@@ -241,7 +242,7 @@ const LandingPage = () => {
                                     onChange={(e) => setSelectedInterest(e.target.value)}
                                     className="select-input"
                                 >
-                                    <option value="">Select Interest Area</option>
+                                    <option value="">{t('selectInterest')}</option>
                                     <option value="automotive">Automotive</option>
                                     <option value="electronics">Electronics</option>
                                     <option value="healthcare">Healthcare</option>
@@ -250,17 +251,17 @@ const LandingPage = () => {
                                 </select>
                             </div>
 
-                            <p className="card-hint">Interest areas like Automotive, Electronics etc.</p>
+                            <p className="card-hint">{t('interestHint')}</p>
 
                             <button className="action-button" onClick={handleFindCourse}>
-                                FIND COURSE
+                                {t('findCourse')}
                             </button>
                         </Card>
 
                         {/* Opportunities Card */}
                         <Card className="action-card opportunities-card">
-                            <h2 className="action-card-title">I want to explore...</h2>
-                            <p className="action-card-subtitle">Opportunities</p>
+                            <h2 className="action-card-title">{t('exploreTitle')}</h2>
+                            <p className="action-card-subtitle">{t('opportunities')}</p>
 
                             <div className="card-illustration opportunities-illustration">
                                 <img src={opportunityImage} alt="Opportunities" className="illustration-image" />
@@ -270,7 +271,7 @@ const LandingPage = () => {
                                 <Grid size={20} className="input-icon" />
                                 <input
                                     type="text"
-                                    placeholder="Search Job Exchange"
+                                    placeholder={t('searchJobExchange')}
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     className="text-input"
@@ -278,10 +279,10 @@ const LandingPage = () => {
                                 <Search size={20} className="search-icon" />
                             </div>
 
-                            <p className="card-hint">Opportunities for Job Exchange, Apprenticeship and Entrepreneurship</p>
+                            <p className="card-hint">{t('opportunitiesHint')}</p>
 
                             <button className="action-button" onClick={handleFindJob}>
-                                FIND JOB
+                                {t('findJob')}
                             </button>
                         </Card>
 
@@ -289,24 +290,24 @@ const LandingPage = () => {
                         <Card className="action-card guidance-card">
                             <div className="guidance-header">
                                 <div>
-                                    <h2 className="action-card-title">Not Sure</h2>
-                                    <h2 className="action-card-title">Where To Begin?</h2>
+                                    <h2 className="action-card-title">{t('notSure')}</h2>
+                                    <h2 className="action-card-title">{t('whereBegin')}</h2>
                                 </div>
                                 <div className="help-icon">
                                     <HelpCircle size={32} />
                                 </div>
                             </div>
 
-                            <p className="guidance-subtitle">Answer a few simple questions and we will help you.</p>
+                            <p className="guidance-subtitle">{t('guidanceSubtitle')}</p>
 
                             <div className="guidance-form">
-                                <label className="guidance-label">What is your highest education level?</label>
+                                <label className="guidance-label">{t('educationLevelQuestion')}</label>
                                 <select
                                     value={educationLevel}
                                     onChange={(e) => setEducationLevel(e.target.value)}
                                     className="select-input"
                                 >
-                                    <option value="">Select Education</option>
+                                    <option value="">{t('selectEducation')}</option>
                                     <option value="10th">10th Pass</option>
                                     <option value="12th">12th Pass</option>
                                     <option value="graduate">Graduate</option>
@@ -316,7 +317,7 @@ const LandingPage = () => {
                             </div>
 
                             <button className="action-button guidance-button" onClick={handleGuidanceNext}>
-                                NEXT
+                                {t('next')}
                             </button>
                         </Card>
                     </div>

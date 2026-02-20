@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, Building2, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { useLanguage } from '../../context/LanguageContext';
 import FaceCapture from './FaceCapture';
 import '../../styles/Login.css';
 
@@ -13,6 +14,7 @@ const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const { login } = useAuth();
+    const { t } = useLanguage();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -44,10 +46,10 @@ const LoginPage = () => {
                     <div className="login-header">
                         <button className="back-to-form" onClick={handleFaceBack}>
                             <ArrowLeft size={18} />
-                            <span>Back to Login</span>
+                            <span>{t('back')}</span>
                         </button>
-                        <h1 className="welcome-title">Face Verification</h1>
-                        <p>Capture your photo to verify your identity</p>
+                        <h1 className="welcome-title">{t('welcome')}</h1>
+                        <p>{t('loginSubtitle')}</p>
                     </div>
                     <FaceCapture onComplete={handleFaceComplete} onBack={handleFaceBack} />
                 </div>
@@ -68,8 +70,8 @@ const LoginPage = () => {
                     </div>
                 ) : (
                     <div className="login-header">
-                        <h1 className="welcome-title">Welcome Back</h1>
-                        <p>Sign in to access your SkillBridge account</p>
+                        <h1 className="welcome-title">{t('welcomeBack')}</h1>
+                        <p>{t('loginSubtitle')}</p>
                     </div>
                 )}
 
@@ -77,12 +79,12 @@ const LoginPage = () => {
                     <div className="login-field">
                         <label>
                             <Mail size={16} />
-                            <span>Email or Phone Number</span>
+                            <span>{t('email')}</span>
                         </label>
                         <div className="login-input-wrap">
                             <input
                                 type="text"
-                                placeholder="Enter your email or phone"
+                                placeholder={t('email')}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
@@ -93,12 +95,12 @@ const LoginPage = () => {
                     <div className="login-field">
                         <label>
                             <Lock size={16} />
-                            <span>Password</span>
+                            <span>{t('password')}</span>
                         </label>
                         <div className="login-input-wrap">
                             <input
                                 type={showPassword ? 'text' : 'password'}
-                                placeholder="Enter your password"
+                                placeholder={t('password')}
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
@@ -115,7 +117,7 @@ const LoginPage = () => {
                     </div>
 
                     <button type="submit" className="login-submit">
-                        {mode === 'candidate' ? 'Continue to Face Verification' : 'Sign In'}
+                        {t('loginButton')}
                     </button>
                 </form>
 
@@ -123,32 +125,32 @@ const LoginPage = () => {
                     {mode === 'employer' ? (
                         <>
                             <p>
-                                Don't have an account?{' '}
-                                <Link to="/onboarding">Register as Employer</Link>
+                                {t('noAccount')}{' '}
+                                <Link to="/onboarding">{t('registerNow')}</Link>
                             </p>
                             <p>
-                                Looking for a job?{' '}
+                                {t('jobSeeker')}{' '}
                                 <button
                                     className="link-btn"
                                     onClick={() => setMode('candidate')}
                                 >
-                                    Candidate Login
+                                    {t('loginButton')}
                                 </button>
                             </p>
                         </>
                     ) : (
                         <>
                             <p>
-                                Don't have an account?{' '}
-                                <Link to="/onboarding">Register here</Link>
+                                {t('noAccount')}{' '}
+                                <Link to="/onboarding">{t('registerNow')}</Link>
                             </p>
                             <p>
-                                Hiring talent?{' '}
+                                {t('forEmployers')}{' '}
                                 <button
                                     className="link-btn"
                                     onClick={() => setMode('employer')}
                                 >
-                                    Employer Login
+                                    {t('loginButton')}
                                 </button>
                             </p>
                         </>

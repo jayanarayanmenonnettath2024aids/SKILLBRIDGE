@@ -11,6 +11,9 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
+# Configure max file upload size (16MB)
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
 # Register blueprints
 app.register_blueprint(api_bp, url_prefix='/api')
 app.register_blueprint(interview_bp, url_prefix='/api/interview')

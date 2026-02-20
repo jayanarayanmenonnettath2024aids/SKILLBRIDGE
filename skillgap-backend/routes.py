@@ -11,6 +11,7 @@ import uuid
 from datetime import datetime
 import os
 from werkzeug.utils import secure_filename
+import PyPDF2
 
 api_bp = Blueprint('api', __name__)
 
@@ -246,6 +247,48 @@ def get_user_profile(user_id):
             "error": str(e)
         }), 500
 
+@api_bp.route('/users/<user_id>/resume', methods=['GET'])
+def check_user_resume(user_id):
+    """
+    Check if user has uploaded a resume and get resume data
+    
+    Args:
+        user_id: The user ID
+        
+    Returns:
+        JSON with hasResume flag and resume data if available
+    """
+    try:
+        db = get_db()
+        user_doc = db.users.find_one({'_id': user_id})
+        
+        if user_doc is None:
+            return jsonify({
+                "success": False,
+                "error": "User not found",
+                "hasResume": False
+            }), 404
+        
+        # Check if user has geminiAnalysis (resume)
+        has_resume = 'geminiAnalysis' in user_doc and user_doc['geminiAnalysis'] is not None
+        resume_url = user_doc.get('resumeURL', None)
+        
+        return jsonify({
+            "success": True,
+            "hasResume": has_resume,
+            "resumeURL": resume_url,
+            "geminiAnalysis": user_doc.get('geminiAnalysis', None) if has_resume else None,
+            "analysis": user_doc.get('analysis', None) if has_resume else None
+        })
+        
+    except Exception as e:
+        print(f"❌ Error checking user resume: {str(e)}")
+        return jsonify({
+            "success": False,
+            "error": str(e),
+            "hasResume": False
+        }), 500
+
 @api_bp.route('/skill-gap/users', methods=['GET'])
 def get_all_users():
     """
@@ -423,7 +466,37 @@ def analyze_resume():
             
             # Extract text from PDF
             print(f"📖 Extracting text from PDF: {resume_url}")
-            resume_text = gemini_service.extract_text_from_pdf_url(resume_url)
+            
+            # Check if it's a local file URL (localhost)
+            if 'localhost' in resume_url or '127.0.0.1' in resume_url:
+                # Convert localhost URL to local file path
+                # URL format: http://localhost:5000/api/files/resumes/{userId}/{filename}
+                url_parts = resume_url.split('/files/')
+                if len(url_parts) == 2:
+                    relative_path = url_parts[1]  # resumes/{userId}/{filename}
+                    local_file_path = os.path.join(UPLOAD_FOLDER, relative_path)
+                    print(f"📁 Converting localhost URL to file path: {local_file_path}")
+                    
+                    if os.path.exists(local_file_path):
+                        print(f"✅ File exists, reading directly from filesystem")
+                        # Read PDF directly from filesystem
+                        import PyPDF2
+                        with open(local_file_path, 'rb') as pdf_file:
+                            pdf_reader = PyPDF2.PdfReader(pdf_file)
+                            resume_text = ""
+                            for page in pdf_reader.pages:
+                                resume_text += page.extract_text() + "\n"
+                            resume_text = resume_text.strip()
+                    else:
+                        print(f"❌ File not found: {local_file_path}")
+                        raise FileNotFoundError(f"Resume file not found: {local_file_path}")
+                else:
+                    # Fallback to URL download if parsing fails
+                    resume_text = gemini_service.extract_text_from_pdf_url(resume_url)
+            else:
+                # External URL (e.g., Firebase Storage), use HTTP download
+                resume_text = gemini_service.extract_text_from_pdf_url(resume_url)
+            
             print(f"✅ Extracted {len(resume_text)} characters from PDF")
             
             if len(resume_text) < 100:

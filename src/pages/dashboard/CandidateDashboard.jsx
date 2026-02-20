@@ -3,12 +3,14 @@ import MatchScore from '../../components/dashboard/MatchScore';
 import CredentialCard from '../../components/dashboard/CredentialCard';
 import '../../styles/Dashboard.css';
 import { useAuth } from '../../context/AuthContext';
+import { useLanguage } from '../../context/LanguageContext';
 import Button from '../../components/ui/Button';
 import { Briefcase, TrendingUp, BookOpen, Clock, Users, MapPin, Calendar, IndianRupee, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const CandidateDashboard = () => {
     const { user } = useAuth();
+    const { t } = useLanguage();
     const internshipScrollRef = useRef(null);
 
     // Mock Data
@@ -117,20 +119,20 @@ const CandidateDashboard = () => {
         <div className="container dashboard-container">
             <div className="dashboard-header">
                 <div className="header-content">
-                    <h1 className="dashboard-title">Welcome back, {user.name || 'Rahul'}!</h1>
-                    <p className="dashboard-subtitle">Here is your career progress today.</p>
+                    <h1 className="dashboard-title">{t('welcomeBack2')}, {user.name || 'Rahul'}!</h1>
+                    <p className="dashboard-subtitle">{t('careerProgress')}</p>
                 </div>
                 <div style={{ display: 'flex', gap: '0.75rem' }}>
                     <Link to="/skillgap">
                         <Button variant="outline">
                             <TrendingUp size={18} />
-                            <span style={{ marginLeft: '0.5rem' }}>Skill Gap Analysis</span>
+                            <span style={{ marginLeft: '0.5rem' }}>{t('viewSkillGap')}</span>
                         </Button>
                     </Link>
                     <Link to="/certificate-upload">
                         <Button>
                             <Briefcase size={18} />
-                            <span style={{ marginLeft: '0.5rem' }}>Find Jobs</span>
+                            <span style={{ marginLeft: '0.5rem' }}>{t('findJobs')}</span>
                         </Button>
                     </Link>
                 </div>
@@ -139,8 +141,8 @@ const CandidateDashboard = () => {
             {/* ======= Micro-Learning Courses ======= */}
             <div className="dashboard-section micro-courses-section">
                 <div className="section-head">
-                    <h3><BookOpen size={20} style={{ marginRight: '8px', verticalAlign: 'text-bottom' }} />Recommended Micro-Learning Courses</h3>
-                    <Link to="/learning" className="view-all">View All Courses</Link>
+                    <h3><BookOpen size={20} style={{ marginRight: '8px', verticalAlign: 'text-bottom' }} />{t('recommendedForYou')}</h3>
+                    <Link to="/learning" className="view-all">{t('allCourses')}</Link>
                 </div>
                 <div className="micro-courses-grid">
                     {microCourses.map((course, index) => (
@@ -158,7 +160,7 @@ const CandidateDashboard = () => {
                                     <span><Clock size={13} /> {course.duration}</span>
                                     <span><Users size={13} /> {course.enrolled}</span>
                                 </div>
-                                <Link to="/learning" className="micro-course-btn">Start Learning</Link>
+                                <Link to="/learning" className="micro-course-btn">{t('startCourse')}</Link>
                             </div>
                         </div>
                     ))}
@@ -168,8 +170,8 @@ const CandidateDashboard = () => {
             {/* ======= Internship Opportunities ======= */}
             <div className="dashboard-section internship-section">
                 <div className="section-head">
-                    <h3><TrendingUp size={20} style={{ marginRight: '8px', verticalAlign: 'text-bottom' }} />Internship Opportunities</h3>
-                    <Link to="/internships" className="view-all">View All Internships</Link>
+                    <h3><TrendingUp size={20} style={{ marginRight: '8px', verticalAlign: 'text-bottom' }} />{t('internshipsTitle')}</h3>
+                    <Link to="/internships" className="view-all">{t('viewAll')}</Link>
                 </div>
                 <div className="internship-scroll-wrap">
                     <button className="scroll-arrow scroll-left" onClick={() => scrollInternships('left')} aria-label="Scroll left">
@@ -192,7 +194,7 @@ const CandidateDashboard = () => {
                                     <span><Calendar size={14} /> {intern.duration}</span>
                                     <span className="internship-stipend"><IndianRupee size={14} /> {intern.stipend}</span>
                                 </div>
-                                <Link to="/internships" className="internship-apply-btn">Apply Now</Link>
+                                <Link to="/internships" className="internship-apply-btn">{t('applyNow')}</Link>
                             </div>
                         ))}
                     </div>
@@ -206,8 +208,8 @@ const CandidateDashboard = () => {
             <div className="dashboard-grid">
                 <div className="dashboard-section job-matches-section">
                     <div className="section-head">
-                        <h3>Top Job Matches</h3>
-                        <Link to="/jobs" className="view-all">View All Jobs</Link>
+                        <h3>{t('topJobMatches')}</h3>
+                        <Link to="/jobs" className="view-all">{t('viewAllJobs')}</Link>
                     </div>
                     <div className="job-matches-grid">
                         {jobMatches.map((job, index) => (
@@ -215,7 +217,7 @@ const CandidateDashboard = () => {
                                 <MatchScore score={job.score} size={100} />
                                 <h4 className="job-match-title">{job.title}</h4>
                                 <p className="job-match-company">{job.company}</p>
-                                <Button variant="outline" size="sm" className="apply-btn">Apply</Button>
+                                <Button variant="outline" size="sm" className="apply-btn">{t('apply')}</Button>
                             </div>
                         ))}
                     </div>
@@ -223,8 +225,8 @@ const CandidateDashboard = () => {
 
                 <div className="dashboard-section credentials-section">
                     <div className="section-head">
-                        <h3>Verified Credentials</h3>
-                        <Link to="/wallet" className="view-all">Wallet</Link>
+                        <h3>{t('myCredentials')}</h3>
+                        <Link to="/wallet" className="view-all">{t('viewDetails')}</Link>
                     </div>
                     <div className="credentials-list">
                         {credentials.map((cred, index) => (

@@ -200,16 +200,33 @@ export const uploadResumeAPI = async (file, userId) => {
         formData.append('file', file);
         formData.append('userId', userId);
 
+        console.log('Uploading resume:', { fileName: file.name, fileSize: file.size, userId });
+
         const response = await api.post('/resume/upload', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
         });
 
+        console.log('Upload response:', response.data);
         return response.data;
     } catch (error) {
         console.error("Error uploading resume:", error);
-        throw error.response?.data || { message: "Resume upload failed" };
+        console.error("Error details:", {
+            message: error.message,
+            response: error.response?.data,
+            status: error.response?.status,
+            statusText: error.response?.statusText
+        });
+        
+        // Return more specific error messages
+        if (error.code === 'ERR_NETWORK') {
+            throw { error: "Cannot connect to server. Please ensure the backend is running on http://localhost:5000" };
+        }
+        if (error.response?.status === 413) {
+            throw { error: "File is too large. Maximum size is 5MB." };
+        }
+        throw error.response?.data || { error: error.message || "Resume upload failed" };
     }
 };
 

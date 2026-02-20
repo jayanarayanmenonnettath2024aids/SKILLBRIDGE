@@ -1,15 +1,18 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Globe, User, Briefcase, BookOpen, TrendingUp, LogIn, LogOut } from 'lucide-react';
+import { Menu, X, User, Briefcase, BookOpen, TrendingUp, LogIn, LogOut } from 'lucide-react';
 import '../../styles/Navbar.css';
 import logo from '../../assets/images/logo.png';
 import { useAuth } from '../../context/AuthContext';
+import { useLanguage } from '../../context/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = React.useState(false);
     const location = useLocation();
     const navigate = useNavigate();
     const { user, logout } = useAuth();
+    const { t } = useLanguage();
     const isKiosk = location.pathname.includes('/kiosk');
 
     if (isKiosk) return null; // Hide navbar on Kiosk mode
@@ -30,23 +33,20 @@ const Navbar = () => {
                 </Link>
 
                 <div className="nav-desktop">
-                    <Link to="/jobs" className="nav-link">Find Jobs</Link>
-                    <Link to="/internships" className="nav-link">Internships</Link>
-                    <Link to="/skillgap" className="nav-link">Skill Gap</Link>
+                    <Link to="/jobs" className="nav-link">{t('findJobs')}</Link>
+                    <Link to="/internships" className="nav-link">{t('internships')}</Link>
+                    <Link to="/skillgap" className="nav-link">{t('skillGap')}</Link>
                     {!(user.isAuthenticated && user.role === 'candidate') && (
-                        <Link to="/employer" className="nav-link">For Employers</Link>
+                        <Link to="/employer" className="nav-link">{t('forEmployers')}</Link>
                     )}
-                    <Link to="/kiosk" className="nav-link">Kiosk Mode</Link>
+                    <Link to="/kiosk" className="nav-link">{t('kioskMode')}</Link>
 
                     <Link to="/learning" className="btn btn-accent btn-sm">
                         <BookOpen size={18} />
-                        <span>Start Learning</span>
+                        <span>{t('startLearning')}</span>
                     </Link>
 
-                    <button className="btn btn-secondary btn-sm">
-                        <Globe size={18} />
-                        <span>EN</span>
-                    </button>
+                    <LanguageSelector />
 
                     {user.isAuthenticated ? (
                         <>
@@ -56,17 +56,17 @@ const Navbar = () => {
                             </Link>
                             <button className="btn btn-primary btn-sm" onClick={handleLogout}>
                                 <LogOut size={16} />
-                                Logout
+                                {t('logout')}
                             </button>
                         </>
                     ) : (
                         <>
                             <Link to="/login" className="btn btn-outline btn-sm">
                                 <LogIn size={16} />
-                                Login
+                                {t('login')}
                             </Link>
                             <Link to="/onboarding" className="btn btn-primary btn-sm">
-                                Register
+                                {t('register')}
                             </Link>
                         </>
                     )}
@@ -80,36 +80,36 @@ const Navbar = () => {
             {/* Mobile Menu */}
             {isOpen && (
                 <div className="mobile-menu">
-                    <Link to="/jobs" className="mobile-link" onClick={() => setIsOpen(false)}>Find Jobs</Link>
-                    <Link to="/internships" className="mobile-link" onClick={() => setIsOpen(false)}>Internships</Link>
-                    <Link to="/skillgap" className="mobile-link" onClick={() => setIsOpen(false)}>Skill Gap</Link>
+                    <Link to="/jobs" className="mobile-link" onClick={() => setIsOpen(false)}>{t('findJobs')}</Link>
+                    <Link to="/internships" className="mobile-link" onClick={() => setIsOpen(false)}>{t('internships')}</Link>
+                    <Link to="/skillgap" className="mobile-link" onClick={() => setIsOpen(false)}>{t('skillGap')}</Link>
                     {!(user.isAuthenticated && user.role === 'candidate') && (
-                        <Link to="/employer" className="mobile-link" onClick={() => setIsOpen(false)}>For Employers</Link>
+                        <Link to="/employer" className="mobile-link" onClick={() => setIsOpen(false)}>{t('forEmployers')}</Link>
                     )}
-                    <Link to="/kiosk" className="mobile-link" onClick={() => setIsOpen(false)}>Kiosk Mode</Link>
+                    <Link to="/kiosk" className="mobile-link" onClick={() => setIsOpen(false)}>{t('kioskMode')}</Link>
                     <hr />
                     <Link to="/learning" className="mobile-link mobile-link-accent" onClick={() => setIsOpen(false)}>
-                        <BookOpen size={18} style={{ marginRight: '8px' }} /> Start Learning
+                        <BookOpen size={18} style={{ marginRight: '8px' }} /> {t('startLearning')}
                     </Link>
-                    <button className="mobile-link" onClick={() => setIsOpen(false)}>
-                        <Globe size={18} style={{ marginRight: '8px' }} /> Language
-                    </button>
+                    <div style={{ padding: '8px 16px' }}>
+                        <LanguageSelector />
+                    </div>
                     {user.isAuthenticated ? (
                         <>
                             <Link to={dashboardPath} className="mobile-link" onClick={() => setIsOpen(false)}>
                                 <User size={18} style={{ marginRight: '8px' }} /> {user.name}
                             </Link>
                             <button className="mobile-link mobile-link-login" onClick={handleLogout}>
-                                <LogOut size={18} style={{ marginRight: '8px' }} /> Logout
+                                <LogOut size={18} style={{ marginRight: '8px' }} /> {t('logout')}
                             </button>
                         </>
                     ) : (
                         <>
                             <Link to="/login" className="mobile-link mobile-link-login" onClick={() => setIsOpen(false)}>
-                                <LogIn size={18} style={{ marginRight: '8px' }} /> Login
+                                <LogIn size={18} style={{ marginRight: '8px' }} /> {t('login')}
                             </Link>
                             <Link to="/onboarding" className="mobile-link mobile-link-register" onClick={() => setIsOpen(false)}>
-                                <User size={18} style={{ marginRight: '8px' }} /> Register
+                                <User size={18} style={{ marginRight: '8px' }} /> {t('register')}
                             </Link>
                         </>
                     )}

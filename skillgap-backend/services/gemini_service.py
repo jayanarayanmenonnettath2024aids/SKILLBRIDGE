@@ -42,8 +42,9 @@ class GeminiService:
         self.api_key = self.api_keys[self.current_key_index]
         
         genai.configure(api_key=self.api_key)
-        # Use gemini-pro-latest (stable, capable model)
-        self.model = genai.GenerativeModel('gemini-pro-latest')
+        # Use gemini-2.5-flash (latest stable Flash model)
+        self.model = genai.GenerativeModel('gemini-2.5-flash')
+        print(f"✅ Using Gemini 2.5 Flash model for resume analysis")
     
     def _rotate_api_key(self):
         """Rotate to the next API key"""
@@ -51,7 +52,7 @@ class GeminiService:
         self.api_key = self.api_keys[self.current_key_index]
         print(f"🔄 Rotating to API key #{self.current_key_index + 1}")
         genai.configure(api_key=self.api_key)
-        self.model = genai.GenerativeModel('gemini-pro-latest')
+        self.model = genai.GenerativeModel('gemini-2.5-flash')
     
     def _call_with_retry(self, prompt: str, max_retries: int = None) -> str:
         """

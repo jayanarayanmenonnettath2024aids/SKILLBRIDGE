@@ -1,24 +1,36 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
 import Badge from '../ui/Badge';
 import MatchScore from '../dashboard/MatchScore';
-import { MapPin, Building2, Info } from 'lucide-react';
+import { MapPin, Building2, Info, Upload } from 'lucide-react';
 
-const JobCard = ({ job }) => {
+const JobCard = ({ job, onApply, hasResume }) => {
     const navigate = useNavigate();
+    const { t } = useLanguage();
     const [showTooltip, setShowTooltip] = useState(false);
 
     const handleApply = () => {
-        // Navigate to interview bot with job details
-        navigate('/interview', {
-            state: {
-                title: job.title,
-                company: job.company,
-                matchScore: job.matchScore
-            }
-        });
+        if (onApply) {
+            onApply(job);
+        } else {
+            // Navigate to interview bot with job details
+            navigate('/interview', {
+                state: {
+                    title: job.title,
+                    company: job.company,
+                    matchScore: job.matchScore
+                }
+            });
+        }
+    };
+
+    const handleDetails = () => {
+        if (onApply) {
+            onApply(job);
+        }
     };
 
     return (
@@ -30,7 +42,7 @@ const JobCard = ({ job }) => {
                         <div className="flex items-center gap-2 text-secondary text-sm mt-1">
                             <Building2 size={16} />
                             <span>{job.company}</span>
-                            {job.trusted && <Badge variant="success" className="ml-2">Trusted Employer</Badge>}
+                            {job.trusted && <Badge variant="success" className="ml-2">{t('trustedEmployer')}</Badge>}
                         </div>
                         <div className="flex items-center gap-2 text-secondary text-sm mt-1">
                             <MapPin size={16} />
@@ -38,24 +50,33 @@ const JobCard = ({ job }) => {
                         </div>
                     </div>
                     <div className="relative">
-                        <div
-                            className="cursor-pointer"
-                            onMouseEnter={() => setShowTooltip(true)}
-                            onMouseLeave={() => setShowTooltip(false)}
-                        >
-                            <MatchScore score={job.matchScore} size={60} strokeWidth={6} />
-                        </div>
-                        {showTooltip && (
-                            <div className="match-tooltip">
-                                <h5>Why you match:</h5>
-                                <ul className="text-xs list-disc pl-4 mt-1">
-                                    {job.matchReasons.map((reason, idx) => (
-                                        <li key={idx} className="text-success">{reason}</li>
-                                    ))}
-                                    {job.missingSkills.map((skill, idx) => (
-                                        <li key={idx} className="text-error">Missing: {skill}</li>
-                                    ))}
-                                </ul>
+                        {hasResume ? (
+                            <>
+                                <div
+                                    className="cursor-pointer"
+                                    onMouseEnter={() => setShowTooltip(true)}
+                                    onMouseLeave={() => setShowTooltip(false)}
+                                >
+                                    <MatchScore score={job.matchScore} size={60} strokeWidth={6} />
+                                </div>
+                                {showTooltip && (
+                                    <div className="match-tooltip">
+                                        <h5>{t('whyMatch')}</h5>
+                                        <ul className="text-xs list-disc pl-4 mt-1">
+                                            {job.matchReasons.map((reason, idx) => (
+                                                <li key={idx} className="text-success">{reason}</li>
+                                            ))}
+                                            {job.missingSkills && job.missingSkills.length > 0 && job.missingSkills.map((skill, idx) => (
+                                                <li key={idx} className="text-error">{t('missing')}: {skill}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                            </>
+                        ) : (
+                            <div className="no-resume-badge">
+                                <Upload size={24} className="text-gray-400" />
+                                <span className="text-xs text-gray-500 mt-1">{t('uploadForMatch')}</span>
                             </div>
                         )}
                     </div>
@@ -68,8 +89,8 @@ const JobCard = ({ job }) => {
             </div>
 
             <div className="job-actions mt-4 pt-4 border-t border-gray-100 flex justify-end gap-2">
-                <Button variant="outline" size="sm">Details</Button>
-                <Button size="sm" onClick={handleApply}>Apply Now</Button>
+                <Button variant="outline" size="sm" onClick={handleDetails}>{t('details')}</Button>
+                <Button size="sm" onClick={handleApply}>{t('applyNow')}</Button>
             </div>
         </Card>
     );

@@ -45,6 +45,7 @@ function App() {
           <Route path="/onboarding/*" element={<Onboarding />} />
           
           {/* Profile & Resume Routes */}
+          <Route path="/resume" element={<ResumeUpload />} />
           <Route path="/resume-upload" element={<ResumeUpload />} />
           <Route path="/profile-setup" element={<ProfileSetup />} />
           <Route path="/profile-editor" element={<div className="container mx-auto p-4"><ProfileEditor /></div>} />
