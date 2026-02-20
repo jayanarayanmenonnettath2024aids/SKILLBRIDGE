@@ -32,6 +32,20 @@
     pointer-events: auto;
 }
 
+/* Light Mode Styles */
+:root[data-theme="light"] .language-toggle-button {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: var(--text);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 15px rgba(82, 39, 255, 0.1);
+}
+
+:root[data-theme="light"] .language-toggle-button:hover {
+    background: rgba(255, 255, 255, 1);
+    border-color: var(--color-primary);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 0 20px rgba(82, 39, 255, 0.2);
+}
+
 .language-toggle-button:hover {
     transform: translateY(-4px) scale(1.02);
     background: rgba(10, 15, 30, 0.95);
@@ -48,6 +62,10 @@
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.05);
     transition: all var(--transition-normal);
+}
+
+:root[data-theme="light"] .language-toggle-icon {
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .language-toggle-button:hover .language-toggle-icon {
@@ -99,8 +117,21 @@
     position: relative;
 }
 
+:root[data-theme="light"] .language-option {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: var(--text);
+}
+
 .language-option:hover {
     background: rgba(10, 15, 30, 0.95);
+    border-color: var(--color-primary);
+    transform: translateX(-4px);
+    box-shadow: 0 4px 16px rgba(82, 39, 255, 0.2);
+}
+
+:root[data-theme="light"] .language-option:hover {
+    background: rgba(255, 255, 255, 1);
     border-color: var(--color-primary);
     transform: translateX(-4px);
     box-shadow: 0 4px 16px rgba(82, 39, 255, 0.2);
@@ -109,6 +140,7 @@
 .language-option.active {
     background: var(--gradient-primary);
     border-color: var(--color-primary);
+    color: #fff;
 }
 
 .language-native {
