@@ -567,68 +567,89 @@ const InterviewBot = () => {
 
     if (!interviewStarted) {
         return (
-            <div className="interview-container">
-                <div className="interview-welcome">
-                    <Card className="welcome-card">
-                        <div className="welcome-icon">
-                            <MessageCircle size={64} />
+            <div className="interview-intro-page">
+                <div className="interview-intro-container">
+                    {/* 1. Hero Header Section */}
+                    <header className="intro-hero-section">
+                        <div className="avatar-icon-circle">
+                            <MessageCircle size={36} />
                         </div>
-                        <h1>AI Interview</h1>
-                        <div className="job-details">
-                            <h2>{jobDetails.title}</h2>
-                            <p className="company-name">{jobDetails.company}</p>
-                            {jobDetails.matchScore && (
-                                <Badge variant="success">
-                                    {jobDetails.matchScore}% Match
-                                </Badge>
-                            )}
-                        </div>
-
-                        <div className="interview-info">
-                            <h3>Before You Begin</h3>
-                            <ul>
-                                <li><CheckCircle size={18} /> {totalQuestions} questions to answer</li>
-                                <li><Clock size={18} /> Approximately 30 minutes</li>
-                                <li><Video size={18} /> Video/Audio recording optional</li>
-                                <li><AlertCircle size={18} /> Answer thoughtfully and honestly</li>
-                                <li><ShieldAlert size={18} /> AI proctoring is enabled — suspicious activity will be flagged</li>
-                            </ul>
-                        </div>
-
-                        <div className="interview-tips">
-                            <h4>Quick Tips:</h4>
-                            <ul>
-                                <li>Find a quiet place with good lighting</li>
-                                <li>Check your internet connection</li>
-                                <li>Keep your answers concise (2-3 minutes)</li>
-                                <li>Use the STAR method for behavioral questions</li>
-                                <li>You can enable/disable video during the interview</li>
-                            </ul>
-                        </div>
-
-                        <div className="api-status-info">
-                            <AlertCircle size={20} />
-                            <div>
-                                <strong>AI-Powered Interview</strong>
-                                <p>This interview uses AI for adaptive questions and real-time evaluation. Make sure the backend server is running on http://localhost:5000</p>
+                        <h1 className="intro-title-primary">AI Interview</h1>
+                        <div className="intro-job-badge-row">
+                            <span className="job-title-highlight">{jobDetails.title}</span>
+                            <span className="badge-separator">•</span>
+                            <div className="match-score-badge">
+                                {jobDetails.matchScore}% Match
                             </div>
                         </div>
+                    </header>
 
-                        <div className="camera-test-info">
-                            <Video size={20} />
-                            <p>Your camera and microphone will be requested when you enable video recording during the interview.</p>
-                        </div>
+                    {/* 2. Main Content Grid (2-Column) */}
+                    <div className="intro-content-grid">
+                        {/* LEFT - Interview Details */}
+                        <Card className="details-main-card">
+                            <h2 className="card-heading-text">Before You Begin</h2>
+                            <div className="info-row-list">
+                                <div className="info-row-item">
+                                    <CheckCircle size={18} />
+                                    <span>{totalQuestions} questions to answer</span>
+                                </div>
+                                <div className="info-row-item">
+                                    <Clock size={18} />
+                                    <span>Approximately 30 minutes</span>
+                                </div>
+                                <div className="info-row-item">
+                                    <Video size={18} />
+                                    <span>Video/Audio recording optional</span>
+                                </div>
+                                <div className="info-row-item">
+                                    <AlertCircle size={18} />
+                                    <span>Answer thoughtfully and honestly</span>
+                                </div>
+                                <div className="info-row-item">
+                                    <ShieldAlert size={18} />
+                                    <span>AI proctoring enabled</span>
+                                </div>
+                            </div>
+                        </Card>
 
-                        <div className="welcome-actions">
-                            <Button variant="outline" onClick={() => navigate(-1)}>
-                                Cancel
-                            </Button>
-                            <Button onClick={handleStartInterview}>
-                                Start Interview
-                                <ArrowRight size={20} style={{ marginLeft: '8px' }} />
-                            </Button>
+                        {/* RIGHT - Preparation & AI Info */}
+                        <div className="intro-sidebar-stack">
+                            <div className="quick-tips-amber-card">
+                                <h3 className="tips-card-title">Quick Tips</h3>
+                                <ul className="tips-list-bulleted">
+                                    <li>Find a quiet place with good lighting</li>
+                                    <li>Check your internet connection</li>
+                                    <li>Keep answers concise (2-3 minutes)</li>
+                                    <li>Use the STAR method for behavioral answers</li>
+                                </ul>
+                            </div>
+
+                            <div className="ai-info-green-card">
+                                <h3 className="ai-card-title">AI-Powered Interview</h3>
+                                <p className="ai-card-desc">
+                                    This interview uses adaptive AI to generate questions and provide real-time assessment of your responses.
+                                </p>
+                            </div>
                         </div>
-                    </Card>
+                    </div>
+
+                    {/* 3. Camera Notice Bar */}
+                    <div className="camera-notice-info-bar">
+                        <Video size={18} />
+                        <span>Your camera and microphone will be requested when you begin the interview process.</span>
+                    </div>
+
+                    {/* 4. Action Section */}
+                    <footer className="intro-actions-footer">
+                        <button className="cancel-text-btn" onClick={() => navigate(-1)}>
+                            Cancel
+                        </button>
+                        <Button className="start-interview-gradient-btn" onClick={handleStartInterview}>
+                            Start Interview
+                            <ArrowRight size={18} />
+                        </Button>
+                    </footer>
                 </div>
             </div>
         );

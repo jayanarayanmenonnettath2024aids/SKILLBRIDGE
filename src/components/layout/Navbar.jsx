@@ -1,15 +1,17 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Globe, User, Briefcase, BookOpen, TrendingUp, LogIn, LogOut } from 'lucide-react';
+import { Menu, X, Globe, User, BookOpen, LogIn, LogOut, Sun, Moon } from 'lucide-react';
 import '../../styles/Navbar.css';
 import logo from '../../assets/images/logo.png';
 import { useAuth } from '../../context/AuthContext';
+import useTheme from '../../hooks/use-theme';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = React.useState(false);
     const location = useLocation();
     const navigate = useNavigate();
     const { user, logout } = useAuth();
+    const { theme, toggleTheme } = useTheme();
     const isKiosk = location.pathname.includes('/kiosk');
 
     if (isKiosk) return null; // Hide navbar on Kiosk mode
@@ -42,6 +44,10 @@ const Navbar = () => {
                         <BookOpen size={18} />
                         <span>Start Learning</span>
                     </Link>
+
+                    <button className="btn btn-secondary btn-sm" onClick={toggleTheme} title="Toggle Theme">
+                        {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                    </button>
 
                     <button className="btn btn-secondary btn-sm">
                         <Globe size={18} />
@@ -91,6 +97,10 @@ const Navbar = () => {
                     <Link to="/learning" className="mobile-link mobile-link-accent" onClick={() => setIsOpen(false)}>
                         <BookOpen size={18} style={{ marginRight: '8px' }} /> Start Learning
                     </Link>
+                    <button className="mobile-link" onClick={() => { toggleTheme(); setIsOpen(false); }}>
+                        {theme === 'dark' ? <Sun size={18} style={{ marginRight: '8px' }} /> : <Moon size={18} style={{ marginRight: '8px' }} />}
+                        Toggle {theme === 'dark' ? 'Light' : 'Dark'} Mode
+                    </button>
                     <button className="mobile-link" onClick={() => setIsOpen(false)}>
                         <Globe size={18} style={{ marginRight: '8px' }} /> Language
                     </button>

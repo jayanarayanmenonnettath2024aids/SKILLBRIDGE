@@ -1,5 +1,6 @@
 .wallet-page {
     padding: 2rem 0;
+    color: var(--text-primary);
 }
 
 .wallet-grid {
@@ -15,14 +16,15 @@
 }
 
 .share-card {
-    background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 100%);
-    border: 1px solid #DBEAFE;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
 }
 
 .qr-box {
     width: 200px;
     height: 200px;
-    background: white;
+    background: #FFFFFF;
+    /* QR codes often need high contrast white background */
     border-radius: var(--radius-lg);
     display: flex;
     align-items: center;
@@ -33,6 +35,11 @@
     transition: transform var(--transition-fast);
 }
 
+:root.dark .qr-box {
+    background: #FFFFFF;
+    /* Keep white for QR code readability even in dark mode, or make it subtle? Usually QR needs white. */
+}
+
 .qr-box:hover {
     transform: scale(1.02);
 }
@@ -41,7 +48,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--color-primary);
+    color: var(--primary);
 }
 
 .qr-code img {
@@ -60,12 +67,13 @@
     align-items: flex-start;
     gap: 0.75rem;
     position: relative;
+    color: var(--text-secondary);
 }
 
 .history-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--color-primary-light);
+    background-color: var(--primary);
     margin-top: 6px;
 }

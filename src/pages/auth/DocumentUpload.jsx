@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
-import { Upload, FileText, X, CheckCircle, AlertCircle, File } from 'lucide-react';
+import { Upload, FileText, X, CheckCircle, AlertCircle, File, Plus } from 'lucide-react';
 
 const DocumentUpload = ({ onNext, onBack }) => {
     const [resume, setResume] = useState(null);
@@ -34,7 +34,7 @@ const DocumentUpload = ({ onNext, onBack }) => {
         e.preventDefault();
         e.stopPropagation();
         setDragActive(false);
-        
+
         if (e.dataTransfer.files && e.dataTransfer.files[0]) {
             handleResumeFile(e.dataTransfer.files[0]);
         }
@@ -44,7 +44,7 @@ const DocumentUpload = ({ onNext, onBack }) => {
         e.preventDefault();
         e.stopPropagation();
         setCertDragActive(false);
-        
+
         if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
             handleCertificateFiles(Array.from(e.dataTransfer.files));
         }
@@ -77,13 +77,13 @@ const DocumentUpload = ({ onNext, onBack }) => {
             setErrors(['Invalid file type. Only PDF, DOC, and DOCX files are allowed for resume.']);
             return;
         }
-        
+
         // Validate file size (max 5MB)
         if (file.size > 5 * 1024 * 1024) {
             setErrors(['Resume file size exceeds 5MB limit.']);
             return;
         }
-        
+
         setResume({
             id: Date.now(),
             file: file,
@@ -105,7 +105,7 @@ const DocumentUpload = ({ onNext, onBack }) => {
                 newErrors.push(`${file.name}: Invalid file type. Only PDF, JPG, and PNG are allowed.`);
                 return;
             }
-            
+
             if (file.size > maxSize) {
                 newErrors.push(`${file.name}: File size exceeds 5MB limit.`);
                 return;
@@ -151,139 +151,147 @@ const DocumentUpload = ({ onNext, onBack }) => {
     };
 
     return (
-        <div className="onboarding-step fade-in">
-            <div className="step-header">
-                <div className="icon-bg bg-blue-100 text-primary">
-                    <FileText size={32} />
+        <div className="onboarding-step-body fade-in">
+            {/* Error Messages */}
+            {errors.length > 0 && (
+                <div className="error-messages" style={{ marginBottom: '32px' }}>
+                    {errors.map((error, index) => (
+                        <div key={index} className="error-message">
+                            <AlertCircle size={16} />
+                            <span>{error}</span>
+                        </div>
+                    ))}
                 </div>
-                <h2>Upload Documents</h2>
-                <p>Upload your resume and certificates to strengthen your profile.</p>
-            </div>
+            )}
 
-            <Card className="onboarding-card">
-                <form onSubmit={handleSubmit}>
-                    {/* Error Messages */}
-                    {errors.length > 0 && (
-                        <div className="error-messages">
-                            {errors.map((error, index) => (
-                                <div key={index} className="error-message">
-                                    <AlertCircle size={16} />
-                                    <span>{error}</span>
+            <div className="upload-grid-split">
+                {/* LEFT - Resume Upload */}
+                <div className="resume-column">
+                    <label className="input-label-premium" style={{ marginBottom: '16px', display: 'block' }}>
+                        Professional Resume <span className="required">*</span>
+                    </label>
+
+                    {!resume ? (
+                        <div
+                            className={`drop-zone-premium ${dragActive ? 'drag-active' : ''}`}
+                            onDragEnter={handleResumeDrag}
+                            onDragLeave={handleResumeDrag}
+                            onDragOver={handleResumeDrag}
+                            onDrop={handleResumeDrop}
+                        >
+                            <input
+                                type="file"
+                                id="resume-input"
+                                accept=".pdf,.doc,.docx"
+                                onChange={handleResumeInput}
+                                style={{ display: 'none' }}
+                            />
+                            <label htmlFor="resume-input" style={{ cursor: 'pointer', textAlign: 'center' }}>
+                                <div className="upload-icon-wrapper">
+                                    <Upload size={40} />
+                                </div>
+                                <p className="primary-upload-text">Upload your resume</p>
+                                <p className="secondary-upload-text">PDF, DOC up to 5MB</p>
+                            </label>
+                        </div>
+                    ) : (
+                        <div className="uploaded-file onboarding-card-base" style={{ padding: '20px' }}>
+                            <div className="file-icon" style={{ background: '#EEF2FF' }}>
+                                <FileText size={24} color="#4F46E5" />
+                            </div>
+                            <div className="file-info">
+                                <p className="file-name">{resume.name}</p>
+                                <p className="file-size">{resume.size}</p>
+                            </div>
+                            <button
+                                type="button"
+                                className="onboarding-btn-text"
+                                onClick={removeResume}
+                                style={{ color: '#EF4444' }}
+                            >
+                                <X size={20} />
+                            </button>
+                        </div>
+                    )}
+                </div>
+
+                {/* RIGHT - Certificates Upload */}
+                <div className="certificates-column">
+                    <label className="input-label-premium" style={{ marginBottom: '16px', display: 'block' }}>
+                        Additional Certificates
+                    </label>
+
+                    <div
+                        className={`drop-zone-premium ${certDragActive ? 'drag-active' : ''}`}
+                        onDragEnter={handleCertDrag}
+                        onDragLeave={handleCertDrag}
+                        onDragOver={handleCertDrag}
+                        onDrop={handleCertDrop}
+                    >
+                        <input
+                            type="file"
+                            id="cert-input"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            multiple
+                            onChange={handleCertificateInput}
+                            style={{ display: 'none' }}
+                        />
+                        <label htmlFor="cert-input" style={{ cursor: 'pointer', textAlign: 'center' }}>
+                            <div className="upload-icon-wrapper">
+                                <Plus size={40} />
+                            </div>
+                            <p className="primary-upload-text">Add certificates</p>
+                            <p className="secondary-upload-text">PDF, PNG, JPG accepted</p>
+                        </label>
+                    </div>
+
+                    {/* Uploaded Certificates List */}
+                    {certificates.length > 0 && (
+                        <div className="uploaded-files-list" style={{ marginTop: '24px' }}>
+                            {certificates.map(cert => (
+                                <div key={cert.id} className="uploaded-file onboarding-card-base" style={{ padding: '12px 16px', fontSize: '13px' }}>
+                                    <div className="file-icon" style={{ width: '32px', height: '32px' }}>
+                                        <File size={16} />
+                                    </div>
+                                    <div className="file-info">
+                                        <p className="file-name">{cert.name}</p>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        className="onboarding-btn-text"
+                                        onClick={() => removeCertificate(cert.id)}
+                                        style={{ color: '#EF4444' }}
+                                    >
+                                        <X size={16} />
+                                    </button>
                                 </div>
                             ))}
                         </div>
                     )}
+                </div>
+            </div>
 
-                    {/* Resume Upload */}
-                    <div className="form-group">
-                        <label>Resume/CV <span className="required">*</span></label>
-                        <p className="field-hint">Upload your resume in PDF, DOC, or DOCX format (Max 5MB)</p>
-                        
-                        {!resume ? (
-                            <div
-                                className={`upload-zone ${dragActive ? 'drag-active' : ''}`}
-                                onDragEnter={handleResumeDrag}
-                                onDragLeave={handleResumeDrag}
-                                onDragOver={handleResumeDrag}
-                                onDrop={handleResumeDrop}
-                            >
-                                <Upload size={48} className="upload-icon" />
-                                <p className="upload-text">Drag and drop your resume here</p>
-                                <p className="upload-subtext">or</p>
-                                <label className="upload-button">
-                                    <input
-                                        type="file"
-                                        accept=".pdf,.doc,.docx"
-                                        onChange={handleResumeInput}
-                                        style={{ display: 'none' }}
-                                    />
-                                    <Button type="button" variant="outline">Browse Files</Button>
-                                </label>
-                            </div>
-                        ) : (
-                            <div className="uploaded-file">
-                                <div className="file-icon">
-                                    <FileText size={24} />
-                                </div>
-                                <div className="file-info">
-                                    <p className="file-name">{resume.name}</p>
-                                    <p className="file-size">{resume.size}</p>
-                                </div>
-                                <button
-                                    type="button"
-                                    className="remove-file"
-                                    onClick={removeResume}
-                                >
-                                    <X size={20} />
-                                </button>
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Certificates Upload */}
-                    <div className="form-group">
-                        <label>Certificates (Optional)</label>
-                        <p className="field-hint">Upload educational or skill certificates (PDF, JPG, or PNG, Max 5MB each)</p>
-                        
-                        <div
-                            className={`upload-zone small ${certDragActive ? 'drag-active' : ''}`}
-                            onDragEnter={handleCertDrag}
-                            onDragLeave={handleCertDrag}
-                            onDragOver={handleCertDrag}
-                            onDrop={handleCertDrop}
-                        >
-                            <Upload size={32} className="upload-icon" />
-                            <p className="upload-text small">Drag and drop certificates</p>
-                            <label className="upload-button">
-                                <input
-                                    type="file"
-                                    accept=".pdf,.jpg,.jpeg,.png"
-                                    multiple
-                                    onChange={handleCertificateInput}
-                                    style={{ display: 'none' }}
-                                />
-                                <Button type="button" variant="outline" size="sm">Browse Files</Button>
-                            </label>
-                        </div>
-
-                        {/* Uploaded Certificates List */}
-                        {certificates.length > 0 && (
-                            <div className="uploaded-files-list">
-                                {certificates.map(cert => (
-                                    <div key={cert.id} className="uploaded-file small">
-                                        <div className="file-icon small">
-                                            <File size={20} />
-                                        </div>
-                                        <div className="file-info">
-                                            <p className="file-name">{cert.name}</p>
-                                            <p className="file-size">{cert.size}</p>
-                                        </div>
-                                        <button
-                                            type="button"
-                                            className="remove-file"
-                                            onClick={() => removeCertificate(cert.id)}
-                                        >
-                                            <X size={16} />
-                                        </button>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="actions-row">
-                        <Button type="button" variant="outline" onClick={onBack}>Back</Button>
-                        <div style={{ display: 'flex', gap: '0.5rem', flex: 1 }}>
-                            <Button type="button" variant="secondary" onClick={handleSkip} style={{ flex: 1 }}>
-                                Skip for Now
-                            </Button>
-                            <Button type="submit" style={{ flex: 1 }}>
-                                Next
-                            </Button>
-                        </div>
-                    </div>
-                </form>
-            </Card>
+            <footer className="onboarding-actions-row">
+                <button onClick={onBack} className="onboarding-btn-text">
+                    Back
+                </button>
+                <div style={{ display: 'flex', gap: '16px' }}>
+                    <button
+                        type="button"
+                        className="onboarding-btn-text"
+                        onClick={handleSkip}
+                    >
+                        Skip for now
+                    </button>
+                    <button
+                        onClick={handleSubmit}
+                        disabled={!resume}
+                        className="onboarding-btn-primary"
+                    >
+                        Finish Setup
+                    </button>
+                </div>
+            </footer>
         </div>
     );
 };

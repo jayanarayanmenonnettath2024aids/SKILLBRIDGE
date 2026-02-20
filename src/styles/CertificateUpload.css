@@ -1,12 +1,14 @@
 .certificate-upload-page {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    min-height: calc(100vh - 64px - 200px);
+    background: var(--bg-main);
+    min-height: calc(100vh - var(--navbar-height) - 100px);
     padding: 3rem 0;
+    color: var(--text-primary);
 }
 
 .certificate-container {
     max-width: 900px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 .upload-header {
@@ -17,13 +19,13 @@
 .upload-title {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--color-primary);
+    color: var(--text-primary);
     margin: 0 0 1rem 0;
 }
 
 .upload-subtitle {
     font-size: 1.125rem;
-    color: #6c757d;
+    color: var(--text-secondary);
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
@@ -32,48 +34,52 @@
 .upload-card {
     padding: 3rem;
     margin-bottom: 3rem;
+    background: var(--bg-card);
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-soft);
 }
 
 .section-heading {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--color-primary);
+    color: var(--text-primary);
     margin: 0 0 1.5rem 0;
     padding-bottom: 0.75rem;
-    border-bottom: 2px solid #e9ecef;
+    border-bottom: 2px solid var(--border-color);
 }
 
 /* Upload Zone */
 .upload-zone {
-    border: 3px dashed #dee2e6;
+    border: 3px dashed var(--border-color);
     border-radius: 16px;
     padding: 4rem 2rem;
     text-align: center;
-    background: #f8f9fa;
+    background: var(--bg-secondary);
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .upload-zone.drag-active {
-    border-color: var(--color-primary);
-    background: rgba(79, 70, 229, 0.05);
+    border-color: var(--primary);
+    background: var(--primary-glow);
     transform: scale(1.02);
 }
 
 .upload-icon {
-    color: var(--color-primary);
+    color: var(--primary);
     margin-bottom: 1.5rem;
 }
 
 .upload-zone-title {
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--color-text-primary);
+    color: var(--text-primary);
     margin: 0 0 0.5rem 0;
 }
 
 .upload-zone-text {
-    color: #6c757d;
+    color: var(--text-secondary);
     margin: 1rem 0;
 }
 
@@ -83,7 +89,7 @@
 }
 
 .upload-hint {
-    color: #6c757d;
+    color: var(--text-muted);
     font-size: 0.875rem;
     margin-top: 1rem;
 }
@@ -92,8 +98,8 @@
 .error-messages {
     margin-top: 1.5rem;
     padding: 1rem;
-    background: #fee;
-    border-left: 4px solid #dc3545;
+    background: rgba(239, 68, 68, 0.1);
+    border-left: 4px solid var(--error);
     border-radius: 8px;
 }
 
@@ -101,7 +107,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #dc3545;
+    color: var(--error);
     font-size: 0.875rem;
     margin-bottom: 0.5rem;
 }
@@ -114,13 +120,13 @@
 .certificates-list {
     margin-top: 2rem;
     padding-top: 2rem;
-    border-top: 2px solid #e9ecef;
+    border-top: 2px solid var(--border-color);
 }
 
 .list-title {
     font-size: 1.125rem;
     font-weight: 600;
-    color: var(--color-text-primary);
+    color: var(--text-primary);
     margin: 0 0 1.5rem 0;
 }
 
@@ -129,16 +135,18 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    background: white;
-    border: 1px solid #e9ecef;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     margin-bottom: 1rem;
     transition: all 0.3s ease;
+    color: var(--text-primary);
 }
 
 .certificate-item:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: var(--primary);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
 }
 
 .certificate-info {
@@ -149,7 +157,7 @@
 }
 
 .file-icon {
-    color: var(--color-primary);
+    color: var(--primary);
     flex-shrink: 0;
 }
 
@@ -159,13 +167,13 @@
 
 .file-name {
     font-weight: 600;
-    color: var(--color-text-primary);
+    color: var(--text-primary);
     margin: 0 0 0.25rem 0;
     word-break: break-word;
 }
 
 .file-size {
-    color: #6c757d;
+    color: var(--text-secondary);
     font-size: 0.875rem;
     margin: 0;
 }
@@ -177,13 +185,13 @@
 }
 
 .success-icon {
-    color: #28a745;
+    color: var(--success);
 }
 
 .remove-button {
     background: none;
     border: none;
-    color: #dc3545;
+    color: var(--error);
     cursor: pointer;
     padding: 0.5rem;
     border-radius: 8px;
@@ -194,7 +202,7 @@
 }
 
 .remove-button:hover {
-    background: #fee;
+    background: rgba(239, 68, 68, 0.1);
     transform: scale(1.1);
 }
 
@@ -205,26 +213,22 @@
     justify-content: flex-end;
     margin-top: 2rem;
     padding-top: 2rem;
-    border-top: 2px solid #e9ecef;
-}
-
-.upload-actions button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+    border-top: 2px solid var(--border-color);
 }
 
 /* Benefits Section */
 .upload-benefits {
-    background: white;
+    background: var(--bg-card);
     padding: 3rem;
     border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
 }
 
 .benefits-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--color-primary);
+    color: var(--text-primary);
     margin: 0 0 2rem 0;
     text-align: center;
 }
@@ -242,7 +246,7 @@
 }
 
 .benefit-icon {
-    color: #28a745;
+    color: var(--success);
     flex-shrink: 0;
     margin-top: 0.25rem;
 }
@@ -250,12 +254,12 @@
 .benefit-item h4 {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--color-text-primary);
+    color: var(--text-primary);
     margin: 0 0 0.5rem 0;
 }
 
 .benefit-item p {
-    color: #6c757d;
+    color: var(--text-secondary);
     margin: 0;
     line-height: 1.5;
 }
@@ -265,7 +269,7 @@
     .benefits-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     .benefit-item {
         flex-direction: column;
         text-align: center;
@@ -277,41 +281,41 @@
     .certificate-upload-page {
         padding: 2rem 0;
     }
-    
+
     .upload-card {
         padding: 1.5rem;
     }
-    
+
     .upload-zone {
         padding: 2rem 1rem;
     }
-    
+
     .upload-title {
         font-size: 2rem;
     }
-    
+
     .upload-subtitle {
         font-size: 1rem;
     }
-    
+
     .upload-benefits {
         padding: 2rem 1.5rem;
     }
-    
+
     .upload-actions {
         flex-direction: column;
     }
-    
+
     .upload-actions button {
         width: 100%;
     }
-    
+
     .certificate-item {
         flex-direction: column;
         align-items: stretch;
         gap: 1rem;
     }
-    
+
     .certificate-actions {
         justify-content: flex-end;
     }

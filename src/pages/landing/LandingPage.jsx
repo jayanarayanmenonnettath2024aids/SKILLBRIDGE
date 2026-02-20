@@ -1,187 +1,180 @@
-import React, { useState } from 'react';
-import { ShieldCheck, TrendingUp, Users, CheckCircle, MapPin, Search, Grid, HelpCircle, BookOpen, Clock, Award, LogIn, LayoutDashboard } from 'lucide-react';
-import Button from '../../components/ui/Button';
-import Card from '../../components/ui/Card';
+import React from 'react';
+import {
+    ShieldCheck, TrendingUp, Users, CheckCircle,
+    BookOpen, Clock, Award, ArrowRight
+} from 'lucide-react';
 import '../../styles/LandingPage.css';
 import { Link, useNavigate } from 'react-router-dom';
 import studentImage from '../../assets/images/studnt.png';
 import opportunityImage from '../../assets/images/os.png';
 import heroImage from '../../assets/images/image.png';
+import logo from '../../assets/images/logo.png';
 import { useAuth } from '../../context/AuthContext';
 
 const LandingPage = () => {
     const navigate = useNavigate();
     const { user } = useAuth();
-    const [selectedInterest, setSelectedInterest] = useState('');
-    const [searchQuery, setSearchQuery] = useState('');
-    const [educationLevel, setEducationLevel] = useState('');
-
-    const handleFindCourse = () => {
-        navigate('/jobs?type=training');
-    };
-
-    const handleFindJob = () => {
-        navigate('/certificate-upload');
-    };
-
-    const handleGuidanceNext = () => {
-        navigate('/onboarding');
-    };
 
     return (
         <div className="landing-page">
-            {/* Hero Section */}
+            {/* 1. Hero Section */}
             <section className="hero-section">
-                <div className="container hero-container">
+                <div className="container hero-grid">
                     <div className="hero-content">
-                        <Badge variant="primary" className="mb-4">Connecting Talent to Opportunity</Badge>
+                        <span className="hero-tag">Connecting Talent to Opportunity</span>
                         <h1 className="hero-title">
-                            Get Hired. Get Verified. <span className="text-accent">Get Ahead.</span>
+                            Get Hired. <span>Get Verified.</span>
                         </h1>
                         <p className="hero-subtitle">
                             India's first blockchain-verified employment platform for rural talent.
-                            Connect with top employers and prove your skills instantly.
+                            Connect with verified opportunities and prove your skills.
                         </p>
-                        <div className="hero-actions">
+                        <div className="hero-cta-row">
                             <Link to="/onboarding">
-                                <Button size="lg" variant="primary">I'm a Job Seeker</Button>
+                                <button className="lp-btn lp-btn-primary">I'm a Job Seeker</button>
                             </Link>
                             <Link to="/learning">
-                                <Button size="lg" variant="secondary">
-                                    <BookOpen size={20} style={{ marginRight: '8px' }} />
-                                    Start Learning
-                                </Button>
+                                <button className="lp-btn lp-btn-outline">Start Learning</button>
                             </Link>
                         </div>
-                        <div className="trust-badges">
-                            <div className="trust-item">
-                                <ShieldCheck size={20} className="text-success" />
-                                <span>Government Verified</span>
-                            </div>
-                            <div className="trust-item">
-                                <Users size={20} className="text-primary" />
-                                <span>10L+ Candidates</span>
-                            </div>
+                        <div className="hero-trust-row">
+                            <span><ShieldCheck size={18} /> Government Verified</span>
+                            <span><Users size={18} /> 10L+ Candidates</span>
+                            <span><CheckCircle size={18} /> 500+ Hiring Partners</span>
                         </div>
                     </div>
-                    <div className="hero-image">
-                        {/* Placeholder for Hero Image - would use an actual image here */}
-                        <div className="hero-image-placeholder">
-                            <img src={heroImage} alt="Rural Youth Empowerment" />
+                    <div className="hero-image-wrap">
+                        <img src={heroImage} alt="Rural Youth Empowerment" className="hero-img" />
+                    </div>
+                </div>
+            </section>
+
+            {/* 2. Problem + Solution Section */}
+            <section className="problem-section">
+                <div className="container">
+                    <div className="problem-grid">
+                        <div className="problem-card">
+                            <div className="icon-circle"><Users size={24} /></div>
+                            <h3>Youth unaware of matching jobs</h3>
+                            <p>Millions of talented youth in rural India miss out on life-changing opportunities simply because they don't know they exist.</p>
+                            <Link to="/jobs" className="learn-more-link">Learn More <ArrowRight size={14} /></Link>
+                        </div>
+                        <div className="problem-card">
+                            <div className="icon-circle"><ShieldCheck size={24} /></div>
+                            <h3>Verified Digital Profiles</h3>
+                            <p>Build a trustworthy professional identity with blockchain-verified credentials that employers can rely on instantly.</p>
+                            <Link to="/onboarding" className="learn-more-link">Learn More <ArrowRight size={14} /></Link>
+                        </div>
+                        <div className="problem-card">
+                            <div className="icon-circle"><CheckCircle size={24} /></div>
+                            <h3>Trusted Corporate Hiring Network</h3>
+                            <p>Directly connect with India's top companies who are looking specifically for verified rural talent like you.</p>
+                            <Link to="/employer" className="learn-more-link">Learn More <ArrowRight size={14} /></Link>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Stats Section */}
-            <section className="stats-section">
+            {/* 3. Why SkillBridge Section */}
+            <section className="why-section">
                 <div className="container">
-                    <div className="stats-grid">
-                        <Card className="stats-card">
-                            <h3 className="stats-number">72%</h3>
-                            <p className="stats-label">Youth unaware of matching jobs</p>
-                        </Card>
-                        <Card className="stats-card">
-                            <h3 className="stats-number">100%</h3>
-                            <p className="stats-label">Verified Profiles</p>
-                        </Card>
-                        <Card className="stats-card">
-                            <h3 className="stats-number">500+</h3>
-                            <p className="stats-label">Corporate Partners</p>
-                        </Card>
+                    <h2 className="section-label">Why Choose SkillBridge?</h2>
+                    <p className="section-subtext">Bridging the gap between talent and opportunity with modern technology.</p>
+
+                    <div className="why-grid">
+                        <div className="problem-card">
+                            <div className="icon-circle"><ShieldCheck size={24} /></div>
+                            <h3>Verified Credentials</h3>
+                            <p>Your records are secured by blockchain technology, making them tamper-proof and authentic.</p>
+                        </div>
+                        <div className="problem-card">
+                            <div className="icon-circle"><TrendingUp size={24} /></div>
+                            <h3>AI Skill Gap Analysis</h3>
+                            <p>Our smart platform analyzes your current skills and guides you on exactly what you need to master next.</p>
+                        </div>
+                        <div className="problem-card">
+                            <div className="icon-circle"><Users size={24} /></div>
+                            <h3>Direct Job Matching</h3>
+                            <p>No more long waits. Get matched with jobs that perfectly suit your verified skills and location.</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Value Prop Section */}
-            <section className="section bg-white">
-                <div className="container">
-                    <div className="section-header text-center">
-                        <h2 className="section-title">Why Choose SkillBridge?</h2>
-                        <p className="section-subtitle">Bridging the gap between talent and opportunity.</p>
-                    </div>
-
-                    <div className="process-flow">
-                        <div className="process-step step-orange">
-                            <div className="step-pin">
-                                <div className="pin-icon">
-                                    <Users size={28} />
-                                </div>
-                            </div>
-                            <h3 className="step-title">Verified Credentials</h3>
-                            <p className="step-description">Your skills and education are verified on the blockchain. No more fake resumes.</p>
-                        </div>
-
-                        <div className="process-step step-green">
-                            <div className="step-pin">
-                                <div className="pin-icon">
-                                    <TrendingUp size={28} />
-                                </div>
-                            </div>
-                            <h3 className="step-title">Skill-Gap Analysis</h3>
-                            <p className="step-description">Find out exactly what skills you need to get your dream job with our AI assessment.</p>
-                        </div>
-
-                        <div className="process-step step-red">
-                            <div className="step-pin">
-                                <div className="pin-icon">
-                                    <CheckCircle size={28} />
-                                </div>
-                            </div>
-                            <h3 className="step-title">Instant Matching</h3>
-                            <p className="step-description">Our AI matches you with jobs that fit your profile perfectly. Apply with one click.</p>
-                        </div>
-
-                        <div className="arrow-point"></div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Micro Learning Section */}
-            <section className="section microlearning-section">
-                <div className="container">
-                    <div className="section-header text-center">
-                        <h2 className="section-title">
-                            <BookOpen size={32} style={{ display: 'inline-block', marginRight: '12px', verticalAlign: 'middle', color: 'var(--color-primary)' }} />
-                            Master Skills with Micro Learning
-                        </h2>
-                        <p className="section-subtitle">Learn new skills in bite-sized lessons. Master the basics in minutes, not hours.</p>
-                    </div>
-
-                    <div className="microlearning-grid">
-                        <Card className="microlearning-card">
-                            <div className="microlearning-icon">
-                                <Clock size={40} />
-                            </div>
-                            <h3>5-15 Minute Lessons</h3>
-                            <p>Short, focused lessons that fit into your busy schedule</p>
-                        </Card>
-
-                        <Card className="microlearning-card">
-                            <div className="microlearning-icon">
-                                <BookOpen size={40} />
-                            </div>
-                            <h3>22+ Tech Modules</h3>
-                            <p>AI, Machine Learning, Web Dev, Cybersecurity & More</p>
-                        </Card>
-
-                        <Card className="microlearning-card">
-                            <div className="microlearning-icon">
-                                <Award size={40} />
-                            </div>
-                            <h3>Earn Points & Badges</h3>
-                            <p>Track your progress and showcase your achievements</p>
-                        </Card>
-                    </div>
-
-                    <div className="microlearning-cta">
+            {/* 4. Micro Learning Section */}
+            <section className="learning-section">
+                <div className="container learning-grid">
+                    <div className="learning-text-block">
+                        <span className="hero-tag">Skill Up Anywhere</span>
+                        <h2 className="section-label" style={{ textAlign: 'left' }}>Master Skills with Micro Learning</h2>
+                        <p className="hero-subtitle">Learn new skills in bite-sized lessons that fit into your daily life. Master the basics in minutes, not hours.</p>
                         <Link to="/learning">
-                            <Button size="lg" variant="primary">
-                                <BookOpen size={20} style={{ marginRight: '8px' }} />
-                                Start Learning Now
-                            </Button>
+                            <button className="lp-btn lp-btn-primary" style={{ marginTop: '12px' }}>Start Learning Now</button>
                         </Link>
-                        <p className="microlearning-cta-text">Free • Self-paced • Certificate Ready</p>
+                    </div>
+                    <div className="learning-mini-list">
+                        <div className="mini-card">
+                            <div className="mini-icon"><Clock size={24} /></div>
+                            <div className="mini-text">
+                                <h4>5–15 Minute Lessons</h4>
+                                <p>Short, focused modules designed for mobile engagement.</p>
+                            </div>
+                        </div>
+                        <div className="mini-card">
+                            <div className="mini-icon"><BookOpen size={24} /></div>
+                            <div className="mini-text">
+                                <h4>22+ Tech Modules</h4>
+                                <p>From AI basics to digital literacy, curated for today's market.</p>
+                            </div>
+                        </div>
+                        <div className="mini-card">
+                            <div className="mini-icon"><Award size={24} /></div>
+                            <div className="mini-text">
+                                <h4>Earn Points & Badges</h4>
+                                <p>Gamified learning that keeps you motivated and progress tracked.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 5. Quick Actions Section */}
+            <section className="start-section" style={{ backgroundColor: 'transparent' }}>
+                <div className="container">
+                    <h2 className="section-label">Where Do You Want to Start?</h2>
+                    <p className="section-subtext">Find the right path — training, jobs, or guided career advice.</p>
+
+                    <div className="start-grid">
+                        <div className="start-card">
+                            <div className="start-illustration">
+                                <img src={studentImage} alt="Courses" />
+                            </div>
+                            <h3>Micro-Courses</h3>
+                            <p>Explore verified courses specifically designed to bridge your skill gap.</p>
+                            <Link to="/learning" style={{ width: '100%' }}>
+                                <button className="lp-btn lp-btn-primary" style={{ width: '100%' }}>Search Courses</button>
+                            </Link>
+                        </div>
+                        <div className="start-card">
+                            <div className="start-illustration">
+                                <img src={opportunityImage} alt="Jobs" />
+                            </div>
+                            <h3>Explore Jobs</h3>
+                            <p>Search for verified job opportunities, apprenticeships, and localized roles.</p>
+                            <Link to="/jobs" style={{ width: '100%' }}>
+                                <button className="lp-btn lp-btn-primary" style={{ width: '100%' }}>Find Jobs</button>
+                            </Link>
+                        </div>
+                        <div className="start-card">
+                            <div className="start-illustration guidance-illustration">
+                                <TrendingUp size={64} color="var(--accent)" />
+                            </div>
+                            <h3>Career Guidance</h3>
+                            <p>Not sure where to begin? Use our AI to map your career path based on your potential.</p>
+                            <Link to="/onboarding" style={{ width: '100%' }}>
+                                <button className="lp-btn lp-btn-accent" style={{ width: '100%' }}>Explore Guidance</button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -189,145 +182,24 @@ const LandingPage = () => {
             {/* CTA Section */}
             <section className="cta-section">
                 <div className="container text-center">
-                    <h2>Ready to start your career journey?</h2>
-                    <p className="mb-6">Join thousands of others securing their future today.</p>
-                    <div className="hero-actions" style={{ justifyContent: 'center' }}>
-                        {user.isAuthenticated ? (
-                            <Link to={user.role === 'employer' ? '/employer' : '/dashboard'}>
-                                <Button size="lg" variant="secondary">
-                                    <LayoutDashboard size={20} style={{ marginRight: '8px' }} />
-                                    Go to Dashboard
-                                </Button>
+                    <h2 className="cta-title">Ready to start your career journey?</h2>
+                    <p className="cta-subtitle">Join 10L+ candidates securing their future today.</p>
+                    <div className="cta-actions">
+                        <Link to="/onboarding">
+                            <button className="lp-btn lp-btn-primary" style={{ padding: '0 40px' }}>Create Free Profile</button>
+                        </Link>
+                        {!user.isAuthenticated && (
+                            <Link to="/login">
+                                <button className="lp-btn lp-btn-outline-inverted">Login</button>
                             </Link>
-                        ) : (
-                            <>
-                                <Link to="/login">
-                                    <Button size="lg" variant="secondary">
-                                        <LogIn size={20} style={{ marginRight: '8px' }} />
-                                        Login
-                                    </Button>
-                                </Link>
-                                <Link to="/onboarding">
-                                    <Button size="lg" variant="secondary">Create Free Profile</Button>
-                                </Link>
-                            </>
                         )}
                     </div>
                 </div>
             </section>
 
-            {/* Quick Action Cards Section */}
-            <section className="quick-actions-section">
-                <div className="container">
-                    <div className="opportunities-link">
-                        <MapPin size={20} />
-                        <span>Opportunities near you</span>
-                    </div>
-
-                    <div className="action-cards-grid">
-                        {/* Student Card */}
-                        <Card className="action-card student-card">
-                            <h2 className="action-card-title">I want to be a...</h2>
-                            <p className="action-card-subtitle">Student</p>
-
-                            <div className="card-illustration student-illustration">
-                                <img src={studentImage} alt="Student" className="illustration-image" />
-                            </div>
-
-                            <div className="card-input">
-                                <Grid size={20} className="input-icon" />
-                                <select
-                                    value={selectedInterest}
-                                    onChange={(e) => setSelectedInterest(e.target.value)}
-                                    className="select-input"
-                                >
-                                    <option value="">Select Interest Area</option>
-                                    <option value="automotive">Automotive</option>
-                                    <option value="electronics">Electronics</option>
-                                    <option value="healthcare">Healthcare</option>
-                                    <option value="retail">Retail</option>
-                                    <option value="hospitality">Hospitality</option>
-                                </select>
-                            </div>
-
-                            <p className="card-hint">Interest areas like Automotive, Electronics etc.</p>
-
-                            <button className="action-button" onClick={handleFindCourse}>
-                                FIND COURSE
-                            </button>
-                        </Card>
-
-                        {/* Opportunities Card */}
-                        <Card className="action-card opportunities-card">
-                            <h2 className="action-card-title">I want to explore...</h2>
-                            <p className="action-card-subtitle">Opportunities</p>
-
-                            <div className="card-illustration opportunities-illustration">
-                                <img src={opportunityImage} alt="Opportunities" className="illustration-image" />
-                            </div>
-
-                            <div className="card-input">
-                                <Grid size={20} className="input-icon" />
-                                <input
-                                    type="text"
-                                    placeholder="Search Job Exchange"
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="text-input"
-                                />
-                                <Search size={20} className="search-icon" />
-                            </div>
-
-                            <p className="card-hint">Opportunities for Job Exchange, Apprenticeship and Entrepreneurship</p>
-
-                            <button className="action-button" onClick={handleFindJob}>
-                                FIND JOB
-                            </button>
-                        </Card>
-
-                        {/* Guidance Card */}
-                        <Card className="action-card guidance-card">
-                            <div className="guidance-header">
-                                <div>
-                                    <h2 className="action-card-title">Not Sure</h2>
-                                    <h2 className="action-card-title">Where To Begin?</h2>
-                                </div>
-                                <div className="help-icon">
-                                    <HelpCircle size={32} />
-                                </div>
-                            </div>
-
-                            <p className="guidance-subtitle">Answer a few simple questions and we will help you.</p>
-
-                            <div className="guidance-form">
-                                <label className="guidance-label">What is your highest education level?</label>
-                                <select
-                                    value={educationLevel}
-                                    onChange={(e) => setEducationLevel(e.target.value)}
-                                    className="select-input"
-                                >
-                                    <option value="">Select Education</option>
-                                    <option value="10th">10th Pass</option>
-                                    <option value="12th">12th Pass</option>
-                                    <option value="graduate">Graduate</option>
-                                    <option value="postgraduate">Post Graduate</option>
-                                    <option value="diploma">Diploma</option>
-                                </select>
-                            </div>
-
-                            <button className="action-button guidance-button" onClick={handleGuidanceNext}>
-                                NEXT
-                            </button>
-                        </Card>
-                    </div>
-                </div>
-            </section>
+            {/* Footer is handled globally in App.jsx */}
         </div>
     );
 };
-// Helper component for badges used in this file if not auto-imported
-const Badge = ({ children, variant, className }) => (
-    <span className={`badge badge-${variant} ${className}`}>{children}</span>
-);
 
 export default LandingPage;
