@@ -52,7 +52,6 @@ const SkillGapDashboard = () => {
     const [seeding, setSeeding] = useState(false);
     const [learningVideos, setLearningVideos] = useState([]);
     const [videosLoading, setVideosLoading] = useState(false);
-    const { user } = useAuth();
 
     /**
      * Fetch all users from Firestore on component mount
@@ -240,7 +239,7 @@ const SkillGapDashboard = () => {
             <div className="skillgap-page">
                 <div className="skillgap-loading">
                     <RefreshCw className="animate-spin" size={32} />
-                    <p>Authenticating...</p>
+                    <p>{t('authenticating')}</p>
                 </div>
             </div>
         );
@@ -251,7 +250,7 @@ const SkillGapDashboard = () => {
             <div className="skillgap-page">
                 <div className="skillgap-loading">
                     <RefreshCw className="animate-spin" size={32} />
-                    <p>Loading dashboard...</p>
+                    <p>{t('loadingDashboard')}</p>
                 </div>
             </div>
         );
@@ -262,16 +261,16 @@ const SkillGapDashboard = () => {
             {/* 1. Top Header Strip */}
             <div className="skillgap-header">
                 <div className="header-left">
-                    <h1 className="header-title">Skill Gap Analysis Dashboard</h1>
-                    <p className="header-subtitle">AI-powered workforce skill insights</p>
+                    <h1 className="header-title">{t('skillGapDashboardTitle')}</h1>
+                    <p className="header-subtitle">{t('aiWorkforceInsights')}</p>
                 </div>
                 <div className="header-right">
                     <Button variant="outline" onClick={handleSeedData} disabled={seeding} size="sm" className="ghost-btn">
-                        {seeding ? 'Seeding...' : 'Reseed Demo Data'}
+                        {seeding ? t('seeding') : t('reseedDemoData')}
                     </Button>
                     <Button className="menu-plus-btn">
                         <Menu size={18} />
-                        <span>MENU</span>
+                        <span>{t('menu')}</span>
                         <Plus size={16} />
                     </Button>
                 </div>
@@ -290,26 +289,26 @@ const SkillGapDashboard = () => {
                                 <div className="icon-circle-box">
                                     <FileText size={20} />
                                 </div>
-                                <h3 className="card-title-text">Resume Analysis</h3>
+                                <h3 className="card-title-text">{t('resumeAnalysis')}</h3>
                             </div>
                             <span className={`status-badge ${resumeAnalysis ? 'analyzed' : 'empty'}`}>
-                                {resumeAnalysis ? 'Analyzed' : 'Empty'}
+                                {resumeAnalysis ? t('analyzed') : t('empty')}
                             </span>
                         </div>
 
                         {!resumeAnalysis ? (
                             <div className="resume-empty-cta">
                                 <FileText size={64} className="cta-icon-large" />
-                                <h4 className="cta-headline">No Resume Analysis Found</h4>
+                                <h4 className="cta-headline">{t('noResumeAnalysisFound')}</h4>
                                 <p className="cta-subtext">
-                                    Upload your resume to unlock AI-powered skill insights and personalized career recommendations.
+                                    {t('uploadResumeUnlock')}
                                 </p>
                                 <button
                                     className="button-primary"
                                     onClick={() => window.location.href = '/resume-upload'}
                                     style={{ margin: '0 auto' }}
                                 >
-                                    Upload Resume
+                                    {t('uploadResumeBtn')}
                                 </button>
                             </div>
                         ) : (
@@ -318,13 +317,13 @@ const SkillGapDashboard = () => {
                                 <div className="analysis-metrics-row">
                                     {resumeAnalysis?.overallScore && (
                                         <div className="analysis-metric">
-                                            <span className="metric-label">Resume Score</span>
+                                            <span className="metric-label">{t('resumeScore')}</span>
                                             <span className="metric-value">{resumeAnalysis?.overallScore}/100</span>
                                         </div>
                                     )}
                                     {resumeAnalysis?.experienceLevel && (
                                         <div className="analysis-metric">
-                                            <span className="metric-label">Experience</span>
+                                            <span className="metric-label">{t('experienceLevel')}</span>
                                             <span className="metric-value">{resumeAnalysis?.experienceLevel}</span>
                                         </div>
                                     )}
@@ -337,30 +336,30 @@ const SkillGapDashboard = () => {
                     {analysisData?.match_percentage > 0 && (
                         <div className="analysis-results-section" style={{ marginBottom: '64px' }}>
                             <div className="learning-section-title-row">
-                                <h3 className="learning-title">Detailed Analysis Results</h3>
-                                <p className="learning-subtitle">Skill matching for {analysisData?.user_info?.role || 'Selected Role'}</p>
+                                <h3 className="learning-title">{t('detailedAnalysisResults')}</h3>
+                                <p className="learning-subtitle">{t('skillMatchingFor')} {analysisData?.user_info?.role || t('selectedRole')}</p>
                             </div>
 
                             <div className="skillgap-summary-grid" style={{ marginBottom: '32px' }}>
                                 <Card className="skillgap-card skillgap-center">
-                                    <span className="stat-label">Match Percentage</span>
+                                    <span className="stat-label">{t('matchPercentage')}</span>
                                     <div className="score-main" style={{ fontSize: '36px', margin: '12px 0' }}>{analysisData?.match_percentage}%</div>
-                                    <p className="stat-label">Required Skills possessed</p>
+                                    <p className="stat-label">{t('requiredSkillsPossessed')}</p>
                                 </Card>
                                 <Card className="skillgap-card skillgap-center">
-                                    <span className="stat-label">Readiness Score</span>
+                                    <span className="stat-label">{t('readinessScore')}</span>
                                     <div className="score-main" style={{ fontSize: '36px', margin: '12px 0', color: 'var(--success)' }}>{analysisData?.readiness_score}</div>
-                                    <p className="stat-label">Out of 100 points</p>
+                                    <p className="stat-label">{t('outOf100')}</p>
                                 </Card>
                                 <Card className="skillgap-card">
-                                    <span className="stat-label">Gap Overview</span>
+                                    <span className="stat-label">{t('gapOverview')}</span>
                                     <div className="gap-mini-stats" style={{ marginTop: '12px' }}>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                            <span className="stat-label">Critical:</span>
+                                            <span className="stat-label">{t('critical')}:</span>
                                             <span style={{ fontWeight: 700, color: 'var(--error)' }}>{analysisData?.summary?.critical_gaps || 0}</span>
                                         </div>
                                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                            <span className="stat-label">Good:</span>
+                                            <span className="stat-label">{t('good')}:</span>
                                             <span style={{ fontWeight: 700, color: 'var(--success)' }}>{analysisData?.summary?.good_skills || 0}</span>
                                         </div>
                                     </div>
@@ -370,10 +369,10 @@ const SkillGapDashboard = () => {
                             <Card className="skillgap-card">
                                 <div className="skill-gap-table">
                                     <div className="skill-gap-header-row">
-                                        <span>Skill Name</span>
-                                        <span>Required</span>
-                                        <span>User</span>
-                                        <span>Status</span>
+                                        <span>{t('skillName')}</span>
+                                        <span>{t('required')}</span>
+                                        <span>{t('user')}</span>
+                                        <span>{t('status')}</span>
                                     </div>
                                     {analysisData?.skill_gaps?.map((skill, index) => (
                                         <div key={index} className="skill-gap-row" style={{ gridTemplateColumns: '2fr 1fr 1fr 1.5fr' }}>
@@ -392,15 +391,15 @@ const SkillGapDashboard = () => {
 
                     {/* AI Recommended Videos */}
                     <div className="learning-section-title-row">
-                        <h3 className="learning-title">Recommended Learning (AI Powered)</h3>
-                        <p className="learning-subtitle">Personalized tutorials based on your skills</p>
+                        <h3 className="learning-title">{t('recommendedLearningAI')}</h3>
+                        <p className="learning-subtitle">{t('personalizedTutorials')}</p>
                     </div>
 
                     <div className="video-grid">
                         {videosLoading ? (
                             <div className="loading-box" style={{ gridColumn: '1/-1', textAlign: 'center', padding: '40px' }}>
                                 <RefreshCw className="animate-spin" size={32} />
-                                <p style={{ marginTop: '12px', color: 'var(--text-secondary)' }}>Curating personalized videos...</p>
+                                <p style={{ marginTop: '12px', color: 'var(--text-secondary)' }}>{t('curatingVideos')}</p>
                             </div>
                         ) : learningVideos?.length > 0 ? (
                             learningVideos.map((video, index) => (
@@ -417,8 +416,8 @@ const SkillGapDashboard = () => {
                                             <span className="video-channel">{video?.channelTitle}</span>
                                             <p className="video-desc-short">{video?.description}</p>
                                             <div className="video-footer-row">
-                                                <button className="watch-now-btn-small">Watch Now</button>
-                                                <span className="duration-tag">Tutorial</span>
+                                                <button className="watch-now-btn-small">{t('watchNow')}</button>
+                                                <span className="duration-tag">{t('tutorial')}</span>
                                             </div>
                                         </div>
                                     </a>
@@ -426,7 +425,7 @@ const SkillGapDashboard = () => {
                             ))
                         ) : (
                             <Card className="skillgap-card" style={{ gridColumn: '1/-1', textAlign: 'center' }}>
-                                <p className="cta-subtext">No video recommendations found. Upload your resume to unlock personalized learning paths.</p>
+                                <p className="cta-subtext">{t('noVideoRecommendations')}</p>
                             </Card>
                         )}
                     </div>
@@ -441,50 +440,50 @@ const SkillGapDashboard = () => {
                             <h3 className="profile-name">{user?.name || user?.email || 'John Doe'}</h3>
                             <div className="profile-meta-muted">
                                 <Calendar size={12} style={{ marginRight: '4px' }} />
-                                Last Updated: 21 Feb 2026
+                                {t('lastUpdated')}: 21 Feb 2026
                             </div>
                         </div>
 
                         <div style={{ marginBottom: '20px' }}>
-                            <div className="stat-label" style={{ marginBottom: '8px' }}>Resume Status</div>
+                            <div className="stat-label" style={{ marginBottom: '8px' }}>{t('resumeStatus')}</div>
                             <span className={`status-badge ${resumeAnalysis ? 'analyzed' : 'empty'}`}>
-                                {resumeAnalysis ? 'Verified' : 'Pending Upload'}
+                                {resumeAnalysis ? t('verified') : t('pendingUpload')}
                             </span>
                         </div>
 
                         <div className="quick-stats-grid">
                             <div className="stat-item">
                                 <span className="stat-number">{analysisData?.match_percentage || 0}%</span>
-                                <span className="stat-label">Skill Score</span>
+                                <span className="stat-label">{t('skillScore')}</span>
                             </div>
                             <div className="stat-item">
                                 <span className="stat-number">{resumeAnalysis?.overallScore || 0}%</span>
-                                <span className="stat-label">Match Strength</span>
+                                <span className="stat-label">{t('matchStrength')}</span>
                             </div>
                             <div className="stat-item" style={{ gridColumn: '1/-1' }}>
                                 <span className="stat-number">
                                     {resumeAnalysis ? '85%' : '45%'}
                                 </span>
-                                <span className="stat-label">Profile Completion</span>
+                                <span className="stat-label">{t('profileCompletion')}</span>
                             </div>
                         </div>
                     </Card>
 
                     {/* Quick Actions Card */}
                     <Card className="skillgap-card quick-actions-card">
-                        <h3 className="card-title-text" style={{ marginBottom: '20px' }}>Quick Actions</h3>
+                        <h3 className="card-title-text" style={{ marginBottom: '20px' }}>{t('quickActions')}</h3>
                         <div className="action-stack">
                             <button className="button-primary" onClick={() => window.location.href = '/resume-upload'} style={{ width: '100%', height: '44px' }}>
                                 <FileText size={18} />
-                                Upload Resume
+                                {t('uploadResumeBtn')}
                             </button>
                             <button className="button-secondary" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ width: '100%', height: '44px', marginTop: '12px' }}>
                                 <TrendingUp size={18} />
-                                View Skill Gap Report
+                                {t('viewSkillGapReport')}
                             </button>
                             <button className="button-secondary" onClick={() => window.location.href = '/learning'} style={{ width: '100%', height: '44px', marginTop: '12px' }}>
                                 <BookOpen size={18} />
-                                Explore Courses
+                                {t('exploreCourses')}
                             </button>
                         </div>
                     </Card>
@@ -494,7 +493,7 @@ const SkillGapDashboard = () => {
                         <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                             <AlertCircle size={20} color="var(--primary)" />
                             <p style={{ fontSize: '13px', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-                                **Tip:** Complete the critical skill gaps highlighted in your profile to increase your match strength by up to 40%.
+                                **{t('tip')}:** {t('completeCriticalSkills')}
                             </p>
                         </div>
                     </Card>
