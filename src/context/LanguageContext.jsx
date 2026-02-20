@@ -375,6 +375,12 @@ const translations = {
         selectGender: 'Select Gender',
         basicInfoTitle: 'Basic Information',
         basicInfoSubtitle: 'Please provide your personal details',
+        fullNamePlaceholder: 'Enter your full name',
+        phoneNumberPlaceholder: '10-digit mobile number',
+        emailAddress: 'Email Address',
+        emailPlaceholder: 'your.email@example.com',
+        optional: 'Optional',
+        districtPlaceholder: 'Enter your district',
         
         // Validation Messages
         nameRequired: 'Full name is required',
@@ -761,6 +767,12 @@ const translations = {
         selectGender: 'பாலினத்தைத் தேர்ந்தெடுக்கவும்',
         basicInfoTitle: 'அடிப்படை தகவல்',
         basicInfoSubtitle: 'உங்கள் தனிப்பட்ட விவரங்களை வழங்கவும்',
+        fullNamePlaceholder: 'உங்கள் முழு பெயரை உள்ளிடவும்',
+        phoneNumberPlaceholder: '10-இலக்க மொபைல் எண்',
+        emailAddress: 'மின்னஞ்சல் முகவரி',
+        emailPlaceholder: 'your.email@example.com',
+        optional: 'விருப்பத்தேர்வு',
+        districtPlaceholder: 'உங்கள் மாவட்டத்தை உள்ளிடவும்',
         
         // Validation Messages
         nameRequired: 'முழு பெயர் தேவை',
@@ -1147,6 +1159,12 @@ const translations = {
         selectGender: 'ലിംഗം തിരഞ്ഞെടുക്കുക',
         basicInfoTitle: 'അടിസ്ഥാന വിവരങ്ങൾ',
         basicInfoSubtitle: 'നിങ്ങളുടെ വ്യക്തിഗത വിശദാംശങ്ങൾ നൽകുക',
+        fullNamePlaceholder: 'നിങ്ങളുടെ മുഴുവൻ പേര് നൽകുക',
+        phoneNumberPlaceholder: '10-അക്ക മൊബൈൽ നമ്പർ',
+        emailAddress: 'ഇമെയിൽ വിലാസം',
+        emailPlaceholder: 'your.email@example.com',
+        optional: 'ഓപ്ഷണൽ',
+        districtPlaceholder: 'നിങ്ങളുടെ ജില്ല നൽകുക',
         
         // Validation Messages
         nameRequired: 'മുഴുവൻ പേര് ആവശ്യമാണ്',
@@ -1533,6 +1551,12 @@ const translations = {
         selectGender: 'लिंग चुनें',
         basicInfoTitle: 'बुनियादी जानकारी',
         basicInfoSubtitle: 'कृपया अपना व्यक्तिगत विवरण प्रदान करें',
+        fullNamePlaceholder: 'अपना पूरा नाम दर्ज करें',
+        phoneNumberPlaceholder: '10-अंकीय मोबाइल नंबर',
+        emailAddress: 'ईमेल पता',
+        emailPlaceholder: 'your.email@example.com',
+        optional: 'वैकल्पिक',
+        districtPlaceholder: 'अपना जिला दर्ज करें',
         
         // Validation Messages
         nameRequired: 'पूर्ण नाम आवश्यक है',

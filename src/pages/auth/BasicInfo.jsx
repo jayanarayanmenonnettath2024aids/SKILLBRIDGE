@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import { UserCircle, Mail, Phone, MapPin, Calendar } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 import '../../styles/Onboarding.css';
 
 const BasicInfo = ({ onNext }) => {
+    const { t } = useLanguage();
     const [formData, setFormData] = useState({
         fullName: '',
         phoneNumber: '',
@@ -46,48 +48,48 @@ const BasicInfo = ({ onNext }) => {
 
         // Name validation
         if (!formData.fullName.trim()) {
-            newErrors.fullName = 'Full name is required';
+            newErrors.fullName = t('nameRequired');
         } else if (formData.fullName.trim().length < 3) {
-            newErrors.fullName = 'Name must be at least 3 characters';
+            newErrors.fullName = t('nameMinLength');
         }
 
         // Phone validation
         if (!formData.phoneNumber) {
-            newErrors.phoneNumber = 'Phone number is required';
+            newErrors.phoneNumber = t('phoneRequired');
         } else if (!/^[6-9]\d{9}$/.test(formData.phoneNumber)) {
-            newErrors.phoneNumber = 'Enter a valid 10-digit Indian mobile number';
+            newErrors.phoneNumber = t('invalidPhone');
         }
 
         // Email validation (optional but validate if provided)
         if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-            newErrors.email = 'Enter a valid email address';
+            newErrors.email = t('invalidEmail');
         }
 
         // Date of Birth validation
         if (!formData.dateOfBirth) {
-            newErrors.dateOfBirth = 'Date of birth is required';
+            newErrors.dateOfBirth = t('dobRequired');
         } else {
             const dob = new Date(formData.dateOfBirth);
             const today = new Date();
             const age = today.getFullYear() - dob.getFullYear();
             if (age < 18 || age > 100) {
-                newErrors.dateOfBirth = 'Age must be between 18 and 100 years';
+                newErrors.dateOfBirth = t('ageRestriction');
             }
         }
 
         // Gender validation
         if (!formData.gender) {
-            newErrors.gender = 'Please select your gender';
+            newErrors.gender = t('genderRequired');
         }
 
         // State validation
         if (!formData.state) {
-            newErrors.state = 'Please select your state';
+            newErrors.state = t('stateRequired');
         }
 
         // District validation
         if (!formData.district.trim()) {
-            newErrors.district = 'District is required';
+            newErrors.district = t('districtRequired');
         }
 
         setErrors(newErrors);
@@ -108,13 +110,13 @@ const BasicInfo = ({ onNext }) => {
                     {/* Full Name */}
                     <div className="form-group col-span-full">
                         <label className="input-label-premium" htmlFor="fullName">
-                            Full Name <span className="text-error">*</span>
+                            {t('fullName')} <span className="text-error">*</span>
                         </label>
                         <input
                             type="text"
                             id="fullName"
                             name="fullName"
-                            placeholder="Enter your full name"
+                            placeholder={t('fullNamePlaceholder')}
                             value={formData.fullName}
                             onChange={handleChange}
                             className={`input-field-premium ${errors.fullName ? 'error' : ''}`}
@@ -125,13 +127,13 @@ const BasicInfo = ({ onNext }) => {
                     {/* Phone Number */}
                     <div className="form-group">
                         <label className="input-label-premium" htmlFor="phoneNumber">
-                            Mobile Number <span className="text-error">*</span>
+                            {t('phoneNumber')} <span className="text-error">*</span>
                         </label>
                         <input
                             type="tel"
                             id="phoneNumber"
                             name="phoneNumber"
-                            placeholder="10-digit mobile number"
+                            placeholder={t('phoneNumberPlaceholder')}
                             value={formData.phoneNumber}
                             onChange={(e) => {
                                 const value = e.target.value.replace(/\D/g, '').slice(0, 10);
@@ -145,13 +147,13 @@ const BasicInfo = ({ onNext }) => {
                     {/* Email (Optional) */}
                     <div className="form-group">
                         <label className="input-label-premium" htmlFor="email">
-                            Email Address <span className="text-secondary">(Optional)</span>
+                            {t('emailAddress')} <span className="text-secondary">({t('optional')})</span>
                         </label>
                         <input
                             type="email"
                             id="email"
                             name="email"
-                            placeholder="your.email@example.com"
+                            placeholder={t('emailPlaceholder')}
                             value={formData.email}
                             onChange={handleChange}
                             className={`input-field-premium ${errors.email ? 'error' : ''}`}
@@ -162,7 +164,7 @@ const BasicInfo = ({ onNext }) => {
                     {/* Date of Birth */}
                     <div className="form-group">
                         <label className="input-label-premium" htmlFor="dateOfBirth">
-                            Date of Birth <span className="text-error">*</span>
+                            {t('dateOfBirth')} <span className="text-error">*</span>
                         </label>
                         <input
                             type="date"
@@ -179,7 +181,7 @@ const BasicInfo = ({ onNext }) => {
                     {/* Gender */}
                     <div className="form-group">
                         <label className="input-label-premium" htmlFor="gender">
-                            Gender <span className="text-error">*</span>
+                            {t('gender')} <span className="text-error">*</span>
                         </label>
                         <select
                             id="gender"
@@ -188,10 +190,10 @@ const BasicInfo = ({ onNext }) => {
                             onChange={handleChange}
                             className={`input-field-premium ${errors.gender ? 'error' : ''}`}
                         >
-                            <option value="">Select Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
+                            <option value="">{t('selectGender')}</option>
+                            <option value="male">{t('male')}</option>
+                            <option value="female">{t('female')}</option>
+                            <option value="other">{t('other')}</option>
                         </select>
                         {errors.gender && <span className="error-message">{errors.gender}</span>}
                     </div>
@@ -199,7 +201,7 @@ const BasicInfo = ({ onNext }) => {
                     {/* State */}
                     <div className="form-group">
                         <label className="input-label-premium" htmlFor="state">
-                            State <span className="text-error">*</span>
+                            {t('state')} <span className="text-error">*</span>
                         </label>
                         <select
                             id="state"
@@ -208,7 +210,7 @@ const BasicInfo = ({ onNext }) => {
                             onChange={handleChange}
                             className={`input-field-premium ${errors.state ? 'error' : ''}`}
                         >
-                            <option value="">Select State</option>
+                            <option value="">{t('selectState')}</option>
                             {states.map(state => (
                                 <option key={state} value={state}>{state}</option>
                             ))}
@@ -219,13 +221,13 @@ const BasicInfo = ({ onNext }) => {
                     {/* District */}
                     <div className="form-group">
                         <label className="input-label-premium" htmlFor="district">
-                            District <span className="text-error">*</span>
+                            {t('district')} <span className="text-error">*</span>
                         </label>
                         <input
                             type="text"
                             id="district"
                             name="district"
-                            placeholder="Enter your district"
+                            placeholder={t('districtPlaceholder')}
                             value={formData.district}
                             onChange={handleChange}
                             className={`input-field-premium ${errors.district ? 'error' : ''}`}
@@ -241,7 +243,7 @@ const BasicInfo = ({ onNext }) => {
                     className="onboarding-btn-text"
                     style={{ padding: 0 }}
                 >
-                    Back
+                    {t('back')}
                 </button>
                 <div style={{ flex: 1 }}></div>
                 <button
@@ -249,7 +251,7 @@ const BasicInfo = ({ onNext }) => {
                     className="onboarding-btn-primary"
                     onClick={handleSubmit}
                 >
-                    Continue
+                    {t('continue')}
                 </button>
             </footer>
         </div>
