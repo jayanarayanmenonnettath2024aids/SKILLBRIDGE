@@ -5,6 +5,7 @@ import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import { updateUserProfileAPI } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
+import { useLanguage } from '../../context/LanguageContext';
 import '../../styles/ProfileSetup.css';
 
 const ProfileSetup = () => {
@@ -19,6 +20,7 @@ const ProfileSetup = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { t } = useLanguage();
 
   const domainOptions = [
     { value: 'AI Engineer', label: 'AI Engineer', icon: '🤖' },
@@ -67,17 +69,17 @@ const ProfileSetup = () => {
     setError('');
 
     if (!formData.interestedDomain) {
-      setError('Please select your interested domain');
+      setError(t('domainRequired'));
       return;
     }
 
     if (formData.skillsSelected.length === 0) {
-      setError('Please select at least one skill');
+      setError(t('skillsRequired'));
       return;
     }
 
     if (!formData.fieldOfInterest) {
-      setError('Please enter your field of interest');
+      setError(t('fieldOfInterestRequired'));
       return;
     }
 
@@ -108,8 +110,8 @@ const ProfileSetup = () => {
           <div className="icon-bg">
             <Target size={32} />
           </div>
-          <h1>Complete Your Profile</h1>
-          <p>Tell us about your skills and career interests</p>
+          <h1>{t('completeYourProfile')}</h1>
+          <p>{t('tellUsAboutSkills')}</p>
         </div>
 
         <Card className="setup-card">
@@ -122,7 +124,7 @@ const ProfileSetup = () => {
           <div className="form-section">
             <label className="section-label">
               <Briefcase size={20} />
-              Select Your Interested Domain *
+              {t('interestedDomain')} *
             </label>
             <div className="domain-grid">
               {domainOptions.map((domain) => (
@@ -145,10 +147,10 @@ const ProfileSetup = () => {
           <div className="form-section">
             <label className="section-label">
               <Code size={20} />
-              Select Your Skills * (Choose at least 3)
+              {t('selectSkills')} * ({t('chooseAtLeast3')})
             </label>
             <div className="skills-selected-count">
-              {formData.skillsSelected.length} skills selected
+              {formData.skillsSelected.length} {t('skillsSelected')}
             </div>
             <div className="skills-grid">
               {skillsOptions.map((skill) => (
@@ -168,11 +170,11 @@ const ProfileSetup = () => {
           <div className="form-section">
             <label className="section-label">
               <Target size={20} />
-              Field of Interest *
+              {t('fieldOfInterest')} *
             </label>
             <input
               type="text"
-              placeholder="E.g., Natural Language Processing, Full Stack Web Development"
+              placeholder={t('fieldOfInterestPlaceholder')}
               value={formData.fieldOfInterest}
               onChange={(e) => setFormData({ ...formData, fieldOfInterest: e.target.value })}
               className="text-input"
@@ -182,7 +184,7 @@ const ProfileSetup = () => {
           <div className="form-section">
             <label className="section-label">
               <Briefcase size={20} />
-              Experience Level
+              {t('experienceLevelLabel')}
             </label>
             <div className="experience-options">
               {experienceLevels.map((level) => (
@@ -201,11 +203,11 @@ const ProfileSetup = () => {
           <div className="form-section">
             <label className="section-label">
               <MapPin size={20} />
-              Location Preference
+              {t('locationPreference')}
             </label>
             <input
               type="text"
-              placeholder="E.g., Remote, Bangalore, Mumbai"
+              placeholder={t('locationPlaceholder')}
               value={formData.location}
               onChange={(e) => setFormData({ ...formData, location: e.target.value })}
               className="text-input"
@@ -218,7 +220,7 @@ const ProfileSetup = () => {
               disabled={loading}
               className="submit-btn"
             >
-              {loading ? 'Saving...' : 'Continue to Dashboard'}
+              {loading ? t('saving') + '...' : t('continueToDashboard')}
             </Button>
           </div>
         </Card>
