@@ -159,6 +159,20 @@ export const getSkillGapAnalysis = async (userId) => {
 };
 
 /**
+ * Get REAL skill gap analysis based on user skills vs required skills
+ * @param {string} userId - The user ID to analyze
+ */
+export const getSkillGapAnalysisReal = async (userId) => {
+    try {
+        const response = await api.get(`/skill-gap/analysis/${userId}`);
+        return response.data;
+    } catch (error) {
+        console.warn("Skill gap analysis not available:", error.message);
+        return null; // Return null if no analysis available (resume not uploaded/analyzed)
+    }
+};
+
+/**
  * Get required skills for a specific job role
  * @param {string} role - The job role name
  */

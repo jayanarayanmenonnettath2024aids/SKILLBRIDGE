@@ -23,9 +23,12 @@ import {
 } from 'lucide-react';
 import { getAllUsers, getSkillGapAnalysis, seedSkillGapData, getResumeAnalysisAPI, analyzeResumeAPI, getLearningVideosAPI } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 const SkillGapDashboard = () => {
     // 1. SAFE STATE INITIALIZATION
+    const { user } = useAuth();
+    const { t } = useLanguage();
     const [users, setUsers] = useState([]);
     const [selectedUserId, setSelectedUserId] = useState(null);
     const [analysisData, setAnalysisData] = useState({
