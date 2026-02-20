@@ -1,0 +1,172 @@
+/* ══════════════════════════════════════════
+   Language Toggle — Floating Action Button
+   ══════════════════════════════════════════ */
+
+.language-floating-toggle {
+    position: fixed;
+    bottom: 6rem;
+    /* Positioned above ThemeToggle (which is at 2rem) */
+    right: 2rem;
+    z-index: 8000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+/* Main Toggle Button */
+.language-toggle-button {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1.25rem 0.6rem 0.8rem;
+    background: rgba(10, 15, 30, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-full);
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 15px rgba(82, 39, 255, 0.15);
+    transition: all var(--transition-normal);
+    pointer-events: auto;
+}
+
+.language-toggle-button:hover {
+    transform: translateY(-4px) scale(1.02);
+    background: rgba(10, 15, 30, 0.95);
+    border-color: var(--color-primary);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(82, 39, 255, 0.3);
+}
+
+.language-toggle-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-normal);
+}
+
+.language-toggle-button:hover .language-toggle-icon {
+    background: var(--gradient-primary);
+    color: #fff;
+    transform: rotate(15deg);
+}
+
+.language-toggle-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* Expanded Language Options */
+.language-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    animation: slideUpFade 0.3s ease-out;
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 1.25rem;
+    background: rgba(10, 15, 30, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-full);
+    color: #fff;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    min-width: 180px;
+    position: relative;
+}
+
+.language-option:hover {
+    background: rgba(10, 15, 30, 0.95);
+    border-color: var(--color-primary);
+    transform: translateX(-4px);
+    box-shadow: 0 4px 16px rgba(82, 39, 255, 0.2);
+}
+
+.language-option.active {
+    background: var(--gradient-primary);
+    border-color: var(--color-primary);
+}
+
+.language-native {
+    font-size: 1rem;
+    font-weight: 700;
+    min-width: 50px;
+}
+
+.language-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    flex: 1;
+}
+
+.check-icon {
+    color: #fff;
+    margin-left: auto;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .language-floating-toggle {
+        bottom: 5rem;
+        right: 1rem;
+    }
+
+    .language-options {
+        gap: 0.4rem;
+    }
+
+    .language-option {
+        padding: 0.6rem 1rem;
+        min-width: 160px;
+    }
+
+    .language-toggle-button {
+        padding: 0.5rem 1rem 0.5rem 0.7rem;
+    }
+
+    .language-toggle-icon {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .language-floating-toggle {
+        bottom: 4.5rem;
+        right: 0.75rem;
+    }
+
+    .language-options {
+        gap: 0.35rem;
+    }
+
+    .language-option {
+        padding: 0.5rem 0.9rem;
+        min-width: 140px;
+        font-size: 0.85rem;
+    }
+}

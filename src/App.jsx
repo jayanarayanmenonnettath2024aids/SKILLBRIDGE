@@ -21,6 +21,7 @@ import MicroLearning from './pages/learning/MicroLearning';
 import LessonView from './pages/learning/LessonView';
 import StaggeredMenu from './components/layout/StaggeredMenu';
 import ThemeToggle from './components/layout/ThemeToggle';
+import LanguageToggle from './components/layout/LanguageToggle';
 import SiteFooter from './components/layout/Footer';
 import InterviewBot from './pages/interview/InterviewBot';
 import { useAuth } from './context/AuthContext';
@@ -36,6 +37,7 @@ function App() {
   return (
     <div className="app-container">
       {!hideNavAndFooter && <StaggeredMenu />}
+      <LanguageToggle />
       <ThemeToggle />
       <main>
         <Routes>
